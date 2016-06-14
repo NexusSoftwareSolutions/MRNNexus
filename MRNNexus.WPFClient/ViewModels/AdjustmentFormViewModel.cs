@@ -74,8 +74,24 @@ namespace MRNNexus.WPFClient.ViewModels
             }
         }
 
-        private void submitAdjustment(object o)
+        async private void submitAdjustment(object o)
         {
+            if(Adjustment.AdjustmentID == 0)
+            {
+                if ((ErrorMessage = await new ServiceLayer().AddAdjustment(Adjustment.toDTO())) != null)
+                    return;
+
+                Adjustment = new Adjustment(ServiceLayer.Adjustment);
+
+                if(Adjustments != null) Adjustments.Add(Adjustment);
+            }
+            else
+            {
+                if ((ErrorMessage = await new ServiceLayer().UpdateAdjustment(Adjustment.toDTO())) != null)
+                    return;
+                Adjustment = new Adjustment(ServiceLayer.Adjustment);
+            }
+
             OnRequestClose(this, new EventArgs());
         }
 

@@ -361,6 +361,11 @@ namespace MRNNexus.WPFClient.Models
             Adjuster = JsonConvert.DeserializeObject<DTO_Adjuster>(await MakeRequest(token, "AddAdjuster"));
             return Adjuster.Message;
         }
+        async public Task<string> AddAdjustment(DTO_Adjustment token)
+        {
+            Adjustment = JsonConvert.DeserializeObject<DTO_Adjustment>(await MakeRequest(token, "AddAdjustment"));
+            return Adjustment.Message;
+        }
 
         async public Task<string> AddClaim(DTO_Claim token)
         {
@@ -529,6 +534,11 @@ namespace MRNNexus.WPFClient.Models
         {
             Adjuster = JsonConvert.DeserializeObject<DTO_Adjuster>(await MakeRequest(token, "UpdateAdjuster"));
             return Adjuster.Message;
+        }
+        async public Task<string> UpdateAdjustment(DTO_Adjustment token)
+        {
+            Adjustment = JsonConvert.DeserializeObject<DTO_Adjustment>(await MakeRequest(token, "UpdateAdjustment"));
+            return Adjustment.Message;
         }
 
         async public Task<string> UpdateCalendarData(DTO_CalendarData token)

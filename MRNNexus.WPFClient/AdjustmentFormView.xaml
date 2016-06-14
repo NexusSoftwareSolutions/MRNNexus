@@ -44,8 +44,8 @@
         </syncfusion:CheckListBox>
 
         <Label Grid.Row="5" Grid.Column="0" Content="Adjustment Result:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="5" Grid.Column="1" ItemsSource="{Binding AdjustmentResults}" SelectedValue="{Binding Adjustment.AdjustmentResultTypeID, Mode=TwoWay}" 
-                                  SelectedValuePath="AdjustmentResultTypeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100">
+        <ComboBox Grid.Row="5" Grid.Column="1" ItemsSource="{Binding AdjustmentResults}" SelectedValue="{Binding Adjustment.AdjustmentResultID, Mode=TwoWay}" 
+                                  SelectedValuePath="AdjustmentResultID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding AdjustmentResult}"/>

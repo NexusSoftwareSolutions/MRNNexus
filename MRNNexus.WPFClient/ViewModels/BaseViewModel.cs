@@ -221,7 +221,24 @@ namespace MRNNexus.WPFClient.ViewModels
             //IWindowService ws = new WindowService();
             //ws.showWindow(new AdjustmentFormView());
         }
-        
+        private static void editAdjustment(object o)
+        {
+            Header = "Edit Adjustment";
+
+            if (Claim != null && !Claim.MRNClaimNumber.Contains("-"))
+            {
+                Claim = null;
+            }
+
+            AdjustmentFormView view = new AdjustmentFormView();
+            view.SizeToContent = SizeToContent.WidthAndHeight;
+            view.WindowStyle = WindowStyle.ThreeDBorderWindow;
+            view.ResizeMode = ResizeMode.NoResize;
+            view.ShowDialog();
+            //IWindowService ws = new WindowService();
+            //ws.showWindow(new AdjustmentFormView());
+        }
+
         private static void addInvoice(object o)
         {
             Header = "Add Invoice";
