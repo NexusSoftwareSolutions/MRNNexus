@@ -16,11 +16,11 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <syncfusion:SfDataGrid Grid.Row="0" ItemsSource="{Binding Adjusters}" SelectionUnit="Row" SelectedItem="{Binding SelectedAdjuster, Mode=OneWayToSource}" ColumnSizer="Auto">
-            <!--<i:Interaction.Triggers>
+            <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding AdjusterSelected}" CommandParameter="{Binding SelectedAdjuster}"/>
                 </i:EventTrigger>
-            </i:Interaction.Triggers>-->
+            </i:Interaction.Triggers>
             <syncfusion:SfDataGrid.RecordContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Edit Adjuster" Command="{Binding EditAdjuster}" CommandParameter="{Binding SelectedAdjuster}"/>
