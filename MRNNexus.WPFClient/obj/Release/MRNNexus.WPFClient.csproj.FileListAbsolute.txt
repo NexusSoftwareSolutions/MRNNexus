@@ -1,0 +1,12 @@
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\bin\Release\MRNNexus.WPFClient.exe.config
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\obj\Release\MRNNexus.WPFClient.csprojResolveAssemblyReference.cache
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\obj\Release\MRNNexus.WPFClient.csproj.MRNNexus.WPFClient.exe.config
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\obj\Release\Login.g.cs
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\obj\Release\MainWindow.g.cs
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\obj\Release\NewInspection.g.cs
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\obj\Release\Reminder.g.cs
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\obj\Release\Schedule.g.cs
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\obj\Release\App.g.cs
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\obj\Release\MRNNexus.WPFClient_MarkupCompile.cache
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.WPFClient\obj\Release\MRNNexus.WPFClient_MarkupCompile.lref

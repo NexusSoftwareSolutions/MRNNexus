@@ -1,0 +1,7 @@
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\bin\Release\MRNNexus.DTOs.dll
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\bin\Release\MRNNexus.DTOs.pdb
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\bin\Release\Newtonsoft.Json.dll
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\bin\Release\Newtonsoft.Json.xml
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\obj\Release\MRNNexus.DTOs.csprojResolveAssemblyReference.cache
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\obj\Release\MRNNexus.DTOs.dll
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\obj\Release\MRNNexus.DTOs.pdb

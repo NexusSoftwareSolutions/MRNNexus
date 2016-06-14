@@ -1,0 +1,67 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MRNNexus.WPFClient"
+    xmlns:mvs="clr-namespace:MRNNexus.WPFClient.ViewModels"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="MRNNexus.WPFClient.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" WindowState="Maximized"
+    DataContext="{StaticResource mainWindowViewModel}">
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <syncfusion:MenuAdv Grid.Row="0" x:Name="menuBar" IsEnabled="{Binding MenuBarIsEnabled}">
+            <syncfusion:MenuItemAdv Header="File"/>
+            <syncfusion:MenuItemAdv Header="Calendar" Command="{x:Static mvs:BaseViewModel.ViewSchedule}"/>
+            <syncfusion:MenuItemAdv Header="Leads">
+                <syncfusion:MenuItemAdv Header="Add Lead" Command="{x:Static mvs:BaseViewModel.AddLead}"/>
+                <syncfusion:MenuItemAdv Header="Edit Lead" Command="{x:Static mvs:BaseViewModel.EditLead}"/>
+                <syncfusion:MenuItemAdv Header="View Leads" IsEnabled="False"/>
+            </syncfusion:MenuItemAdv>
+            <syncfusion:MenuItemAdv Header="Claims">
+                <syncfusion:MenuItemAdv Header="View Claims"/>
+                <syncfusion:MenuItemAdv Header="Adjustments">
+                    <syncfusion:MenuItemAdv Header="Add Adjsutment"/>
+                    <syncfusion:MenuItemAdv Header="View Adjsutments"/>
+                </syncfusion:MenuItemAdv>
+                <syncfusion:MenuItemAdv Header="Scopes">
+                    <syncfusion:MenuItemAdv Header="Add Scope"/>
+                    <syncfusion:MenuItemAdv Header="View Scopes"/>
+                </syncfusion:MenuItemAdv>
+                <syncfusion:MenuItemAdv Header="Orders">
+                    <syncfusion:MenuItemAdv Header="Add Order"/>
+                    <syncfusion:MenuItemAdv Header="View Orders"/>
+
+                    <syncfusion:MenuItemAdv Header="Add Additional Supplies"/>
+                </syncfusion:MenuItemAdv>
+                <syncfusion:MenuItemAdv Header="Payments">
+                    <syncfusion:MenuItemAdv Header="Add Payment"/>
+                    <syncfusion:MenuItemAdv Header="View Payments"/>
+                </syncfusion:MenuItemAdv>
+
+            </syncfusion:MenuItemAdv>
+            <syncfusion:MenuItemAdv Header="Inspections">
+                <syncfusion:MenuItemAdv Header="Add Inspection" Command="{x:Static mvs:BaseViewModel.AddInspection}"/>
+                <syncfusion:MenuItemAdv Header="Edit Inspection" Command="{x:Static mvs:BaseViewModel.EditInspection}"/>
+            </syncfusion:MenuItemAdv>
+            <syncfusion:MenuItemAdv Header="Adjsutments" Command="{x:Static mvs:BaseViewModel.AddAdjustment}"/>
+            <syncfusion:MenuItemAdv Header="Stats"/>
+        </syncfusion:MenuAdv>
+
+        <Frame Grid.Row="1" NavigationUIVisibility="Hidden" x:Name="MRNNexusMainFrame" Content="{Binding CurrentPage, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        </Frame>
+        <syncfusion:SfBusyIndicator Grid.ColumnSpan="1" Grid.RowSpan="2" x:Name="busyIndicator" IsBusy="{Binding IsBusyLoading}" Header="Loading Resources..." AnimationType="SlicedCircle" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+    </Grid>
+</Window>

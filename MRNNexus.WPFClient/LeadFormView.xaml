@@ -1,0 +1,333 @@
+﻿<Page x:Class="MRNNexus.WPFClient.LeadFormView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MRNNexus.WPFClient"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf" 
+      mc:Ignorable="d" 
+      Title="LeadFormView"
+      DataContext="{StaticResource baseViewModel}">
+
+    <GroupBox Header="Lead Information">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="1" Grid.Column="0" Content="Lead Date:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120" />
+        <DatePicker Grid.Row="1" Grid.Column="1" x:Name="datepicker" SelectedDate="{Binding Lead.LeadDate}"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="150"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Lead Type:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="leadTypeIDCbo" ItemsSource="{Binding LeadTypes}" SelectedValue="{Binding Lead.LeadTypeID, Mode=TwoWay}" 
+                                  SelectedValuePath="LeadTypeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="150" MaxWidth="100">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding LeadType}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <!--#region KNOCKER CONTROLS-->
+        <Label Grid.Row="3" Grid.Column="0" Content="Knocker:" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger
+                            Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="1">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <ComboBox Grid.Row="3" Grid.Column="1" x:Name="knockerCbo" ItemsSource="{Binding Employees}" SelectedValue="{Binding KnockerResponse.KnockerID, Mode=TwoWay}" 
+                                  SelectedValuePath="EmployeeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100"
+                  >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding FullName}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            <ComboBox.Style>
+                <Style>
+                    <Setter Property="ComboBox.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger
+                            Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="1">
+                            <Setter Property="ComboBox.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Style>
+        </ComboBox>
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Knocker Response:" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger
+                            Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="1">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <ComboBox Grid.Row="4" Grid.Column="1" x:Name="knockerResponseCbo" ItemsSource="{Binding KnockResponseTypes}" SelectedValue="{Binding KnockerResponse.KnockerResponseTypeID, Mode=TwoWay}" 
+                                  SelectedValuePath="KnockResponseTypeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100"
+                  >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding KnockResponseType}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            <ComboBox.Style>
+                <Style>
+                    <Setter Property="ComboBox.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger
+                            Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="1">
+                            <Setter Property="ComboBox.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Style>
+        </ComboBox>
+        <!--#endregion-->
+        
+        <!--#region Referrer Controls-->
+
+            <Frame Grid.Row="3" Grid.ColumnSpan="2" Source="ReferrerFormView.xaml">
+                <Frame.Style>
+                    <Style>
+                        <Setter Property="Frame.Visibility" Value="Collapsed"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                                <Setter Property="Frame.Visibility" Value="Visible"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Frame.Style>
+            </Frame>
+
+
+            <!--<Label Grid.Row="3" Grid.Column="0" Content="Referrer First Name:" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+
+        <syncfusion:SfMaskedEdit Grid.Row="3" Grid.Column="1" Text="{Binding Referrer.FirstName}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="150">
+            <syncfusion:SfMaskedEdit.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </syncfusion:SfMaskedEdit.Style>
+        </syncfusion:SfMaskedEdit>
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Referrer Last Name:" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+            
+        <syncfusion:SfMaskedEdit Grid.Row="4" Grid.Column="1" Text="{Binding Referrer.LastName}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="150">
+            <syncfusion:SfMaskedEdit.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </syncfusion:SfMaskedEdit.Style>
+        </syncfusion:SfMaskedEdit>
+
+        <Label Grid.Row="5" Grid.Column="0" Content="Referrer Suffix:" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        
+        <syncfusion:SfMaskedEdit Grid.Row="5" Grid.Column="1" Text="{Binding Referrer.Suffix}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="150">
+            <syncfusion:SfMaskedEdit.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </syncfusion:SfMaskedEdit.Style>
+        </syncfusion:SfMaskedEdit>
+
+        <Label Grid.Row="6" Grid.Column="0" Content="Referrer Address:" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        
+        <syncfusion:SfMaskedEdit Grid.Row="6" Grid.Column="1" Text="{Binding Referrer.MaillingAddress}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="150">
+            <syncfusion:SfMaskedEdit.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </syncfusion:SfMaskedEdit.Style>
+        </syncfusion:SfMaskedEdit>
+        
+
+        <Label Grid.Row="7" Grid.Column="0" Content="Referrer Zip:" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        
+        <syncfusion:SfMaskedEdit Grid.Row="7" Grid.Column="1" Text="{Binding Referrer.Zip}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="150">
+            <syncfusion:SfMaskedEdit.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </syncfusion:SfMaskedEdit.Style>
+        </syncfusion:SfMaskedEdit>
+
+        <Label Grid.Row="8" Grid.Column="0" Content="Referrer Email:" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        
+        <syncfusion:SfMaskedEdit Grid.Row="8" Grid.Column="1" Text="{Binding Referrer.Email}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="150">
+            <syncfusion:SfMaskedEdit.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </syncfusion:SfMaskedEdit.Style>
+        </syncfusion:SfMaskedEdit>
+
+        <Label Grid.Row="9" Grid.Column="0" Content="Referrer Cell:" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
+        <syncfusion:SfMaskedEdit Grid.Row="9" Grid.Column="1" Text="{Binding Referrer.CellPhone}" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Width="150">
+            <syncfusion:SfMaskedEdit.Style>
+                <Style>
+                    <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                            <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </syncfusion:SfMaskedEdit.Style>
+        </syncfusion:SfMaskedEdit>-->
+        <!--#endregion-->
+
+        <Label Grid.Row="10" Grid.Column="0" Content="Temperature:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120" />
+        <StackPanel Grid.Row="10" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <RadioButton GroupName="Temperature" Content="Cool" Margin="0, 0, 5, 0" Foreground="Blue" Command="{Binding LeadTemperatureSelected}" CommandParameter="C"/>
+                <RadioButton GroupName="Temperature" Content="Warm" Margin="0, 0, 5, 0" IsChecked="True" Foreground="Orange" Command="{Binding LeadTemperatureSelected}" CommandParameter="W"/>
+                <RadioButton GroupName="Temperature" Content="Hot" Foreground="Red" Command="{Binding LeadTemperatureSelected}" CommandParameter="H"/>
+        </StackPanel>
+
+        <syncfusion:CheckListBox Grid.Row="11" Grid.ColumnSpan="2" x:Name="isSuccessfulLead" HorizontalAlignment="Stretch" VerticalAlignment="Center" CheckBoxAlignment="Right" BorderThickness="0">
+            <syncfusion:CheckListBox.ItemContainerStyle>
+                <Style TargetType="syncfusion:CheckListBoxItem">
+                    <Setter Property="IsSelected" Value="{Binding IsChecked, Mode=TwoWay}"/>
+                </Style>
+            </syncfusion:CheckListBox.ItemContainerStyle>
+            <syncfusion:CheckListBoxItem Content="Was a contract signed?" IsSelected="{Binding Lead.Success}"/>
+        </syncfusion:CheckListBox>
+            
+
+        </Grid>
+    </GroupBox>
+</Page>

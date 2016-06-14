@@ -1,0 +1,40 @@
+﻿<Window x:Class="MRNNexus.WPFClient.LeadView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MRNNexus.WPFClient"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+        mc:Ignorable="d"
+        Title="NewLeadWindow"
+        DataContext="{StaticResource leadViewModel}">
+
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.ColumnSpan="4" Content="{Binding Header}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="{Binding HeaderFontSize}"/>
+        
+        <Frame Grid.Row="1" Grid.ColumnSpan="2" Source="LeadFormView.xaml"/>
+        
+        <Frame Grid.Row="2" Grid.ColumnSpan="2" Source="CustomerFormView.xaml"/>
+
+        <Frame Grid.Row="3" Grid.ColumnSpan="2" Source="PropertyAddressFormView.xaml"/>
+
+        <Button Grid.Row="4" Grid.Column="0" Content="Submit" Command="{Binding SubmitLead}"/>
+        <Button Grid.Row="4" Grid.Column="1" Content="Cancel" Command="{Binding CancelLead}"/>
+    </Grid>
+</Window>

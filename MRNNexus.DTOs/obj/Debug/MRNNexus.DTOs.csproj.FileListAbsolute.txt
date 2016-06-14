@@ -1,0 +1,20 @@
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\bin\Debug\MRNNexus.DTOs.dll
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\bin\Debug\MRNNexus.DTOs.pdb
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\obj\Debug\MRNNexus.DTOs.csprojResolveAssemblyReference.cache
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\obj\Debug\MRNNexus.DTOs.dll
+C:\Users\Alyssa\Desktop\MRNNexus\MRNNexus.DTOs\obj\Debug\MRNNexus.DTOs.pdb
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.DTOs\bin\Debug\MRNNexus.DTOs.dll
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.DTOs\bin\Debug\MRNNexus.DTOs.pdb
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.DTOs\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.DTOs\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.DTOs\obj\Debug\MRNNexus.DTOs.csprojResolveAssemblyReference.cache
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.DTOs\obj\Debug\MRNNexus.DTOs.dll
+C:\Users\Alyssa\Desktop\MRNTESTAPPLICATIONS\WPF\MRNNexus\MRNNexus.DTOs\obj\Debug\MRNNexus.DTOs.pdb
+C:\Users\Alyssa\Google Drive\MRNHomes Project\Visual Studio Projects\Application\MRNNexus\MRNNexus.DTOs\bin\Debug\MRNNexus.DTOs.dll
+C:\Users\Alyssa\Google Drive\MRNHomes Project\Visual Studio Projects\Application\MRNNexus\MRNNexus.DTOs\bin\Debug\MRNNexus.DTOs.pdb
+C:\Users\Alyssa\Google Drive\MRNHomes Project\Visual Studio Projects\Application\MRNNexus\MRNNexus.DTOs\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alyssa\Google Drive\MRNHomes Project\Visual Studio Projects\Application\MRNNexus\MRNNexus.DTOs\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Alyssa\Google Drive\MRNHomes Project\Visual Studio Projects\Application\MRNNexus\MRNNexus.DTOs\obj\Debug\MRNNexus.DTOs.dll
+C:\Users\Alyssa\Google Drive\MRNHomes Project\Visual Studio Projects\Application\MRNNexus\MRNNexus.DTOs\obj\Debug\MRNNexus.DTOs.pdb

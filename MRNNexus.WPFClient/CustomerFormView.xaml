@@ -1,0 +1,83 @@
+﻿<Page x:Class="MRNNexus.WPFClient.CustomerForm"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MRNNexus.WPFClient"
+      mc:Ignorable="d" 
+      DataContext="{StaticResource baseViewModel}"
+      Title="CustomerForm">
+
+    <Grid>
+        <GroupBox Header="Customer Information">
+            <StackPanel>
+            <syncfusion:CheckListBox x:Name="isExistingCustomer" HorizontalAlignment="Stretch" VerticalAlignment="Center" CheckBoxAlignment="Right" BorderThickness="0">
+                <syncfusion:CheckListBox.ItemContainerStyle>
+                    <Style TargetType="syncfusion:CheckListBoxItem">
+                        <Setter Property="IsSelected" Value="{Binding IsChecked, Mode=TwoWay}"/>
+                    </Style>
+                </syncfusion:CheckListBox.ItemContainerStyle>
+                <syncfusion:CheckListBoxItem Content="Existing Customer" IsSelected="{Binding IsExistingCustomer}"/>
+            </syncfusion:CheckListBox>
+            <Grid x:Name="customerGrid" DataContext="{Binding Customer}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                
+
+                <Label Grid.Row="0" Grid.Column="0" x:Name="customerFirstNameLbl" Content="First Name:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120" />
+                <syncfusion:SfMaskedEdit Grid.Row="0" Grid.Column="1" x:Name="customerFirstNameTextBox" Text="{Binding FirstName}"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="150"/>
+
+                <Label Grid.Row="1" Grid.Column="0" x:Name="customerMiddleNameLbl" Content="Middle Name:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+                <syncfusion:SfMaskedEdit Grid.Row="1" Grid.Column="1" x:Name="customerMiddleNameTextBox" Text="{Binding MiddleName}" 
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="150"/>
+
+                <Label Grid.Row="2" Grid.Column="0" x:Name="customerLastNameLbl" Content="Last Name:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+                <syncfusion:SfMaskedEdit Grid.Row="2" Grid.Column="1" x:Name="customerLastNameTextBox" Text="{Binding LastName}"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="150"/>
+
+                <Label Grid.Row="3" Grid.Column="0" x:Name="customerSuffixLbl" Content="Suffix:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+                <syncfusion:SfMaskedEdit Grid.Row="3" Grid.Column="1" x:Name="customerSuffixTextBox" Text="{Binding Suffix}"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="150"/>
+
+                <Label Grid.Row="4" Grid.Column="0" x:Name="customerPrimaryNumberLbl" Content="Primary Number:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+                <syncfusion:SfMaskedEdit Grid.Row="4" Grid.Column="1" x:Name="customerPrimaryNumberTextBox" Text="{Binding PrimaryNumber}"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="150"/>
+
+                <Label Grid.Row="5" Grid.Column="0" x:Name="customerSecondaryNumberLbl" Content="Secondary Number:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+                <syncfusion:SfMaskedEdit Grid.Row="5" Grid.Column="1" x:Name="customerSecondaryNumberTextBox" Text="{Binding SecondaryNumber}"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="150"/>
+
+                <Label Grid.Row="6" Grid.Column="0" x:Name="customerEmailLbl" Content="Email Address:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+                <syncfusion:SfMaskedEdit Grid.Row="6" Grid.Column="1" x:Name="customerEmailTextBox" Text="{Binding Email}"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="150"/>
+
+                <syncfusion:CheckListBox Grid.Row="7" Grid.ColumnSpan="2" x:Name="checkListBox4" HorizontalAlignment="Stretch" VerticalAlignment="Center" CheckBoxAlignment="Right" BorderThickness="0">
+                    <syncfusion:CheckListBox.ItemContainerStyle>
+                        <Style TargetType="syncfusion:CheckListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding IsChecked, Mode=TwoWay}"/>
+                        </Style>
+                    </syncfusion:CheckListBox.ItemContainerStyle>
+                    <syncfusion:CheckListBoxItem Content="Mail Promotional Materials" IsSelected="{Binding MailPromos}"/>
+                </syncfusion:CheckListBox>
+
+            </Grid>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Page>

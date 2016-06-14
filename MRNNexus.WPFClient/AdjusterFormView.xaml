@@ -1,0 +1,84 @@
+﻿<Window x:Class="MRNNexus.WPFClient.AdjusterFormView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MRNNexus.WPFClient"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+      mc:Ignorable="d" 
+      DataContext="{StaticResource adjusterFormViewModel}"
+      Title="AdjusterFormView">
+
+    <Grid Margin="5, 5, 5, 5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Adjuster Information" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="{Binding HeaderFontSize}"/>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="First Name" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <syncfusion:SfMaskedEdit Grid.Row="1" Grid.Column="1" Text="{Binding Adjuster.FirstName, Mode=TwoWay}" 
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="100"/>
+        
+        
+        <Label Grid.Row="2" Grid.Column="0" Content="Last Name" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <syncfusion:SfMaskedEdit Grid.Row="2" Grid.Column="1" Text="{Binding Adjuster.LastName, Mode=TwoWay}" 
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="100"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Suffix" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <syncfusion:SfMaskedEdit Grid.Row="3" Grid.Column="1" Text="{Binding Adjuster.Suffix, Mode=TwoWay}" 
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="100"/>
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Phone Number" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <syncfusion:SfMaskedEdit Grid.Row="4" Grid.Column="1" Text="{Binding Adjuster.PhoneNumber, Mode=TwoWay}" 
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="100"/>
+
+        <Label Grid.Row="5" Grid.Column="0" Content="Phone Extension" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <syncfusion:SfMaskedEdit Grid.Row="5" Grid.Column="1" Text="{Binding Adjuster.PhoneExt, Mode=TwoWay}" 
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="100"/>
+
+        <Label Grid.Row="6" Grid.Column="0" Content="Email" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <syncfusion:SfMaskedEdit Grid.Row="6" Grid.Column="1" Text="{Binding Adjuster.Email, Mode=TwoWay}" 
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="100"/>
+
+        <Label Grid.Row="7" Grid.Column="0" Content="Insurance Company" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <ComboBox Grid.Row="7" Grid.Column="1" x:Name="insuranceCompanyCbo" ItemsSource="{Binding Path=InsuranceCompanies}" SelectedValue="{Binding Adjuster.InsuranceCompanyID, Mode=TwoWay}"
+                                  SelectedValuePath="InsuranceCompanyID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding CompanyName}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label Grid.Row="8" Grid.Column="0" Content="Comments" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="9" Grid.ColumnSpan="2" MinHeight="50" Text="{Binding Adjuster.Comments}"/>
+
+
+        <Button Grid.Row="10" Grid.ColumnSpan="2" Content="Submit" Command="{Binding SaveAdjuster}"/>
+        <!--<Grid Grid.Row="10" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Submit"/>
+            <Button Grid.Column="1" Content="Cancel"/>
+        </Grid>-->
+
+    </Grid>
+</Window>

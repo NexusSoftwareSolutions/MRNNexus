@@ -1,0 +1,207 @@
+﻿<Page xmlns:syncfusion="http://schemas.syncfusion.com/wpf"  
+      x:Class="MRNNexus.WPFClient.InspectionView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MRNNexus.WPFClient"
+      xmlns:c="clr-namespace:MRNNexus.WPFClient.Converters"
+      mc:Ignorable="d" 
+      Title="InspectionView">
+   
+    
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+
+        <Grid ShowGridLines="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="{Binding Header}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="{Binding HeaderFontSize}"/>
+
+            <WrapPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1"
+                        Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid}}, Path=ColumnDefinitions[0].Width}">
+                <GroupBox x:Name="inspectionGrpBx" Header="Inspection Information" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Grid x:Name="inspectionGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto" x:Name="fourthCol"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--<Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="SelectedAddress" Content="Address: No addres/customer" HorizontalAlignment="Left" VerticalAlignment="Center" />-->
+
+                        <Label Grid.Row="0" Grid.Column="0" x:Name="dateLbl" Content="Inspection Date:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <DatePicker Grid.Row="0" Grid.Column="1" x:Name="datepicker" SelectedDate="{Binding Inspection.InspectionDate}"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                        <Label Grid.Row="0" Grid.Column="2" x:Name="roofAgeLbl" Content="Roof Age:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <syncfusion:IntegerTextBox BorderBrush="DarkOliveGreen" BorderThickness="1" Grid.Row="0" Grid.Column="3" x:Name="integerTextBox" 
+                                                   Text="{Binding Path=Inspection.RoofAge, Mode=TwoWay}"  HorizontalAlignment="Left" VerticalAlignment="Center" NumberGroupSeparator="," TextWrapping="Wrap"
+                                                   Width="100" 
+                                                   />
+
+                        <Label Grid.Row="1" Grid.Column="0" x:Name="ridgeMaterialLbl" Content="Ridge Type:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ridgeMaterialCbo" ItemsSource="{Binding RidgeMaterialTypes}" SelectedValue="{Binding Inspection.RidgeType, Mode=TwoWay}" 
+                                  SelectedValuePath="RidgeMaterialTypeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding RidgeMaterialType}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <Label Grid.Row="1" Grid.Column="2" x:Name="shingleTypeLbl" Content="Shingle Type:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                        <ComboBox Grid.Row="1" Grid.Column="3" x:Name="shingleTypeCbo" ItemsSource="{Binding ShingleTypes}" SelectedValue="{Binding Inspection.ShingleType, Mode=TwoWay}" 
+                                  SelectedValuePath="ShingleTypeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ShingleType}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+
+                        <!--<CheckBox Grid.Row="3" Grid.Column="0" x:Name="skylightsChk" 
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Center" FlowDirection="RightToLeft">
+                            <TextBlock Text="Skylights" HorizontalAlignment="Left"/>
+                        </CheckBox>-->
+                        <syncfusion:CheckListBox x:Name="checkListBox" Grid.ColumnSpan="2" DataContext="{Binding Inspection}" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Top" CheckBoxAlignment="Right">
+                            <syncfusion:CheckListBoxItem Content="Driveway Damage" IsSelected="{Binding DrivewayDamage}"/>
+                            <syncfusion:CheckListBoxItem Content="Skylights" IsSelected="{Binding Skylights}"/>
+                            <syncfusion:CheckListBoxItem Content="Lightening Protection" IsSelected="{Binding LighteningProtection}"/>
+                            <syncfusion:CheckListBoxItem Content="Satellite" IsSelected="{Binding Satellite}"/>
+                            <syncfusion:CheckListBoxItem Content="Solar Panels" IsSelected="{Binding SolarPanels}"/>
+                            <syncfusion:CheckListBoxItem Content="Gutter Damage" IsSelected="{Binding GutterDamage}"/>
+                            <syncfusion:CheckListBoxItem Content="Cover Pool" IsSelected="{Binding CoverPool}"/>
+                            <syncfusion:CheckListBoxItem Content="Exterior Damage" IsSelected="{Binding ExteriorDamage}"/>
+                            <syncfusion:CheckListBoxItem Content="Interior Damage" IsSelected="{Binding InteriorDamage}"/>
+                            <syncfusion:CheckListBoxItem Content="Leaks" IsSelected="{Binding Leaks}"/>
+                        </syncfusion:CheckListBox>
+
+                        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" DataContext="{Binding Inspection}" HorizontalAlignment="Stretch">
+                            <syncfusion:CheckListBox x:Name="checkListBox2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" CheckBoxAlignment="Right" BorderThickness="0">
+                                <syncfusion:CheckListBox.ItemContainerStyle>
+                                    <Style TargetType="syncfusion:CheckListBoxItem">
+                                        <Setter Property="IsSelected" Value="{Binding IsChecked, Mode=TwoWay}"/>
+                                    </Style>
+                                </syncfusion:CheckListBox.ItemContainerStyle>
+                                <syncfusion:CheckListBoxItem Content="Furnish Permit" IsSelected="{Binding FurnishPermit}" />
+                                <syncfusion:CheckListBoxItem Content="Protect Landscaping" IsSelected="{Binding ProtectLandscaping}"/>
+                                <syncfusion:CheckListBoxItem Content="Tear Off" IsSelected="{Binding TearOff}"/>
+                                <syncfusion:CheckListBoxItem Content="Ice Water Shield" IsSelected="{Binding IceWaterShield}"/>
+                                <syncfusion:CheckListBoxItem Content="Quality Control" IsSelected="{Binding QualityControl}"/>
+                                <syncfusion:CheckListBoxItem Content="Magnetic Rollers" IsSelected="{Binding MagneticRollers}"/>
+                                <syncfusion:CheckListBoxItem Content="Remove Trash" IsSelected="{Binding RemoveTrash}"/>
+                                <syncfusion:CheckListBoxItem Content="Emergency Repairs Needed" IsSelected="{Binding EmergencyRepairsNeeded}" />
+                            </syncfusion:CheckListBox>
+                            <StackPanel Orientation="Horizontal">
+                                <Label x:Name="emergencyAmountLbl" Content="Repair Amount:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                <syncfusion:CurrencyTextBox x:Name="emergencyAmountTxtBx" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="85"
+                                                             CurrencyGroupSeparator="," CurrencyDecimalSeparator="." CurrencySymbol="$" UseNullOption="True" Value="{Binding Inspection.EmergencyRepairAmount, Mode=TwoWay}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                        <TextBox Grid.Row="3" Grid.ColumnSpan="4" MinHeight="50" Text="{Binding Inspection.Comments}"/>
+
+
+                    </Grid>
+                </GroupBox>
+                <Frame Grid.Row="4" Grid.ColumnSpan="2" Content="{Binding ClaimFormView}"/>
+
+                <Frame Grid.Row="5" Grid.ColumnSpan="2" Source="CustomerFormView.xaml"/>
+                
+                <StackPanel Orientation="Vertical">
+                    <!--#region Property Address-->
+
+                    <Frame Source="PropertyAddressFormView.xaml">
+                        
+                    </Frame>
+
+                    <!--#endregion-->
+                    <GroupBox Header="Billing Address">
+                        <Grid x:Name="billingAddressGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <syncfusion:CheckListBox Grid.Row="0" Grid.ColumnSpan="2" x:Name="billingSameAsPropertyChkBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" CheckBoxAlignment="Left" BorderThickness="0">
+                                <syncfusion:CheckListBox.ItemContainerStyle>
+                                    <Style TargetType="syncfusion:CheckListBoxItem">
+                                        <Setter Property="IsSelected" Value="{Binding IsChecked, Mode=TwoWay}"/>
+                                    </Style>
+                                </syncfusion:CheckListBox.ItemContainerStyle>
+                                <syncfusion:CheckListBoxItem Content="Same As Property Address" IsSelected="{Binding BillingSameAsProperty}"/>
+                            </syncfusion:CheckListBox>
+                            <Label Grid.Row="1" Grid.Column="0" x:Name="billingStreetAddressLbl" Content=" Billing Address:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            <syncfusion:SfMaskedEdit Grid.Row="1" Grid.Column="1" x:Name="billingStreetAddressTextBox" Text="{Binding BillingAddress.StreetAddress}" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                                TextWrapping="Wrap" IsEnabled="{Binding BillingAddressIsEnabled}" Width="100"/>
+                            <Label Grid.Row="2" Grid.Column="0" x:Name="billingZipLbl" Content=" Zip:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            <syncfusion:SfMaskedEdit Grid.Row="2" Grid.Column="1" x:Name="billingZipTextBox" Text="{Binding BillingAddress.Zip}" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                            TextWrapping="Wrap" IsEnabled="{Binding BillingAddressIsEnabled}" Width="100"/>
+                        </Grid>
+                    </GroupBox>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                    </Grid>
+                </StackPanel>
+
+            </WrapPanel>
+            <!--<Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button  Grid.Column="0" x:Name="attachLead" Content="Attach Lead" IsEnabled="{Binding AttachLeadBtnIsEnabled}" Command="{Binding SaveInspection}">
+                   
+                </Button>
+                <Button Grid.Column="1" x:Name="modifyLead" Content="Modify Lead" IsEnabled="{Binding ModifyLeadBtnIsEnabled}" Command="{Binding CancelInspection}"/>
+                <Button Grid.Column="2" x:Name="newLead" Content="New Lead" IsEnabled="{Binding AddNewLeadBtnIsEnabled}" Command="{Binding CancelInspection}"/>
+            </Grid>-->
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button  Grid.Column="0" x:Name="submitBtn" Content="Submit" Command="{Binding SaveInspection}"/>
+                <Button Grid.Column="1" x:Name="cancelBtn" Content="Cancel" Command="{Binding CancelInspection}"/>
+            </Grid>
+        </Grid>
+        
+        
+    </ScrollViewer>
+</Page>

@@ -1,0 +1,30 @@
+﻿<Application x:Class="MRNNexus.WPFClient.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MRNNexus.WPFClient"
+             xmlns:viewModel="clr-namespace:MRNNexus.WPFClient.ViewModels"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <viewModel:BaseViewModel x:Key="baseViewModel" />
+        <viewModel:MainWindowViewModel x:Key="mainWindowViewModel" />
+        <viewModel:LoginViewModel x:Key="loginViewModel" />
+        <viewModel:ScheduleViewModel x:Key="scheduleViewModel" />
+        <viewModel:InspectionViewModel x:Key="inspectionViewModel" />
+        <viewModel:LeadViewModel x:Key="leadViewModel" />
+        <viewModel:AdjusterSelectViewModel x:Key="adjusterSelectViewModel"/>
+        <viewModel:AdjustmentFormViewModel x:Key="adjustmentFormViewModel"/>
+        <viewModel:AdjusterFormViewModel x:Key="adjusterFormViewModel"/>
+        <viewModel:ClaimFormViewModel x:Key="claimFormViewModel"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+
+        <DataTemplate DataType="{x:Type viewModel:LeadViewModel}">
+            <local:LeadView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:AccountSelectViewModel}">
+            <local:AccountSelectView/>
+        </DataTemplate>
+
+    </Application.Resources>
+    
+    
+</Application>
