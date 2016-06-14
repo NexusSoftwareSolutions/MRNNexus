@@ -36,7 +36,12 @@
                 <syncfusion:MenuItemAdv Header="View Claims"/>
                 <syncfusion:MenuItemAdv Header="Adjustments">
                     <syncfusion:MenuItemAdv Header="Add Adjustment" Command="{x:Static mvs:BaseViewModel.AddAdjustment}"/>
+                    <syncfusion:MenuItemAdv Header="Edit Adjsutments"/>
                     <syncfusion:MenuItemAdv Header="View Adjsutments"/>
+                    <syncfusion:MenuItemSeparator />
+                    <syncfusion:MenuItemAdv Header="Add Adjuster" />
+                    <syncfusion:MenuItemAdv Header="Edit Adjuster" Command="{x:Static mvs:BaseViewModel.EditAdjuster}"/>
+                    <syncfusion:MenuItemAdv Header="View Adjusters"/>
                 </syncfusion:MenuItemAdv>
                 <syncfusion:MenuItemAdv Header="Scopes">
                     <syncfusion:MenuItemAdv Header="Add Scope"/>

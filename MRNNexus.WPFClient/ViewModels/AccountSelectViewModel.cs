@@ -25,10 +25,8 @@ namespace MRNNexus.WPFClient.ViewModels
         private bool _leadsTabIsEnabled = true;
         private bool _addressTabIsSelected = false;
         private bool _addressTabIsEnabled = true;
-        //private bool _adjustersTabIsSelected = false;
-        //private bool _adjustersTabIsEnabled = true;
-        //private ObservableCollection<Claim> _claims;
-        //private ObservableCollection<Lead> _leads;
+        private bool _adjustersTabIsSelected = false;
+        private bool _adjustersTabIsEnabled = true;
         private Claim _selectedClaim = null;
         private Lead _selectedLead = null;
         private Customer _selectedCustomer = null;
@@ -110,42 +108,24 @@ namespace MRNNexus.WPFClient.ViewModels
                 RaisePropertyChanged("AddressTabIsEnabled");
             }
         }
-        //public bool AdjustersTabIsSelected
-        //{
-        //    get { return _adjustersTabIsSelected; }
-        //    set
-        //    {
-        //        _adjustersTabIsSelected = value;
-        //        RaisePropertyChanged("AdjustersTabIsSelected");
-        //    }
-        //}
-        //public bool AdjustersTabIsEnabled
-        //{
-        //    get { return _adjustersTabIsEnabled; }
-        //    set
-        //    {
-        //        _adjustersTabIsEnabled = value;
-        //        RaisePropertyChanged("AdjustersTabIsEnabled");
-        //    }
-        //}
-        //public ObservableCollection<Claim> Claims
-        //{
-        //    get { return _claims; }
-        //    set
-        //    {
-        //        _claims = value;
-        //        RaisePropertyChanged("Claims");
-        //    }
-        //}
-        //public ObservableCollection<Lead> Leads
-        //{
-        //    get { return _leads; }
-        //    set
-        //    {
-        //        _leads = value;
-        //        RaisePropertyChanged("Leads");
-        //    }
-        //}
+        public bool AdjustersTabIsSelected
+        {
+            get { return _adjustersTabIsSelected; }
+            set
+            {
+                _adjustersTabIsSelected = value;
+                RaisePropertyChanged("AdjustersTabIsSelected");
+            }
+        }
+        public bool AdjustersTabIsEnabled
+        {
+            get { return _adjustersTabIsEnabled; }
+            set
+            {
+                _adjustersTabIsEnabled = value;
+                RaisePropertyChanged("AdjustersTabIsEnabled");
+            }
+        }
         public Claim SelectedClaim
         {
             get { return _selectedClaim; }
@@ -218,6 +198,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 ClaimsTabIsEnabled = true;
                 CustomerTabIsEnabled = true;
                 AddressTabIsEnabled = true;
+                AdjustersTabIsEnabled = true;
             }
             else if (code == 1) // Claim code 1
             {
@@ -226,6 +207,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 ClaimsTabIsEnabled = true;
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = false;
+                AdjustersTabIsEnabled = false;
             }
             else if (code == 2) // Lead code 2
             {
@@ -234,6 +216,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 ClaimsTabIsEnabled = false;
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = false;
+                AdjustersTabIsEnabled = false;
 
             }
             else if (code == 3) // Customer code 3
@@ -243,6 +226,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 ClaimsTabIsEnabled = false;
                 CustomerTabIsEnabled = true;
                 AddressTabIsEnabled = false;
+                AdjustersTabIsEnabled = false;
             }
             else if (code == 4 || code == 5) // Address code 4/5
             {
@@ -251,6 +235,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 ClaimsTabIsEnabled = false;
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = true;
+                AdjustersTabIsEnabled = false;
                 if (Customer != null && Customer.CustomerID > 0)
                 {
                     Addresses = new ObservableCollection<Address>(Addresses.Where(a => a.CustomerID == Customer.CustomerID).ToList());
@@ -259,10 +244,17 @@ namespace MRNNexus.WPFClient.ViewModels
                 {
                     ErrorMessage = "You must use an existing Customer in order to use an existing Address." +
                         "If there is a new customer for a previous Address please enter the address as if it were new.";
-
                 }
             }
-            
+            else if(code == 6) // Adjuster code 6
+            {
+                AdjustersTabIsSelected = true;
+                LeadsTabIsEnabled = false;
+                ClaimsTabIsEnabled = false;
+                CustomerTabIsEnabled = false;
+                AddressTabIsEnabled = false;
+                AdjustersTabIsEnabled = true;
+            }
 
             if ((ErrorMessage = await new ServiceLayer().GetAllCustomers()) != null)
                 return null;
@@ -286,6 +278,20 @@ namespace MRNNexus.WPFClient.ViewModels
                 if ((ErrorMessage = await new ServiceLayer().GetOpenClaimsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
                     return null;
             }
+
+            ///
+            /// May need to query for only adjuster related to logged in salespersons accounts
+            /// 
+            #region Adjusters
+            if ((ErrorMessage = await new ServiceLayer().GetAllAdjusters()) != null)
+                return null;
+
+            Adjusters = new ObservableCollection<Adjuster>();
+            foreach(DTO_Adjuster adjuster in ServiceLayer.AdjustersList)
+            {
+                Adjusters.Add(new Adjuster(adjuster));
+            }
+            #endregion
 
             #region Customers
             Customers = new ObservableCollection<Customer>();

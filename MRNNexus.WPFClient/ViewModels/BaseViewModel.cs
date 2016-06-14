@@ -195,6 +195,11 @@ namespace MRNNexus.WPFClient.ViewModels
         }
         private static void editAdjuster(object o)
         {
+            if(Adjuster == null)
+            {
+                AccountSelectView accountSelectWindow = new AccountSelectView(6);
+                accountSelectWindow.ShowDialog();
+            }
             Header = "Edit Adjuster";
             AdjusterFormView view = new AdjusterFormView();
             view.SizeToContent = SizeToContent.WidthAndHeight;
