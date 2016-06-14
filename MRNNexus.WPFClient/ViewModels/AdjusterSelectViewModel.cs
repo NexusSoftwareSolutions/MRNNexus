@@ -36,10 +36,6 @@ namespace MRNNexus.WPFClient.ViewModels
         {
             get { return new RelayCommand(new Action<object>(adjusterSelected)); }
         }
-        public new ICommand EditAdjuster
-        {
-            get { return new RelayCommand(new Action<object>(editAdjuster)); }
-        }
         public ICommand CancelAdjusterSelect
         {
             get { return new RelayCommand(new Action<object>(cancelAdjusterSelect)); }
@@ -86,17 +82,6 @@ namespace MRNNexus.WPFClient.ViewModels
             }
 
             OnRequestClose(this, new EventArgs());
-        }
-
-        private void editAdjuster(object o)
-        {
-            Header = "Edit Adjuster";
-            AdjusterFormView view = new AdjusterFormView();
-            view.SizeToContent = SizeToContent.WidthAndHeight;
-            view.WindowStyle = WindowStyle.ThreeDBorderWindow;
-            view.ResizeMode = ResizeMode.NoResize;
-            view.ShowDialog();
-
         }
 
         private void cancelAdjusterSelect(object o)
