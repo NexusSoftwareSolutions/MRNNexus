@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MRNNexus.WPFClient.ViewModels
@@ -35,9 +36,26 @@ namespace MRNNexus.WPFClient.ViewModels
         {
             get { return new RelayCommand(new Action<object>(adjusterSelected)); }
         }
+        public new ICommand EditAdjuster
+        {
+            get { return new RelayCommand(new Action<object>(editAdjuster)); }
+        }
         public ICommand CancelAdjusterSelect
         {
             get { return new RelayCommand(new Action<object>(cancelAdjusterSelect)); }
+        }
+        public ICommand SelectionChanged
+        {
+            get {
+                return new RelayCommand(new Action<object>(o =>
+                  {
+                      if (o is Adjuster)
+                      {
+                          Adjuster = o as Adjuster;
+                      }
+                  }
+                ));
+            }
         }
         #endregion
 
@@ -68,6 +86,17 @@ namespace MRNNexus.WPFClient.ViewModels
             }
 
             OnRequestClose(this, new EventArgs());
+        }
+
+        private void editAdjuster(object o)
+        {
+            Header = "Edit Adjuster";
+            AdjusterFormView view = new AdjusterFormView();
+            view.SizeToContent = SizeToContent.WidthAndHeight;
+            view.WindowStyle = WindowStyle.ThreeDBorderWindow;
+            view.ResizeMode = ResizeMode.NoResize;
+            view.ShowDialog();
+
         }
 
         private void cancelAdjusterSelect(object o)

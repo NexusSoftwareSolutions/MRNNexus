@@ -525,6 +525,12 @@ namespace MRNNexus.WPFClient.Models
             return Address.Message;
         }
 
+        async public Task<string> UpdateAdjuster(DTO_Adjuster token)
+        {
+            Adjuster = JsonConvert.DeserializeObject<DTO_Adjuster>(await MakeRequest(token, "UpdateAdjuster"));
+            return Adjuster.Message;
+        }
+
         async public Task<string> UpdateCalendarData(DTO_CalendarData token)
         {
             CalendarData = JsonConvert.DeserializeObject<DTO_CalendarData>(await MakeRequest(token, "UpdateCalendarData"));

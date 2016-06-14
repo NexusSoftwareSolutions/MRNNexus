@@ -61,9 +61,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button  Grid.Column="0" x:Name="attachLead" Content="Attach Lead" IsEnabled="{Binding AttachLeadBtnIsEnabled}" Command="{Binding AttachLead}">
-
-                </Button>
+                <Button  Grid.Column="0" x:Name="attachLead" Content="Attach Lead" IsEnabled="{Binding AttachLeadBtnIsEnabled}" Command="{Binding AttachLead}"/>
                 <Button Grid.Column="1" x:Name="modifyLead" Content="Modify Lead" IsEnabled="{Binding ModifyLeadBtnIsEnabled}" Command="{Binding ModifyLead}"/>
                 <Button Grid.Column="2" x:Name="newLead" Content="New Lead" IsEnabled="{Binding AddNewLeadBtnIsEnabled}" Command="{Binding AddNewLead}"/>
             </Grid>

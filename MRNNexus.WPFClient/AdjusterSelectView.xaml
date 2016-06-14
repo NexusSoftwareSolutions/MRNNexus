@@ -20,10 +20,13 @@
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding AdjusterSelected}" CommandParameter="{Binding SelectedAdjuster}"/>
                 </i:EventTrigger>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding SelectionChanged}" CommandParameter="{Binding SelectedAdjuster}"/>
+                </i:EventTrigger>
             </i:Interaction.Triggers>
             <syncfusion:SfDataGrid.RecordContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Edit Adjuster" Command="{Binding EditAdjuster}" CommandParameter="{Binding SelectedAdjuster}"/>
+                    <MenuItem Header="Edit Adjuster" Command="{Binding EditAdjuster, Source={StaticResource baseViewModel}}" CommandParameter="{Binding SelectedAdjuster}"/>
                     <MenuItem Header="Add Adjuster" Command="{Binding AddAdjuster}"/>
                 </ContextMenu>
             </syncfusion:SfDataGrid.RecordContextMenu>

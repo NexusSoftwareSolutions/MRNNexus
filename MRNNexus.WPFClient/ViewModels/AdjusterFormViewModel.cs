@@ -34,11 +34,21 @@ namespace MRNNexus.WPFClient.ViewModels
 
         async private void saveAdjuster(object o)
         {
-            if ((ErrorMessage = await new ServiceLayer().AddAdjuster(Adjuster.toDTO()))  != null)
-                return;
+            if (Adjuster.AdjusterID == 0)
+            {
+                if ((ErrorMessage = await new ServiceLayer().AddAdjuster(Adjuster.toDTO())) != null)
+                    return;
 
-            Adjuster = new Adjuster(ServiceLayer.Adjuster);
-            Adjusters.Add(Adjuster);
+                Adjuster = new Adjuster(ServiceLayer.Adjuster);
+                Adjusters.Add(Adjuster);
+            }
+            else
+            {
+                if ((ErrorMessage = await new ServiceLayer().UpdateAdjuster(Adjuster.toDTO())) != null)
+                    return;
+
+                Adjuster = new Adjuster(ServiceLayer.Adjuster);
+            }
 
             OnRequestClose(this, new EventArgs());
         }

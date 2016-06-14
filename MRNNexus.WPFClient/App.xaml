@@ -23,6 +23,9 @@
         <DataTemplate DataType="{x:Type viewModel:AccountSelectViewModel}">
             <local:AccountSelectView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:AdjusterSelectViewModel}">
+            <local:AdjusterSelectView/>
+        </DataTemplate>
 
     </Application.Resources>
     
