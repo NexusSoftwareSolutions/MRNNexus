@@ -28,10 +28,14 @@
                 <syncfusion:MenuItemAdv Header="Edit Lead" Command="{x:Static mvs:BaseViewModel.EditLead}"/>
                 <syncfusion:MenuItemAdv Header="View Leads" IsEnabled="False"/>
             </syncfusion:MenuItemAdv>
+            <syncfusion:MenuItemAdv Header="Inspections">
+                <syncfusion:MenuItemAdv Header="Add Inspection" Command="{x:Static mvs:BaseViewModel.AddInspection}"/>
+                <syncfusion:MenuItemAdv Header="Edit Inspection" Command="{x:Static mvs:BaseViewModel.EditInspection}"/>
+            </syncfusion:MenuItemAdv>
             <syncfusion:MenuItemAdv Header="Claims">
                 <syncfusion:MenuItemAdv Header="View Claims"/>
                 <syncfusion:MenuItemAdv Header="Adjustments">
-                    <syncfusion:MenuItemAdv Header="Add Adjsutment"/>
+                    <syncfusion:MenuItemAdv Header="Add Adjustment" Command="{x:Static mvs:BaseViewModel.AddAdjustment}"/>
                     <syncfusion:MenuItemAdv Header="View Adjsutments"/>
                 </syncfusion:MenuItemAdv>
                 <syncfusion:MenuItemAdv Header="Scopes">
@@ -48,13 +52,7 @@
                     <syncfusion:MenuItemAdv Header="Add Payment"/>
                     <syncfusion:MenuItemAdv Header="View Payments"/>
                 </syncfusion:MenuItemAdv>
-
             </syncfusion:MenuItemAdv>
-            <syncfusion:MenuItemAdv Header="Inspections">
-                <syncfusion:MenuItemAdv Header="Add Inspection" Command="{x:Static mvs:BaseViewModel.AddInspection}"/>
-                <syncfusion:MenuItemAdv Header="Edit Inspection" Command="{x:Static mvs:BaseViewModel.EditInspection}"/>
-            </syncfusion:MenuItemAdv>
-            <syncfusion:MenuItemAdv Header="Adjsutments" Command="{x:Static mvs:BaseViewModel.AddAdjustment}"/>
             <syncfusion:MenuItemAdv Header="Stats"/>
         </syncfusion:MenuAdv>
 
