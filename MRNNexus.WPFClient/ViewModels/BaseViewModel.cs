@@ -67,11 +67,11 @@ namespace MRNNexus.WPFClient.ViewModels
 
         #region Commands
 
-            #region Menu Commands
-            public static ICommand AddLead
-            {
-                get { return new RelayCommand(new Action<object>(addLead)); }
-            }
+        #region Menu Commands
+        public static ICommand AddLead
+        {
+            get { return new RelayCommand(new Action<object>(addLead)); }
+        }
         public static ICommand EditLead
         {
             get { return new RelayCommand(new Action<object>(editLead)); }
@@ -81,17 +81,17 @@ namespace MRNNexus.WPFClient.ViewModels
         //    get { return new RelayCommand(new Action<object>(viewLeads)); }
         //}
         public static ICommand ViewSchedule
-            {
-                get { return new RelayCommand(new Action<object>(viewSchedule)); }
-            }
-            public static ICommand AddInspection
-            {
-                get { return new RelayCommand(new Action<object>(addInspection)); }
-            }
-            public static ICommand EditInspection
-            {
-                get { return new RelayCommand(new Action<object>(editInspection)); }
-            }
+        {
+            get { return new RelayCommand(new Action<object>(viewSchedule)); }
+        }
+        public static ICommand AddInspection
+        {
+            get { return new RelayCommand(new Action<object>(addInspection)); }
+        }
+        public static ICommand EditInspection
+        {
+            get { return new RelayCommand(new Action<object>(editInspection)); }
+        }
         //public static ICommand ViewInspections
         //{
         //    get { return new RelayCommand(new Action<object>(viewInspections)); }
@@ -105,29 +105,29 @@ namespace MRNNexus.WPFClient.ViewModels
             get { return new RelayCommand(new Action<object>(editAdjuster)); }
         }
         public static ICommand AddAdjustment
-            {
-                get { return new RelayCommand(new Action<object>(addAdjustment)); }
-            }
-            //public static ICommand EditAdjustment
-            //{
-            //    get { return new RelayCommand(new Action<object>(editAdjustment)); }
-            //}
-            //public static ICommand ViewAdjustments
-            //{
-            //    get { return new RelayCommand(new Action<object>(viewAdjustments)); }
-            //}
-            public static ICommand AddInvoice
-            {
-                get { return new RelayCommand(new Action<object>(addInvoice)); }
-            }
-            //public static ICommand EditInvoice
-            //{
-            //    get { return new RelayCommand(new Action<object>(editInvoice)); }
-            //}
-            //public static ICommand ViewInvoices
-            //{
-            //    get { return new RelayCommand(new Action<object>(viewInvoices)); }
-            //}
+        {
+            get { return new RelayCommand(new Action<object>(addAdjustment)); }
+        }
+        //public static ICommand EditAdjustment
+        //{
+        //    get { return new RelayCommand(new Action<object>(editAdjustment)); }
+        //}
+        //public static ICommand ViewAdjustments
+        //{
+        //    get { return new RelayCommand(new Action<object>(viewAdjustments)); }
+        //}
+        public static ICommand AddInvoice
+        {
+            get { return new RelayCommand(new Action<object>(addInvoice)); }
+        }
+        //public static ICommand EditInvoice
+        //{
+        //    get { return new RelayCommand(new Action<object>(editInvoice)); }
+        //}
+        //public static ICommand ViewInvoices
+        //{
+        //    get { return new RelayCommand(new Action<object>(viewInvoices)); }
+        //}
 
         #endregion
 
@@ -141,7 +141,7 @@ namespace MRNNexus.WPFClient.ViewModels
 
         #region Command Methods
 
-            #region Menu Commands
+        #region Menu Commands
         private static void addLead(object o)
         {
             Header = "Add Lead";
