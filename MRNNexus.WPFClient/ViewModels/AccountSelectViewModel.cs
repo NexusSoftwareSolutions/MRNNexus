@@ -312,7 +312,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 ClaimsTabIsEnabled = false;
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = false;
-                AdjustersTabIsEnabled = true;
+                AdjustersTabIsEnabled = true; 
                 AdjustmentsTabIsEnabled = false;
 
                 await getAdjusters();
