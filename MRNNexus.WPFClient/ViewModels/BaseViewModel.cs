@@ -68,6 +68,7 @@ namespace MRNNexus.WPFClient.ViewModels
         #region Commands
 
         #region Menu Commands
+        #region Lead
         public static ICommand AddLead
         {
             get { return new RelayCommand(new Action<object>(addLead)); }
@@ -80,10 +81,16 @@ namespace MRNNexus.WPFClient.ViewModels
         //{
         //    get { return new RelayCommand(new Action<object>(viewLeads)); }
         //}
+        #endregion
+
+        #region Schedule
         public static ICommand ViewSchedule
         {
             get { return new RelayCommand(new Action<object>(viewSchedule)); }
         }
+        #endregion
+
+        #region Inspection
         public static ICommand AddInspection
         {
             get { return new RelayCommand(new Action<object>(addInspection)); }
@@ -96,6 +103,9 @@ namespace MRNNexus.WPFClient.ViewModels
         //{
         //    get { return new RelayCommand(new Action<object>(viewInspections)); }
         //}
+        #endregion
+
+        #region Adjustment & Adjuster
         public static ICommand AddAdjuster
         {
             get { return new RelayCommand(new Action<object>(addAdjuster)); }
@@ -104,18 +114,25 @@ namespace MRNNexus.WPFClient.ViewModels
         {
             get { return new RelayCommand(new Action<object>(editAdjuster)); }
         }
+        //public static ICommand ViewAdjusters
+        //{
+        //    get { return new RelayCommand(new Action<object>(viewAdjusters)); }
+        //}
         public static ICommand AddAdjustment
         {
             get { return new RelayCommand(new Action<object>(addAdjustment)); }
         }
-        //public static ICommand EditAdjustment
-        //{
-        //    get { return new RelayCommand(new Action<object>(editAdjustment)); }
-        //}
+        public static ICommand EditAdjustment
+        {
+            get { return new RelayCommand(new Action<object>(editAdjustment)); }
+        }
         //public static ICommand ViewAdjustments
         //{
         //    get { return new RelayCommand(new Action<object>(viewAdjustments)); }
         //}
+        #endregion
+
+        #region Invoice
         public static ICommand AddInvoice
         {
             get { return new RelayCommand(new Action<object>(addInvoice)); }
@@ -128,6 +145,7 @@ namespace MRNNexus.WPFClient.ViewModels
         //{
         //    get { return new RelayCommand(new Action<object>(viewInvoices)); }
         //}
+        #endregion
 
         #endregion
 
@@ -136,12 +154,12 @@ namespace MRNNexus.WPFClient.ViewModels
             get { return new RelayCommand(new Action<object>(setLeadTemperature)); }
         }
 
-
         #endregion
 
         #region Command Methods
 
-        #region Menu Commands
+        #region Menu Command Methods
+        #region Lead
         private static void addLead(object o)
         {
             Header = "Add Lead";
@@ -162,6 +180,9 @@ namespace MRNNexus.WPFClient.ViewModels
             leadView.ResizeMode = ResizeMode.NoResize;
             leadView.ShowDialog();
         }
+        #endregion
+
+        #region Inspection
         private static void addInspection(object o)
         {
             Header = "Add Inspection";
@@ -173,9 +194,9 @@ namespace MRNNexus.WPFClient.ViewModels
             BillingAddress = null;
             IsExistingAddress = false;
             IsExistingCustomer = false;
-            CurrentPage = new InspectionView();
-                
+            CurrentPage = new InspectionView(); 
         }
+        
         private static void editInspection(object o)
         {
             AccountSelectView accountSelectWindow = new AccountSelectView();
@@ -183,6 +204,10 @@ namespace MRNNexus.WPFClient.ViewModels
             accountSelectWindow.ShowDialog();
             CurrentPage = new InspectionView();
         }
+
+        #endregion
+
+        #region Adjustment & Adjuster
         private static void addAdjuster(object o)
         {
             Header = "Add Adjuster";
@@ -223,12 +248,13 @@ namespace MRNNexus.WPFClient.ViewModels
             view.WindowStyle = WindowStyle.ThreeDBorderWindow;
             view.ResizeMode = ResizeMode.NoResize;
             view.ShowDialog();
-            //IWindowService ws = new WindowService();
-            //ws.showWindow(new AdjustmentFormView());
         }
         private static void editAdjustment(object o)
         {
             Header = "Edit Adjustment";
+
+            AccountSelectView accountSelectWindow = new AccountSelectView(7);
+            accountSelectWindow.ShowDialog();
 
             if (Claim != null && !Claim.MRNClaimNumber.Contains("-"))
             {
@@ -240,21 +266,28 @@ namespace MRNNexus.WPFClient.ViewModels
             view.WindowStyle = WindowStyle.ThreeDBorderWindow;
             view.ResizeMode = ResizeMode.NoResize;
             view.ShowDialog();
-            //IWindowService ws = new WindowService();
-            //ws.showWindow(new AdjustmentFormView());
         }
 
+        #endregion
+
+        #region Invoice
         private static void addInvoice(object o)
         {
             Header = "Add Invoice";
             IWindowService ws = new WindowService();
             ws.showWindow(new AdjustmentFormView());
         }
+        #endregion
+
+
+        #region Schedule
         private static void viewSchedule(object o)
         {
             CurrentPage = new ScheduleView();
         }
-            #endregion
+        #endregion
+
+        #endregion
 
         private void setLeadTemperature(object o) // WHY IS THIS HERE???
         {

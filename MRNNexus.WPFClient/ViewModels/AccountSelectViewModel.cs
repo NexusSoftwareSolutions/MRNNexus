@@ -27,11 +27,14 @@ namespace MRNNexus.WPFClient.ViewModels
         private bool _addressTabIsEnabled = true;
         private bool _adjustersTabIsSelected = false;
         private bool _adjustersTabIsEnabled = true;
+        private bool _adjustmentsTabIsSelected = false;
+        private bool _adjustmentsTabIsEnabled = true;
         private Claim _selectedClaim = null;
         private Lead _selectedLead = null;
         private Customer _selectedCustomer = null;
         private Address _selectedAddress = null;
         private Adjuster _selectedAdjuster = null;
+        private Adjustment _selectedAdjustment = null;
         private int code;
 
         #endregion
@@ -127,6 +130,24 @@ namespace MRNNexus.WPFClient.ViewModels
                 RaisePropertyChanged("AdjustersTabIsEnabled");
             }
         }
+        public bool AdjustmentsTabIsSelected
+        {
+            get { return _adjustmentsTabIsSelected; }
+            set
+            {
+                _adjustmentsTabIsSelected = value;
+                RaisePropertyChanged("AdjustmentsTabIsSelected");
+            }
+        }
+        public bool AdjustmentsTabIsEnabled
+        {
+            get { return _adjustmentsTabIsEnabled; }
+            set
+            {
+                _adjustmentsTabIsEnabled = value;
+                RaisePropertyChanged("AdjustmentsTabIsEnabled");
+            }
+        }
         public Claim SelectedClaim
         {
             get { return _selectedClaim; }
@@ -172,6 +193,15 @@ namespace MRNNexus.WPFClient.ViewModels
                 RaisePropertyChanged("SelectedAdjuster");
             }
         }
+        public Adjustment SelectedAdjustment
+        {
+            get { return _selectedAdjustment; }
+            set
+            {
+                _selectedAdjustment = value;
+                RaisePropertyChanged("SelectedAdjustment");
+            }
+        }
         #endregion
 
         #region Commands
@@ -209,6 +239,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 CustomerTabIsEnabled = true;
                 AddressTabIsEnabled = true;
                 AdjustersTabIsEnabled = true;
+                AdjustmentsTabIsEnabled = true;
             }
             else if (code == 1) // Claim code 1
             {
@@ -218,6 +249,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = false;
                 AdjustersTabIsEnabled = false;
+                AdjustmentsTabIsEnabled = false;
 
                 await getCustomers();
                 await getAddresses();
@@ -232,6 +264,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = false;
                 AdjustersTabIsEnabled = false;
+                AdjustmentsTabIsEnabled = false;
 
                 await getCustomers();
                 await getAddresses();
@@ -245,6 +278,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 CustomerTabIsEnabled = true;
                 AddressTabIsEnabled = false;
                 AdjustersTabIsEnabled = false;
+                AdjustmentsTabIsEnabled = false;
 
                 await getCustomers();
             }
@@ -256,6 +290,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = true;
                 AdjustersTabIsEnabled = false;
+                AdjustmentsTabIsEnabled = false;
 
                 await getCustomers();
                 await getAddresses();
@@ -278,8 +313,21 @@ namespace MRNNexus.WPFClient.ViewModels
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = false;
                 AdjustersTabIsEnabled = true;
+                AdjustmentsTabIsEnabled = false;
 
                 await getAdjusters();
+            }
+            else if (code == 7) // Adjustment code 7
+            {
+                AdjustmentsTabIsSelected = true;
+                LeadsTabIsEnabled = false;
+                ClaimsTabIsEnabled = false;
+                CustomerTabIsEnabled = false;
+                AddressTabIsEnabled = false;
+                AdjustersTabIsEnabled = false;
+                AdjustmentsTabIsEnabled = true;
+
+                await getAdjustments();
             }
 
             AccountSelected = new RelayCommand(new Action<object>(accountSelected));
@@ -409,6 +457,30 @@ namespace MRNNexus.WPFClient.ViewModels
             return true;
         }
 
+        async private Task<bool> getAdjustments()
+        {
+            if (LoggedInUser.PermissionID == 1)
+            {
+                if ((ErrorMessage = await new ServiceLayer().GetAllAdjustments()) != null)
+                    return false;
+            }
+            else
+            {
+                /// Obtain list of adjustments for specific employee only
+            }
+
+            Adjustments = new ObservableCollection<Adjustment>();
+            foreach (DTO_Adjustment adjustment in ServiceLayer.AdjustmentsList)
+            {
+                Adjustments.Add(new Adjustment(adjustment));
+
+                if ((ErrorMessage = await new ServiceLayer().GetAdjusterByID(new Adjuster { AdjusterID = adjustment.AdjusterID }.toDTO())) != null)
+                    return false;
+            }
+
+            return true;
+        }
+
         async private void accountSelected(object o)
         {
             if (o is Claim)
@@ -507,6 +579,10 @@ namespace MRNNexus.WPFClient.ViewModels
             else if(o is Adjuster && code == 6)
             {
                 Adjuster = o as Adjuster;
+            }
+            else if (o is Adjustment && code == 7)
+            {
+                Adjustment = o as Adjustment;
             }
             else if(o == null)
             {

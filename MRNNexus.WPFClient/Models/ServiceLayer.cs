@@ -418,6 +418,12 @@ namespace MRNNexus.WPFClient.Models
             return Address.Message;
         }
 
+        async public Task<string> GetAdjusterByID(DTO_Adjuster token)
+        {
+            Adjuster = JsonConvert.DeserializeObject<DTO_Adjuster>(await MakeRequest(token, "GetAdjusterByID"));
+            return Adjuster.Message;
+        }
+
         async public Task<string> GetCustomerByID(DTO_Customer token)
         {
             Customer = JsonConvert.DeserializeObject<DTO_Customer>(await MakeRequest(token, "GetCustomerByID"));
@@ -460,6 +466,12 @@ namespace MRNNexus.WPFClient.Models
         {
             AdjustersList = JsonConvert.DeserializeObject<List<DTO_Adjuster>>(await MakeRequest(new DTO_Base(), "GetAllAdjusters"));
             return AdjustersList.Last().Message;
+        }
+
+        async public Task<string> GetAllAdjustments()
+        {
+            AdjustmentsList = JsonConvert.DeserializeObject<List<DTO_Adjustment>>(await MakeRequest(new DTO_Base(), "GetAllAdjustments"));
+            return AdjustmentsList.Last().Message;
         }
 
         async public Task<string> GetAllClaims()
