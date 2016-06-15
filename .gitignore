@@ -14,6 +14,8 @@ bin/
 obj/
 Debug/
 Release/
+Controllers/
+Converters/
 *.opensdf
 *.tlog
 *.log
@@ -22,3 +24,4 @@ TestResult.xml
 Version.cs
 Version.h
 Version.cpp
+desktop.ini
