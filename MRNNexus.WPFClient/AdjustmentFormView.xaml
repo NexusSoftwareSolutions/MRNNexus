@@ -28,6 +28,7 @@
         
         <Label Grid.Row="1" Grid.Column="0" Content="MRN #:" HorizontalAlignment="Left" VerticalAlignment="Center" />
         <!--<Label Grid.Row="1" Grid.Column="1" Content="{Binding Claim.MRNNumber}" HorizontalAlignment="Left" VerticalAlignment="Center" />-->
+        
         <Button Grid.Row="1" Grid.Column="1" Content="{Binding Claim.MRNClaimNumber, Mode=OneWay, FallbackValue='Attach Claim', TargetNullValue='Attach Claim'}" Command="{Binding SelectClaim}"/>
 
         <Label Grid.Row="2" Grid.Column="0" Content="Adjustment Date:" HorizontalAlignment="Left" VerticalAlignment="Center" />

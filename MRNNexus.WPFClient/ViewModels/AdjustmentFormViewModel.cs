@@ -48,7 +48,7 @@ namespace MRNNexus.WPFClient.ViewModels
 
         private void selectAdjuster(object o)
         {
-            AdjusterSelectView view = new AdjusterSelectView();
+            AccountSelectView view = new AccountSelectView(6);
             view.SizeToContent = SizeToContent.WidthAndHeight;
             view.WindowStyle = WindowStyle.ThreeDBorderWindow;
             view.ResizeMode = ResizeMode.NoResize;
@@ -92,11 +92,16 @@ namespace MRNNexus.WPFClient.ViewModels
                 Adjustment = new Adjustment(ServiceLayer.Adjustment);
             }
 
+            Adjuster = null;
+            Adjustment = null;
+
             OnRequestClose(this, new EventArgs());
         }
 
         private void cancelAdjustment(object o)
         {
+            Adjuster = null;
+            Adjustment = null;
             OnRequestClose(this, new EventArgs());
         }
 

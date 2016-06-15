@@ -31,6 +31,7 @@ namespace MRNNexus.WPFClient.ViewModels
         private Lead _selectedLead = null;
         private Customer _selectedCustomer = null;
         private Address _selectedAddress = null;
+        private Adjuster _selectedAdjuster = null;
         private int code;
 
         #endregion
@@ -160,6 +161,15 @@ namespace MRNNexus.WPFClient.ViewModels
             {
                 _selectedAddress = value;
                 RaisePropertyChanged("SelectedAddress");
+            }
+        }
+        public Adjuster SelectedAdjuster
+        {
+            get { return _selectedAdjuster; }
+            set
+            {
+                _selectedAdjuster = value;
+                RaisePropertyChanged("SelectedAdjuster");
             }
         }
         #endregion
@@ -467,6 +477,11 @@ namespace MRNNexus.WPFClient.ViewModels
             {
                 BillingAddress = o as Address;
 
+            }
+
+            else if(o is Adjuster && code == 6)
+            {
+                Adjuster = o as Adjuster;
             }
             else if(o == null)
             {
