@@ -218,6 +218,11 @@ namespace MRNNexus.WPFClient.ViewModels
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = false;
                 AdjustersTabIsEnabled = false;
+
+                await getCustomers();
+                await getAddresses();
+                await getLeads();
+                await getClaims();
             }
             else if (code == 2) // Lead code 2
             {
@@ -228,6 +233,9 @@ namespace MRNNexus.WPFClient.ViewModels
                 AddressTabIsEnabled = false;
                 AdjustersTabIsEnabled = false;
 
+                await getCustomers();
+                await getAddresses();
+                await getLeads();
             }
             else if (code == 3) // Customer code 3
             {
@@ -237,6 +245,8 @@ namespace MRNNexus.WPFClient.ViewModels
                 CustomerTabIsEnabled = true;
                 AddressTabIsEnabled = false;
                 AdjustersTabIsEnabled = false;
+
+                await getCustomers();
             }
             else if (code == 4 || code == 5) // Address code 4/5
             {
@@ -246,6 +256,10 @@ namespace MRNNexus.WPFClient.ViewModels
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = true;
                 AdjustersTabIsEnabled = false;
+
+                await getCustomers();
+                await getAddresses();
+
                 if (Customer != null && Customer.CustomerID > 0)
                 {
                     Addresses = new ObservableCollection<Address>(Addresses.Where(a => a.CustomerID == Customer.CustomerID).ToList());
@@ -264,67 +278,64 @@ namespace MRNNexus.WPFClient.ViewModels
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = false;
                 AdjustersTabIsEnabled = true;
+
+                await getAdjusters();
             }
 
+            AccountSelected = new RelayCommand(new Action<object>(accountSelected));
+            CancelAccountSelect = new RelayCommand(new Action<object>(cancelAccountSelect));         
+
+            return this;
+        }
+
+        async private Task<bool> getCustomers()
+        {
+            // Wrap in if statement based on permission?
             if ((ErrorMessage = await new ServiceLayer().GetAllCustomers()) != null)
-                return null;
+                return false;
 
-            if ((ErrorMessage = await new ServiceLayer().GetAllAddresses()) != null)
-                return null;
-
-            if (LoggedInUser.PermissionID == 1)
-            {
-                if ((ErrorMessage = await new ServiceLayer().GetAllLeads()) != null)
-                    return null;
-
-                if ((ErrorMessage = await new ServiceLayer().GetAllClaims()) != null)
-                    return null;
-            }
-            else
-            {
-                if ((ErrorMessage = await new ServiceLayer().GetLeadsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
-                    return null;
-
-                if ((ErrorMessage = await new ServiceLayer().GetOpenClaimsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
-                    return null;
-            }
-
-            ///
-            /// May need to query for only adjuster related to logged in salespersons accounts
-            /// 
-            #region Adjusters
-            if ((ErrorMessage = await new ServiceLayer().GetAllAdjusters()) != null)
-                return null;
-
-            Adjusters = new ObservableCollection<Adjuster>();
-            foreach(DTO_Adjuster adjuster in ServiceLayer.AdjustersList)
-            {
-                Adjusters.Add(new Adjuster(adjuster));
-            }
-            #endregion
-
-            #region Customers
             Customers = new ObservableCollection<Customer>();
             foreach (DTO_Customer c in ServiceLayer.CustomersList)
             {
                 Customers.Add(new Customer(c));
             }
-            #endregion
 
-            #region Addresses
+            return true;
+        }
+
+        async private Task<bool> getAddresses()
+        {
+            if ((ErrorMessage = await new ServiceLayer().GetAllAddresses()) != null)
+                return false;
+
             Addresses = new ObservableCollection<Address>();
             foreach (DTO_Address a in ServiceLayer.AddressesList)
             {
                 Addresses.Add(new Address(a));
             }
-            #endregion
 
-            #region Leads
+            return true;
+        }
+
+        async private Task<bool> getLeads()
+        {
+            if (LoggedInUser.PermissionID == 1)
+            {
+                if ((ErrorMessage = await new ServiceLayer().GetAllLeads()) != null)
+                    return false;
+            }
+            else
+            {
+                if ((ErrorMessage = await new ServiceLayer().GetLeadsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
+                    return false;
+            }
+
             Leads = new ObservableCollection<Lead>();
 
-            foreach(DTO_Lead l in ServiceLayer.LeadsList)
+            foreach (DTO_Lead l in ServiceLayer.LeadsList)
             {
-                try {
+                try
+                {
                     Leads.Add(new Lead(l));
                     Customer cust = Customers.Where(c => c.CustomerID == Leads.Last().CustomerID).Single();
                     Leads.Last().CustomerName = cust.FirstName + " " + cust.LastName;
@@ -334,25 +345,39 @@ namespace MRNNexus.WPFClient.ViewModels
                     if (Leads.Last().KnockerResponseID == 0 || Leads.Last().KnockerResponseID == null && Leads.Last().CreditToID != 0)
                     {
                         if ((ErrorMessage = await new ServiceLayer().GetReferrerByID(new Referrer { ReferrerID = (int)Leads.Last().CreditToID }.toDTO())) != null)
-                            return null;
+                            return false;
                         Leads.Last().CreditTo = ServiceLayer.Referrer.FirstName + " " + ServiceLayer.Referrer.LastName;
                         Referrer = new Referrer(ServiceLayer.Referrer);
                     }
-                    else if(Leads.Last().KnockerResponseID != 0)
+                    else if (Leads.Last().KnockerResponseID != 0)
                     {
                         if ((ErrorMessage = await new ServiceLayer().GetEmployeeByID(new Employee { EmployeeID = (int)Leads.Last().CreditToID }.toDTO())) != null)
-                            return null;
+                            return false;
                         Leads.Last().CreditTo = ServiceLayer.Employee.FirstName + " " + ServiceLayer.Employee.LastName;
                     }
                 }
-                catch(Exception EX)
+                catch (Exception EX)
                 {
 
                 }
             }
-            #endregion
 
-            #region Claims
+            return true;
+        }
+
+        async private Task<bool> getClaims()
+        {
+            if (LoggedInUser.PermissionID == 1)
+            {
+                if ((ErrorMessage = await new ServiceLayer().GetAllClaims()) != null)
+                    return false;
+            }
+            else
+            {
+                if ((ErrorMessage = await new ServiceLayer().GetOpenClaimsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
+                    return false;
+            }
+
             Claims = new ObservableCollection<Claim>();
 
             foreach (DTO_Claim claim in ServiceLayer.ClaimsList)
@@ -362,30 +387,30 @@ namespace MRNNexus.WPFClient.ViewModels
                 Claims.Last().CustomerName = cust.FirstName + " " + cust.LastName;
                 Address address = Addresses.Where(a => a.AddressID == Claims.Last().PropertyID).Single();
                 Claims.Last().Address = address.StreetAddress + ", " + address.Zip;
-                //if ((ErrorMessage = await new ServiceLayer().GetCustomerByID(new Customer { CustomerID = Claims.Last().CustomerID }.toDTO())) != null)
-                //    return null;
-                //if ((ErrorMessage = await new ServiceLayer().GetAddressByID(new Address { AddressID = Claims.Last().PropertyID }.toDTO())) != null)
-                //    return null;
-
-                //Claims.Last().CustomerName = ServiceLayer.Customer.FirstName + " " + ServiceLayer.Customer.LastName;
-                //Claims.Last().Address = ServiceLayer.Address.Address + ", " + ServiceLayer.Address.Zip;
             }
-            #endregion
 
-            AccountSelected = new RelayCommand(new Action<object>(accountSelected));
-            CancelAccountSelect = new RelayCommand(new Action<object>(cancelAccountSelect));         
+            return true;
+        }
 
-            return this;
+        async private Task<bool> getAdjusters()
+        {
+            ///
+            /// May need to query for only adjuster related to logged in salespersons accounts
+            /// 
+            if ((ErrorMessage = await new ServiceLayer().GetAllAdjusters()) != null)
+                return false;
+
+            Adjusters = new ObservableCollection<Adjuster>();
+            foreach (DTO_Adjuster adjuster in ServiceLayer.AdjustersList)
+            {
+                Adjusters.Add(new Adjuster(adjuster));
+            }
+
+            return true;
         }
 
         async private void accountSelected(object o)
         {
-            //Claim = null;
-            //Lead = null;
-            //Customer = null;
-            //PropertyAddress = null;
-            //BillingAddress = null;
-
             if (o is Claim)
             {
                 Claim = o as Claim;
