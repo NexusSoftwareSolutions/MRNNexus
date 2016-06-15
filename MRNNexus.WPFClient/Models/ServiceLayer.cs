@@ -424,6 +424,12 @@ namespace MRNNexus.WPFClient.Models
             return Adjuster.Message;
         }
 
+        async public Task<string> GetClaimByClaimID(DTO_Claim token)
+        {
+            Claim = JsonConvert.DeserializeObject<DTO_Claim>(await MakeRequest(token, "GetClaimByClaimID"));
+            return Claim.Message;
+        }
+
         async public Task<string> GetCustomerByID(DTO_Customer token)
         {
             Customer = JsonConvert.DeserializeObject<DTO_Customer>(await MakeRequest(token, "GetCustomerByID"));

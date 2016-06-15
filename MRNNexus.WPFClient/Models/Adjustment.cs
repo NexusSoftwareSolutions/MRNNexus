@@ -1,6 +1,7 @@
 ﻿using MRNNexusDTOs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace MRNNexus.WPFClient.Models
 
         #region Properties
 
+        [Display(AutoGenerateField = true, Order = 0, Name = "ID")]
         public int AdjustmentID
         {
             get { return _adjustmentID; }
@@ -35,6 +37,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
+        [Display(AutoGenerateField = false)]
         public int AdjusterID
         {
             get { return _adjusterID; }
@@ -48,6 +51,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
+        [Display(AutoGenerateField = false)]
         public int ClaimID
         {
             get { return _claimID; }
@@ -61,6 +65,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
+        [Display(AutoGenerateField = true, Order = 5)]
         public bool Gutters
         {
             get { return _gutters; }
@@ -74,6 +79,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
+        [Display(AutoGenerateField = true, Order = 6)]
         public bool Exterior
         {
             get { return _exterior; }
@@ -87,6 +93,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
+        [Display(AutoGenerateField = true, Order = 7)]
         public bool Interior
         {
             get { return _interior; }
@@ -100,6 +107,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
+        [Display(AutoGenerateField = true, Order = 3, Name = "Date")]
         public DateTime AdjustmentDate
         {
             get
@@ -121,6 +129,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
+        [Display(AutoGenerateField = false)]
         public int AdjustmentResultID
         {
             get { return _adjustmentResultID; }
@@ -134,6 +143,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
+        [Display(AutoGenerateField = true, Order = 8, Name = "Comment")]
         public string AdjustmentComment
         {
             get { return _adjustmentComment; }
@@ -146,6 +156,15 @@ namespace MRNNexus.WPFClient.Models
                 }
             }
         }
+
+        [Display(AutoGenerateField = true, Order = 1, Name = "Adjuster")]
+        public string AdjusterName { get; set; }
+
+        [Display(AutoGenerateField = true, Order = 2, Name = "MRN #")]
+        public string MRNNumber { get; set; }
+
+        [Display(AutoGenerateField = true, Order = 4, Name = "Result")]
+        public string AdjustmentResult { get; set; }
 
         #endregion
 

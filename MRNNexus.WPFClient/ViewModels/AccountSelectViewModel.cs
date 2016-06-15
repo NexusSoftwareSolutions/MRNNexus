@@ -328,6 +328,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 AdjustmentsTabIsEnabled = true;
 
                 await getAdjustments();
+                
             }
 
             AccountSelected = new RelayCommand(new Action<object>(accountSelected));
@@ -472,10 +473,21 @@ namespace MRNNexus.WPFClient.ViewModels
             Adjustments = new ObservableCollection<Adjustment>();
             foreach (DTO_Adjustment adjustment in ServiceLayer.AdjustmentsList)
             {
-                Adjustments.Add(new Adjustment(adjustment));
+                Adjustment a = new Adjustment(adjustment);
 
                 if ((ErrorMessage = await new ServiceLayer().GetAdjusterByID(new Adjuster { AdjusterID = adjustment.AdjusterID }.toDTO())) != null)
                     return false;
+
+                a.AdjusterName = ServiceLayer.Adjuster.FirstName + " " + ServiceLayer.Adjuster.LastName;
+
+                if ((ErrorMessage = await new ServiceLayer().GetClaimByClaimID(new Claim { ClaimID = a.ClaimID }.toDTO())) != null)
+                    return false;
+
+                a.MRNNumber = ServiceLayer.Claim.MRNNumber;
+
+                a.AdjustmentResult = AdjustmentResults.Where(ar => ar.AdjustmentResultID == a.AdjustmentResultID).Single().AdjustmentResult;
+
+                Adjustments.Add(a);
             }
 
             return true;

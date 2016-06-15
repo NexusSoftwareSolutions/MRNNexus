@@ -107,7 +107,7 @@
             </syncfusion:TabItemExt>
 
             <syncfusion:TabItemExt Header="Adjusters" IsEnabled="{Binding AdjustmentsTabIsEnabled}"  Visibility="{Binding AdjustmentsTabIsEnabled, Converter={StaticResource BoolToVisibility}}" IsNewTab="False" MinWidth="150" MinHeight="20" IsSelected="{Binding AdjustmentsTabIsSelected}">
-                <syncfusion:SfDataGrid ItemsSource="{Binding Adjustments}" SelectedItem="{Binding SelectedAdjustment, Mode=OneWayToSource}">
+                <syncfusion:SfDataGrid ItemsSource="{Binding Adjustments}" SelectedItem="{Binding SelectedAdjustment, Mode=OneWayToSource}" ColumnSizer="Auto">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding AccountSelected}" CommandParameter="{Binding SelectedAdjustment}"/>
