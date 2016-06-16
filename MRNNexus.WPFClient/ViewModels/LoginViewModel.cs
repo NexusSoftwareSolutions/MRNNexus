@@ -42,6 +42,7 @@ namespace MRNNexus.WPFClient.ViewModels
         async private void login(object o)
         {
             LoginIsEnabled = false;
+            IsBusyLoading = true;
 
             /////////////////// SO I DONT HAVE TO TYPE LOGIN INFO FOR TESTING //////////////////
             LoggedInUser.Username = "aharvey@gmail.com";
@@ -69,6 +70,23 @@ namespace MRNNexus.WPFClient.ViewModels
                 {
                     LoggedInEmployee = new Employee(ServiceLayer.LoggedInEmployee);
                     LoggedInUser = new User(ServiceLayer.LoggedInUser);
+                    
+                    if((ErrorMessage = await new ServiceLayer().GetRecentClaimsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
+                    {
+                        LoginIsEnabled = true;
+                        return;
+                    }
+                    if ((ErrorMessage = await new ServiceLayer().GetRecentLeadsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
+                    {
+                        LoginIsEnabled = true;
+                        return;
+                    }
+                    if ((ErrorMessage = await new ServiceLayer().GetRecentInspectionsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
+                    {
+                        LoginIsEnabled = true;
+                        return;
+                    }
+
                     MenuBarIsEnabled = true;
                     CurrentPage = new ScheduleView();
                 }
