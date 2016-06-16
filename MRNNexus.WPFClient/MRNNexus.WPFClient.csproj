@@ -135,6 +135,9 @@
     <Compile Include="ReferrerFormView.xaml.cs">
       <DependentUpon>ReferrerFormView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScopeFormView.xaml.cs">
+      <DependentUpon>ScopeFormView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\IClosable.cs" />
     <Compile Include="Services\IMessageBoxService.cs" />
     <Compile Include="Models\Inspection.cs" />
@@ -236,6 +239,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ScheduleView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScopeFormView.xaml">
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
