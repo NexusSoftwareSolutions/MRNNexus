@@ -308,7 +308,7 @@ namespace MRNNexus.WPFClient.ViewModels
             else if(code == 6) // Adjuster code 6
             {
                 AdjustersTabIsSelected = true;
-                LeadsTabIsEnabled = false;
+                LeadsTabIsEnabled = false; //hi
                 ClaimsTabIsEnabled = false;
                 CustomerTabIsEnabled = false;
                 AddressTabIsEnabled = false; 
