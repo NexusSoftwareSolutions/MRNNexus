@@ -512,6 +512,12 @@ namespace MRNNexus.WPFClient.Models
             return CustomersList.Last().Message;
         }
 
+        async public Task<string> GetAllInspections()
+        {
+            InspectionsList = JsonConvert.DeserializeObject<List<DTO_Inspection>>(await MakeRequest(new DTO_Base(), "GetAllInspections"));
+            return InspectionsList.Last().Message;
+        }
+
         async public Task<string> GetAllInsuranceCompanyNames()
         {
             InsuranceCompaniesList = JsonConvert.DeserializeObject<List<DTO_InsuranceCompany>>(await MakeRequest(new DTO_Base(), "GetAllInsuranceCompanyNames"));

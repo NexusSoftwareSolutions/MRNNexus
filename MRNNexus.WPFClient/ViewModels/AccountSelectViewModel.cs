@@ -231,6 +231,7 @@ namespace MRNNexus.WPFClient.ViewModels
         {
             this.code = code;
 
+            #region Tab Code Settings
             if (code == 0) // No code all available
             {
                 ClaimsTabIsSelected = true;
@@ -240,6 +241,11 @@ namespace MRNNexus.WPFClient.ViewModels
                 AddressTabIsEnabled = true;
                 AdjustersTabIsEnabled = true;
                 AdjustmentsTabIsEnabled = true;
+
+                await getCustomers();
+                await getAddresses();
+                await getLeads();
+                await getClaims();
             }
             else if (code == 1) // Claim code 1
             {
@@ -328,8 +334,8 @@ namespace MRNNexus.WPFClient.ViewModels
                 AdjustmentsTabIsEnabled = true;
 
                 await getAdjustments();
-                
             }
+            #endregion
 
             AccountSelected = new RelayCommand(new Action<object>(accountSelected));
             CancelAccountSelect = new RelayCommand(new Action<object>(cancelAccountSelect));         
@@ -368,18 +374,8 @@ namespace MRNNexus.WPFClient.ViewModels
 
         async private Task<bool> getLeads()
         {
-            if (LoggedInUser.PermissionID == 1)
-            {
-                if ((ErrorMessage = await new ServiceLayer().GetAllLeads()) != null)
-                    return false;
-            }
-            else
-            {
-                if ((ErrorMessage = await new ServiceLayer().GetLeadsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
-                    return false;
-            }
-
-            Leads = new ObservableCollection<Lead>();
+            if(Leads == null)
+                Leads = new ObservableCollection<Lead>();
 
             foreach (DTO_Lead l in ServiceLayer.LeadsList)
             {
@@ -416,18 +412,8 @@ namespace MRNNexus.WPFClient.ViewModels
 
         async private Task<bool> getClaims()
         {
-            if (LoggedInUser.PermissionID == 1)
-            {
-                if ((ErrorMessage = await new ServiceLayer().GetAllClaims()) != null)
-                    return false;
-            }
-            else
-            {
-                if ((ErrorMessage = await new ServiceLayer().GetOpenClaimsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
-                    return false;
-            }
-
-            Claims = new ObservableCollection<Claim>();
+            if(Claims == null)
+                Claims = new ObservableCollection<Claim>();
 
             foreach (DTO_Claim claim in ServiceLayer.ClaimsList)
             {
@@ -480,10 +466,10 @@ namespace MRNNexus.WPFClient.ViewModels
 
                 a.AdjusterName = ServiceLayer.Adjuster.FirstName + " " + ServiceLayer.Adjuster.LastName;
 
-                if ((ErrorMessage = await new ServiceLayer().GetClaimByClaimID(new Claim { ClaimID = a.ClaimID }.toDTO())) != null)
-                    return false;
+                //if ((ErrorMessage = await new ServiceLayer().GetClaimByClaimID(new Claim { ClaimID = a.ClaimID }.toDTO())) != null)
+                //    return false;
 
-                a.MRNNumber = ServiceLayer.Claim.MRNNumber;
+                a.MRNNumber = Claims.Where(c => c.ClaimID == a.ClaimID).Single().MRNClaimNumber;
 
                 a.AdjustmentResult = AdjustmentResults.Where(ar => ar.AdjustmentResultID == a.AdjustmentResultID).Single().AdjustmentResult;
 
@@ -518,17 +504,17 @@ namespace MRNNexus.WPFClient.ViewModels
                 }
 
                 // Retrieve the Inspection attached to the Claim
-                if ((ErrorMessage = await new ServiceLayer().GetInspectionsByClaimID(Claim.toDTO())) != null)
-                    return;
+                //if ((ErrorMessage = await new ServiceLayer().GetInspectionsByClaimID(Claim.toDTO())) != null)
+                //    return;
 
                 // Retrieve the Lead attached to the Claim
-                if ((ErrorMessage = await new ServiceLayer().GetLeadByLeadID(new DTO_Lead { LeadID = Claim.LeadID })) != null)
-                    return;
+                //if ((ErrorMessage = await new ServiceLayer().GetLeadByLeadID(new DTO_Lead { LeadID = Claim.LeadID })) != null)
+                //    return;
 
-                Lead = new Lead(ServiceLayer.Lead);
+                Lead = Leads.Where(l => l.LeadID == Claim.LeadID).Single();
                 ///LeadIsAttached = true;
 
-                Inspection = new Inspection(ServiceLayer.InspectionsList.Last());
+                Inspection = Inspections.Where(i => i.ClaimID == Claim.ClaimID).Single();
             }
             else if(o is Lead)
             {
