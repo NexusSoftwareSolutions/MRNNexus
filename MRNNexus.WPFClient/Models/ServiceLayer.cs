@@ -460,6 +460,26 @@ namespace MRNNexus.WPFClient.Models
             return Referrer.Message;
         }
 
+        #region GetRecents
+        async public Task<string> GetRecentClaimsBySalesPersonID(DTO_Employee token)
+        {
+            ClaimsList = JsonConvert.DeserializeObject<List<DTO_Claim>>(await MakeRequest(new DTO_Base(), "GetRecentClaimsBySalesPersonID"));
+            return ClaimsList.Last().Message;
+        }
+
+        async public Task<string> GetRecentLeadsBySalesPersonID(DTO_Employee token)
+        {
+            LeadsList = JsonConvert.DeserializeObject<List<DTO_Lead>>(await MakeRequest(new DTO_Base(), "GetRecentLeadsBySalesPersonID"));
+            return LeadsList.Last().Message;
+        }
+
+        async public Task<string> GetRecentInspectionsBySalesPersonID(DTO_Employee token)
+        {
+            InspectionsList = JsonConvert.DeserializeObject<List<DTO_Inspection>>(await MakeRequest(new DTO_Base(), "GetRecentInspectionsBySalesPersonID"));
+            return InspectionsList.Last().Message;
+        }
+        #endregion
+
         #region Get All
 
         async public Task<string> GetAllAddresses()
