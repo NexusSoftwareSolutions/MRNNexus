@@ -53,70 +53,81 @@ namespace MRNNexus.WPFClient.ViewModels
                 LoginIsEnabled = true;
                 return;
             }
+            else if ((ErrorMessage = await new ServiceLayer().GetUser(LoggedInUser.toDTO())) != null)
+            {
+                LoginIsEnabled = true;
+                return;
+            }
+            else if (!ServiceLayer.LoggedInUser.Active)
+            {
+                ErrorMessage = "This user is inactive please contact a system adminitrator.";
+                LoginIsEnabled = true;
+                return;
+            }
             else
             {
-                if((ErrorMessage = await new ServiceLayer().GetUser(LoggedInUser.toDTO())) != null)
-                {
-                    LoginIsEnabled = true;
-                    return;
-                }
-                else if (!ServiceLayer.LoggedInUser.Active)
-                {
-                    ErrorMessage = "This user is inactive please contact a system adminitrator.";
-                    LoginIsEnabled = true;
-                    return;
-                }
-                else if (ServiceLayer.LoggedInEmployee.EmployeeID > 0 && ServiceLayer.LoggedInUser.Active)
-                {
-                    LoggedInEmployee = new Employee(ServiceLayer.LoggedInEmployee);
-                    LoggedInUser = new User(ServiceLayer.LoggedInUser);
+                await loadData();
+            }
+        }
+    
 
-                    if (LoggedInUser.PermissionID == 1)
+        async private Task loadData()
+        {
+            
+            for(int i = 0; i < 999999999; i++)
+            {
+
+            }
+            if (ServiceLayer.LoggedInEmployee.EmployeeID > 0 && ServiceLayer.LoggedInUser.Active)
+            {
+                LoggedInEmployee = new Employee(ServiceLayer.LoggedInEmployee);
+                LoggedInUser = new User(ServiceLayer.LoggedInUser);
+
+                if (LoggedInUser.PermissionID == 1)
+                {
+                    if ((ErrorMessage = await new ServiceLayer().GetAllClaims()) != null)
                     {
-                        if ((ErrorMessage = await new ServiceLayer().GetAllClaims()) != null)
-                        {
-                            LoginIsEnabled = true;
-                            return;
-                        }
-                        if ((ErrorMessage = await new ServiceLayer().GetAllLeads()) != null)
-                        {
-                            LoginIsEnabled = true;
-                            return;
-                        }
-                        if ((ErrorMessage = await new ServiceLayer().GetAllInspections()) != null)
-                        {
-                            LoginIsEnabled = true;
-                            return;
-                        }
-
-                        Inspections = new System.Collections.ObjectModel.ObservableCollection<Inspection>();
-
-                        foreach(DTO_Inspection i in ServiceLayer.InspectionsList)
-                        {
-                            Inspections.Add(new Inspection(i));
-                        }
+                        LoginIsEnabled = true;
+                        return;
                     }
-                    else {
-                        if ((ErrorMessage = await new ServiceLayer().GetRecentClaimsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
-                        {
-                            LoginIsEnabled = true;
-                            return;
-                        }
-                        if ((ErrorMessage = await new ServiceLayer().GetRecentLeadsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
-                        {
-                            LoginIsEnabled = true;
-                            return;
-                        }
-                        if ((ErrorMessage = await new ServiceLayer().GetRecentInspectionsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
-                        {
-                            LoginIsEnabled = true;
-                            return;
-                        }
+                    if ((ErrorMessage = await new ServiceLayer().GetAllLeads()) != null)
+                    {
+                        LoginIsEnabled = true;
+                        return;
+                    }
+                    if ((ErrorMessage = await new ServiceLayer().GetAllInspections()) != null)
+                    {
+                        LoginIsEnabled = true;
+                        return;
                     }
 
-                    MenuBarIsEnabled = true;
-                    CurrentPage = new ScheduleView();
+                    Inspections = new System.Collections.ObjectModel.ObservableCollection<Inspection>();
+
+                    foreach (DTO_Inspection i in ServiceLayer.InspectionsList)
+                    {
+                        Inspections.Add(new Inspection(i));
+                    }
                 }
+                else {
+                    if ((ErrorMessage = await new ServiceLayer().GetRecentClaimsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
+                    {
+                        LoginIsEnabled = true;
+                        return;
+                    }
+                    if ((ErrorMessage = await new ServiceLayer().GetRecentLeadsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
+                    {
+                        LoginIsEnabled = true;
+                        return;
+                    }
+                    if ((ErrorMessage = await new ServiceLayer().GetRecentInspectionsBySalesPersonID(LoggedInEmployee.toDTO())) != null)
+                    {
+                        LoginIsEnabled = true;
+                        return;
+                    }
+                }
+
+                MenuBarIsEnabled = true;
+                CurrentPage = new ScheduleView();
             }
         }
 
