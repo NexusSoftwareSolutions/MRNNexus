@@ -361,36 +361,38 @@ namespace MRNNexus.WPFClient.ViewModels
 
         async private Task<bool> getLeads()
         {
-            if(Leads == null)
+            if (Leads == null)
+            {
                 Leads = new ObservableCollection<Lead>();
 
-            foreach (DTO_Lead l in ServiceLayer.LeadsList)
-            {
-                try
+                foreach (DTO_Lead l in ServiceLayer.LeadsList)
                 {
-                    Leads.Add(new Lead(l));
-                    Customer cust = Customers.Where(c => c.CustomerID == Leads.Last().CustomerID).Single();
-                    Leads.Last().CustomerName = cust.FirstName + " " + cust.LastName;
-                    Address address = Addresses.Where(a => a.AddressID == Leads.Last().AddressID).Single();
-                    Leads.Last().Address = address.StreetAddress + ", " + address.Zip;
-                    Leads.Last().LeadType = LeadTypes[Leads.Last().LeadTypeID - 1].LeadType;
-                    if (Leads.Last().KnockerResponseID == 0 || Leads.Last().KnockerResponseID == null && Leads.Last().CreditToID != 0)
+                    try
                     {
-                        if ((ErrorMessage = await new ServiceLayer().GetReferrerByID(new Referrer { ReferrerID = (int)Leads.Last().CreditToID }.toDTO())) != null)
-                            return false;
-                        Leads.Last().CreditTo = ServiceLayer.Referrer.FirstName + " " + ServiceLayer.Referrer.LastName;
-                        Referrer = new Referrer(ServiceLayer.Referrer);
+                        Leads.Add(new Lead(l));
+                        Customer cust = Customers.Where(c => c.CustomerID == Leads.Last().CustomerID).Single();
+                        Leads.Last().CustomerName = cust.FirstName + " " + cust.LastName;
+                        Address address = Addresses.Where(a => a.AddressID == Leads.Last().AddressID).Single();
+                        Leads.Last().Address = address.StreetAddress + ", " + address.Zip;
+                        Leads.Last().LeadType = LeadTypes[Leads.Last().LeadTypeID - 1].LeadType;
+                        if (Leads.Last().KnockerResponseID == 0 || Leads.Last().KnockerResponseID == null && Leads.Last().CreditToID != 0)
+                        {
+                            if ((ErrorMessage = await new ServiceLayer().GetReferrerByID(new Referrer { ReferrerID = (int)Leads.Last().CreditToID }.toDTO())) != null)
+                                return false;
+                            Leads.Last().CreditTo = ServiceLayer.Referrer.FirstName + " " + ServiceLayer.Referrer.LastName;
+                            Referrer = new Referrer(ServiceLayer.Referrer);
+                        }
+                        else if (Leads.Last().KnockerResponseID != 0)
+                        {
+                            if ((ErrorMessage = await new ServiceLayer().GetEmployeeByID(new Employee { EmployeeID = (int)Leads.Last().CreditToID }.toDTO())) != null)
+                                return false;
+                            Leads.Last().CreditTo = ServiceLayer.Employee.FirstName + " " + ServiceLayer.Employee.LastName;
+                        }
                     }
-                    else if (Leads.Last().KnockerResponseID != 0)
+                    catch (Exception EX)
                     {
-                        if ((ErrorMessage = await new ServiceLayer().GetEmployeeByID(new Employee { EmployeeID = (int)Leads.Last().CreditToID }.toDTO())) != null)
-                            return false;
-                        Leads.Last().CreditTo = ServiceLayer.Employee.FirstName + " " + ServiceLayer.Employee.LastName;
-                    }
-                }
-                catch (Exception EX)
-                {
 
+                    }
                 }
             }
 
@@ -399,16 +401,18 @@ namespace MRNNexus.WPFClient.ViewModels
 
         async private Task<bool> getClaims()
         {
-            if(Claims == null)
+            if (Claims == null)
+            {
                 Claims = new ObservableCollection<Claim>();
 
-            foreach (DTO_Claim claim in ServiceLayer.ClaimsList)
-            {
-                Claims.Add(new Claim(claim));
-                Customer cust = Customers.Where(c => c.CustomerID == Claims.Last().CustomerID).Single();
-                Claims.Last().CustomerName = cust.FirstName + " " + cust.LastName;
-                Address address = Addresses.Where(a => a.AddressID == Claims.Last().PropertyID).Single();
-                Claims.Last().Address = address.StreetAddress + ", " + address.Zip;
+                foreach (DTO_Claim claim in ServiceLayer.ClaimsList)
+                {
+                    Claims.Add(new Claim(claim));
+                    Customer cust = Customers.Where(c => c.CustomerID == Claims.Last().CustomerID).Single();
+                    Claims.Last().CustomerName = cust.FirstName + " " + cust.LastName;
+                    Address address = Addresses.Where(a => a.AddressID == Claims.Last().PropertyID).Single();
+                    Claims.Last().Address = address.StreetAddress + ", " + address.Zip;
+                }
             }
 
             return true;

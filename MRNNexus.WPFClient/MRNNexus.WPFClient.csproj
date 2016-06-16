@@ -112,6 +112,7 @@
     <Compile Include="Models\ClaimStatus.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\Referrer.cs" />
+    <Compile Include="Models\Scope.cs" />
     <Compile Include="PropertyAddressFormView.xaml.cs">
       <DependentUpon>PropertyAddressFormView.xaml</DependentUpon>
     </Compile>
