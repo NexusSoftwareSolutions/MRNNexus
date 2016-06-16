@@ -311,7 +311,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 LeadsTabIsEnabled = false;
                 ClaimsTabIsEnabled = false;
                 CustomerTabIsEnabled = false;
-                AddressTabIsEnabled = false;
+                AddressTabIsEnabled = false; 
                 AdjustersTabIsEnabled = true; 
                 AdjustmentsTabIsEnabled = false;
 
