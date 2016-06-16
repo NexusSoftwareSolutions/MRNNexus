@@ -103,6 +103,9 @@
     <Compile Include="ClaimFormView.xaml.cs">
       <DependentUpon>ClaimFormView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClaimHUDView.xaml.cs">
+      <DependentUpon>ClaimHUDView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Schedule.cs" />
     <Compile Include="InvoiceFormView.xaml.cs">
       <DependentUpon>InvoiceFormView.xaml</DependentUpon>
@@ -189,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ClaimFormView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClaimHUDView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

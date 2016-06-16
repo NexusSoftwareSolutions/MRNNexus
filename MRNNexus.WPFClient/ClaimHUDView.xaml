@@ -1,0 +1,205 @@
+﻿<Page x:Class="MRNNexus.WPFClient.ClaimHUDView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MRNNexus.WPFClient"
+      mc:Ignorable="d" 
+      Title="ClaimHUDView">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="5" x:Name="HeadlinesGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="MRN #: "/>
+            <Label Grid.Row="0" Grid.Column="1" Content="MRN-3-2-1"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Last Active: "/>
+            <Label Grid.Row="1" Grid.Column="1" Content="12-31-2009"/>
+
+            <Label Grid.Row="0" Grid.Column="2" Content="$$ IN: "/>
+            <Label Grid.Row="0" Grid.Column="3" Content="$24,250.00" Foreground="#FF017011"/>
+
+            <Label Grid.Row="1" Grid.Column="2" Content="$$ OUT: "/>
+            <Label Grid.Row="1" Grid.Column="3" Content="$18,500.00" Foreground="#FFF70505"/>
+
+            <Label Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2" Content="OPEN" Foreground="#FF017011" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0"  x:Name="ClaimInfo">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Claim Information" FontWeight="Bold"/>
+            
+            <Label Grid.Row="1" Grid.Column="0" Margin="5,0,0,0" Content="Loss Date:"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="08-12-1985" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Margin="5,0,0,0" Content="Insurance Co.:"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="State Farm" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Margin="5,0,0,0" Content="Insurance Claim#:"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="0000000000" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="4" Grid.Column="0" Margin="5,0,0,0" Content="Mortgage Co.:"/>
+            <Label Grid.Row="4" Grid.Column="1" Content="Some Mortgage Co." HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="5" Grid.Column="0" Margin="5,0,0,0" Content="Mortgage Acct.:"/>
+            <Label Grid.Row="5" Grid.Column="1" Content="0000000000" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="0"  x:Name="CustomerInfo">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Customer Information" FontWeight="Bold"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Margin="5,0,0,0" Content="Name:"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="Andrew Jackson" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Margin="5,0,0,0" Content="Primary Phone #:"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="678-367-5555" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Margin="5,0,0,0" Content="Seconday Phone #:"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="678-367-4444" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="4" Grid.Column="0" Margin="5,0,0,0" Content="Email:"/>
+            <Label Grid.Row="4" Grid.Column="1" Content="notanemail@notanemail.com" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="5" Grid.Column="0" Margin="5,0,0,0" Content="Proeprty Address:"/>
+            <Label Grid.Row="5" Grid.Column="1" Content="210 Old Loganville Rd. 30000" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Grid.Row="4" Grid.Column="0"  x:Name="LeadInfo">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Lead Information" FontWeight="Bold"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Margin="5,0,0,0" Content="Lead Date:"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="6-21-2016" HorizontalAlignment="Right"/>
+            
+            <Label Grid.Row="2" Grid.Column="0" Margin="5,0,0,0" Content="Lead Type:"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="Referrer" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Margin="5,0,0,0" Content="Credit To:"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="John Smith" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1"  x:Name="ClaimContacts">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Claim Contacts" FontWeight="Bold"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Margin="5,0,0,0" Content="Salesperson:"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="Alyssa Harvey" HorizontalAlignment="Right"/>
+            <Label Grid.Row="1" Grid.Column="2" Content="555-367-2222" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Margin="5,0,0,0" Content="Supervisor:"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="Alyssa Harvey" HorizontalAlignment="Right"/>
+            <Label Grid.Row="2" Grid.Column="2" Content="555-367-2222" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Margin="5,0,0,0" Content="Manager:"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="Alyssa Harvey" HorizontalAlignment="Right"/>
+            <Label Grid.Row="3" Grid.Column="2" Content="555-367-2222" HorizontalAlignment="Right"/>
+
+            <Label Grid.Row="4" Grid.Column="0" Margin="5,0,0,0" Content="Primary Adjsuter:"/>
+            <Label Grid.Row="4" Grid.Column="1" Content="Alyssa Harvey" HorizontalAlignment="Right"/>
+            <Label Grid.Row="4" Grid.Column="2" Content="555-367-2222" HorizontalAlignment="Right"/>
+        </Grid>
+
+       
+
+        <StackPanel Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Orientation="Vertical" Margin="5, 2.5, 5, 2.5">
+            <Label Content="Options for MRN-3-2-1" FontWeight="Bold"/>
+            <Button Content="Modify Customer" Margin="0,2.5,0,2.5"/>
+            <Button Content="Modify Claim" Margin="0,2.5,0,2.5"/>
+            <Button Content="Inspection" Margin="0,2.5,0,2.5"/>
+            <Button Content="Adjustments" Margin="0,2.5,0,2.5"/>
+            <Button Content="Scopes" Margin="0,2.5,0,2.5"/>
+            <Button Content="Orders" Margin="0,2.5,0,2.5"/>
+            <Button Content="Payments" Margin="0,2.5,0,2.5"/>
+            <Button Content="Invoices" Margin="0,2.5,0,2.5"/>
+            <Button Content="Douments" Margin="0,2.5,0,2.5"/>
+            <Button Content="Surplus Supplies" Margin="0,2.5,0,2.5"/>
+            <Button Content="Additional Supplies" Margin="0,2.5,0,2.5"/>
+        </StackPanel>
+            
+
+
+
+    </Grid>
+
+    
+</Page>
