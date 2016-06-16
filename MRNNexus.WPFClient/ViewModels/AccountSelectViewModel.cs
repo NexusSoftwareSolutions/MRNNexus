@@ -231,6 +231,11 @@ namespace MRNNexus.WPFClient.ViewModels
         {
             this.code = code;
 
+            await getCustomers();
+            await getAddresses();
+            await getLeads();
+            await getClaims();
+
             #region Tab Code Settings
             if (code == 0) // No code all available
             {
@@ -241,11 +246,6 @@ namespace MRNNexus.WPFClient.ViewModels
                 AddressTabIsEnabled = true;
                 AdjustersTabIsEnabled = true;
                 AdjustmentsTabIsEnabled = true;
-
-                await getCustomers();
-                await getAddresses();
-                await getLeads();
-                await getClaims();
             }
             else if (code == 1) // Claim code 1
             {
@@ -256,11 +256,6 @@ namespace MRNNexus.WPFClient.ViewModels
                 AddressTabIsEnabled = false;
                 AdjustersTabIsEnabled = false;
                 AdjustmentsTabIsEnabled = false;
-
-                await getCustomers();
-                await getAddresses();
-                await getLeads();
-                await getClaims();
             }
             else if (code == 2) // Lead code 2
             {
@@ -271,10 +266,6 @@ namespace MRNNexus.WPFClient.ViewModels
                 AddressTabIsEnabled = false;
                 AdjustersTabIsEnabled = false;
                 AdjustmentsTabIsEnabled = false;
-
-                await getCustomers();
-                await getAddresses();
-                await getLeads();
             }
             else if (code == 3) // Customer code 3
             {
@@ -285,8 +276,6 @@ namespace MRNNexus.WPFClient.ViewModels
                 AddressTabIsEnabled = false;
                 AdjustersTabIsEnabled = false;
                 AdjustmentsTabIsEnabled = false;
-
-                await getCustomers();
             }
             else if (code == 4 || code == 5) // Address code 4/5
             {
@@ -297,9 +286,6 @@ namespace MRNNexus.WPFClient.ViewModels
                 AddressTabIsEnabled = true;
                 AdjustersTabIsEnabled = false;
                 AdjustmentsTabIsEnabled = false;
-
-                await getCustomers();
-                await getAddresses();
 
                 if (Customer != null && Customer.CustomerID > 0)
                 {
@@ -333,6 +319,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 AdjustersTabIsEnabled = false;
                 AdjustmentsTabIsEnabled = true;
 
+                
                 await getAdjustments();
             }
             #endregion
@@ -464,12 +451,15 @@ namespace MRNNexus.WPFClient.ViewModels
                 if ((ErrorMessage = await new ServiceLayer().GetAdjusterByID(new Adjuster { AdjusterID = adjustment.AdjusterID }.toDTO())) != null)
                     return false;
 
-                a.AdjusterName = ServiceLayer.Adjuster.FirstName + " " + ServiceLayer.Adjuster.LastName;
+                Adjuster = new Adjuster(ServiceLayer.Adjuster);
+
+                a.AdjusterName = Adjuster.FirstName + " " + Adjuster.LastName;
 
                 //if ((ErrorMessage = await new ServiceLayer().GetClaimByClaimID(new Claim { ClaimID = a.ClaimID }.toDTO())) != null)
                 //    return false;
+                Claim = Claims.Where(c => c.ClaimID == a.ClaimID).Single();
 
-                a.MRNNumber = Claims.Where(c => c.ClaimID == a.ClaimID).Single().MRNClaimNumber;
+                a.MRNNumber = Claim.MRNClaimNumber;
 
                 a.AdjustmentResult = AdjustmentResults.Where(ar => ar.AdjustmentResultID == a.AdjustmentResultID).Single().AdjustmentResult;
 

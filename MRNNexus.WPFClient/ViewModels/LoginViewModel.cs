@@ -66,7 +66,9 @@ namespace MRNNexus.WPFClient.ViewModels
             }
             else
             {
-                await loadData();
+               loadData();
+                IsBusyLoading = true;
+                
             }
         }
     

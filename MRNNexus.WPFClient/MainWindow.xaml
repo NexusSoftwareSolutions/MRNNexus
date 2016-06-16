@@ -19,7 +19,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <syncfusion:SfBusyIndicator Grid.ColumnSpan="1" Grid.RowSpan="2" x:Name="busyIndicator" IsBusy="{Binding IsBusyLoading}" Header="Loading Resources..." AnimationType="SlicedCircle" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <syncfusion:SfBusyIndicator Grid.ColumnSpan="1" Grid.RowSpan="2" x:Name="busyIndicator" IsBusy="{Binding IsBusyLoading}" Header="Loading Resources..." AnimationType="SlicedCircle" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1000"/>
         <syncfusion:MenuAdv Grid.Row="0" x:Name="menuBar" IsEnabled="{Binding MenuBarIsEnabled}">
             <syncfusion:MenuItemAdv Header="File"/>
             <syncfusion:MenuItemAdv Header="Calendar" Command="{x:Static mvs:BaseViewModel.ViewSchedule}"/>
