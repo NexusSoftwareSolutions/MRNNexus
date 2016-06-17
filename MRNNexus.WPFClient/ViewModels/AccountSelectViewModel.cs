@@ -509,6 +509,8 @@ namespace MRNNexus.WPFClient.ViewModels
                 ///LeadIsAttached = true;
 
                 Inspection = Inspections.Where(i => i.ClaimID == Claim.ClaimID).Single();
+
+                Claim.InsuranceCompanyName = InsuranceCompanies.Where(i => i.InsuranceCompanyID == Claim.InsuranceCompanyID).Single().CompanyName;
             }
             else if(o is Lead)
             {

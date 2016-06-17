@@ -436,6 +436,7 @@ namespace MRNNexus.WPFClient.ViewModels
         private static ObservableCollection<Employee> _employees;
         private static ObservableCollection<Inspection> _inspections;
         private static ObservableCollection<Lead> _leads;
+        private static ObservableCollection<DTO_InsuranceCompany> _insuranceCompanies;
         #endregion
 
         #region Lookup Lists
@@ -674,7 +675,16 @@ namespace MRNNexus.WPFClient.ViewModels
                 RaiseStaticPropertyChanged("Inspections");
             }
         }
-        //public static List<InsuranceCompany> InsuranceCompaniesList { get; set; }
+        public static ObservableCollection<DTO_InsuranceCompany> InsuranceCompanies {
+            get { return _insuranceCompanies; }
+            set
+            {
+                _insuranceCompanies = value;
+                RaiseStaticPropertyChanged("InsuranceCompanies");
+            }
+                
+                
+        }
         //public static List<Invoice> InvoicesList { get; set; }
         //public static List<KnockerResponse> KnockerResponsesList { get; set; }
         public static ObservableCollection<Lead> Leads {

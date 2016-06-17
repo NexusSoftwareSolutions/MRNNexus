@@ -23,6 +23,8 @@ namespace MRNNexus.WPFClient.Models
         private string _mortgageCompany;
         private string _mortgageAccount;
         private bool _isOpen = true;
+
+        private string _insuranceCompanyName;
         #endregion
 
         #region Properties
@@ -162,7 +164,18 @@ namespace MRNNexus.WPFClient.Models
 
             [Display(AutoGenerateField = true, Order = 2)]
             public string Address { get; set; }
-            #endregion
+
+        public string InsuranceCompanyName
+        {
+            get { return _insuranceCompanyName; }
+            set
+            {
+                _insuranceCompanyName = value;
+                RaisePropertyChanged("InsuranceCompanyName");
+            }
+        }
+
+        #endregion
         #endregion
 
         #region Constructors

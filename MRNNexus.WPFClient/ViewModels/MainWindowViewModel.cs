@@ -24,6 +24,8 @@ namespace MRNNexus.WPFClient.ViewModels
             if ((ErrorMessage = await new ServiceLayer().GetAllInsuranceCompanyNames()) != null)
                 return;
 
+            InsuranceCompanies = new ObservableCollection<DTO_InsuranceCompany>(ServiceLayer.InsuranceCompaniesList);
+
             if ((ErrorMessage = await ServiceLayer.buildLUs()) != null)
             {
                 IsBusyLoading = false;

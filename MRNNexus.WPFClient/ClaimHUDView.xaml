@@ -74,7 +74,7 @@
             <Label Grid.Row="1" Grid.Column="1" Content="{Binding Claim.LossDate}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="2" Grid.Column="0" Margin="5,0,0,0" Content="Insurance Co.:"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="{Binding Claim.InsuranceCompanyID}" HorizontalAlignment="Right"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding Claim.InsuranceCompanyName}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="3" Grid.Column="0" Margin="5,0,0,0" Content="Insurance Claim#:"/>
             <Label Grid.Row="3" Grid.Column="1" Content="{Binding Claim.InsuranceClaimNumber}" HorizontalAlignment="Right"/>
