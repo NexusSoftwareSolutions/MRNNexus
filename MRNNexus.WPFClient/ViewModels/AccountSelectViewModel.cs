@@ -497,16 +497,22 @@ namespace MRNNexus.WPFClient.ViewModels
                     BillingAddress = Addresses.Where(a => a.AddressID == Claim.BillingID).Single();
                 }
 
-                // Retrieve the Inspection attached to the Claim
-                //if ((ErrorMessage = await new ServiceLayer().GetInspectionsByClaimID(Claim.toDTO())) != null)
-                //    return;
-
-                // Retrieve the Lead attached to the Claim
-                //if ((ErrorMessage = await new ServiceLayer().GetLeadByLeadID(new DTO_Lead { LeadID = Claim.LeadID })) != null)
-                //    return;
-
                 Lead = Leads.Where(l => l.LeadID == Claim.LeadID).Single();
-                ///LeadIsAttached = true;
+
+                if(Lead.LeadTypeID == 1)
+                {
+                    if ((ErrorMessage = await new ServiceLayer().GetKnockerResponseByID(new DTO_KnockerResponse { KnockerResponseID = (int)Lead.KnockerResponseID })) != null)
+                        return;
+                    else
+                        KnockerResponse = new KnockerResponse(ServiceLayer.KnockerResponse);
+                }
+                else if(Lead.LeadTypeID == 2)
+                {
+                    if ((ErrorMessage = await new ServiceLayer().GetReferrerByID(new DTO_Referrer { ReferrerID = (int)Lead.CreditToID })) != null)
+                        return;
+                    else
+                        Referrer = new Referrer(ServiceLayer.Referrer);
+                }
 
                 Inspection = Inspections.Where(i => i.ClaimID == Claim.ClaimID).Single();
 

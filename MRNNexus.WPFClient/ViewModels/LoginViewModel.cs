@@ -2,6 +2,7 @@
 using MRNNexusDTOs;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,10 +77,6 @@ namespace MRNNexus.WPFClient.ViewModels
         async private Task loadData()
         {
             
-            for(int i = 0; i < 999999999; i++)
-            {
-
-            }
             if (ServiceLayer.LoggedInEmployee.EmployeeID > 0 && ServiceLayer.LoggedInUser.Active)
             {
                 LoggedInEmployee = new Employee(ServiceLayer.LoggedInEmployee);
@@ -102,12 +99,23 @@ namespace MRNNexus.WPFClient.ViewModels
                         LoginIsEnabled = true;
                         return;
                     }
+                    if((ErrorMessage = await new ServiceLayer().GetEmployeesByEmployeeTypeID(new DTO_LU_EmployeeType { EmployeeTypeID = 14 })) != null)
+                    {
+                        LoginIsEnabled = true;
+                        return;
+                    }
 
-                    Inspections = new System.Collections.ObjectModel.ObservableCollection<Inspection>();
+                    Inspections = new ObservableCollection<Inspection>();
 
                     foreach (DTO_Inspection i in ServiceLayer.InspectionsList)
                     {
                         Inspections.Add(new Inspection(i));
+                    }
+
+                    Employees = new ObservableCollection<Employee>();
+                    foreach(DTO_Employee e in ServiceLayer.EmployeesList)
+                    {
+                        Employees.Add(new Employee(e));
                     }
                 }
                 else {

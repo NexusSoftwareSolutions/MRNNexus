@@ -8,65 +8,188 @@
       mc:Ignorable="d" 
       Title="ClaimFormView"
       DataContext="{StaticResource claimFormViewModel}">
+    <StackPanel Orientation="Vertical">
+        <GroupBox Header="Claim Information">
+            <Grid x:Name="claimGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-    <GroupBox Header="Claim Information">
-        <Grid x:Name="claimGrid">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="MRN #:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120" />
+                <Label Grid.Row="0" Grid.Column="1" Content="{Binding Claim.MRNClaimNumber}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150"/>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="MRN #:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120" />
-            <Label Grid.Row="0" Grid.Column="1" Content="{Binding Claim.MRNClaimNumber}" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100"/>
-            
-            <Label Grid.Row="1" Grid.Column="0" x:Name="lossDateLbl" Content="Loss Date:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <DatePicker Grid.Row="1" Grid.Column="1" x:Name="lossDatePicker" SelectedDate="{Binding Claim.LossDate}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Label Grid.Row="1" Grid.Column="0" x:Name="lossDateLbl" Content="Loss Date:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <DatePicker Grid.Row="1" Grid.Column="1" x:Name="lossDatePicker" SelectedDate="{Binding Claim.LossDate}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150"/>
 
-            <Label Grid.Row="2" Grid.Column="0" x:Name="insuranceCompanyLbl" Content="Insurance Company:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <ComboBox Grid.Row="2" Grid.Column="1" x:Name="insuranceCompanyCbo" ItemsSource="{Binding Path=InsuranceCompanies}" SelectedValue="{Binding Claim.InsuranceCompanyID, Mode=TwoWay}"
-                                  SelectedValuePath="InsuranceCompanyID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding CompanyName}"/>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                <Label Grid.Row="2" Grid.Column="0" x:Name="insuranceCompanyLbl" Content="Insurance Company:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <ComboBox Grid.Row="2" Grid.Column="1" x:Name="insuranceCompanyCbo" ItemsSource="{Binding Path=InsuranceCompanies}" SelectedValue="{Binding Claim.InsuranceCompanyID, Mode=TwoWay}"
+                                  SelectedValuePath="InsuranceCompanyID" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding CompanyName}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
-            <Label Grid.Row="3" Grid.Column="0" x:Name="insuranceClaimNumLbl" Content="Insurance Claim Number:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <syncfusion:SfMaskedEdit Grid.Row="3" Grid.Column="1" x:Name="insuranceClaimNumberTextBox" Text="{Binding Claim.InsuranceClaimNumber, Mode=TwoWay}" 
-                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="100"/>
+                <Label Grid.Row="3" Grid.Column="0" x:Name="insuranceClaimNumLbl" Content="Insurance Claim Number:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <syncfusion:SfMaskedEdit Grid.Row="3" Grid.Column="1" x:Name="insuranceClaimNumberTextBox" Text="{Binding Claim.InsuranceClaimNumber, Mode=TwoWay}" 
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="150"/>
 
-            <Label Grid.Row="4" Grid.Column="0" x:Name="mortgageCompanyLbl" Content="Mortgage Company:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <syncfusion:SfMaskedEdit Grid.Row="4" Grid.Column="1" x:Name="mortgageCompanyTextBox" Text="{Binding Claim.MortgageCompany}" 
-                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="100"/>
+                <Label Grid.Row="4" Grid.Column="0" x:Name="mortgageCompanyLbl" Content="Mortgage Company:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <syncfusion:SfMaskedEdit Grid.Row="4" Grid.Column="1" x:Name="mortgageCompanyTextBox" Text="{Binding Claim.MortgageCompany}" 
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="150"/>
 
-            <Label Grid.Row="5" Grid.Column="0" x:Name="mortgageAccountLbl" Content="Mortgage Account:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <syncfusion:SfMaskedEdit Grid.Row="5" Grid.Column="1" x:Name="mortgageAcountTextBox" Text="{Binding Claim.MortgageAccount}" 
-                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="100"/>
-
-
-            <Grid Grid.Row="6" Grid.ColumnSpan="2">
+                <Label Grid.Row="5" Grid.Column="0" x:Name="mortgageAccountLbl" Content="Mortgage Account:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <syncfusion:SfMaskedEdit Grid.Row="5" Grid.Column="1" x:Name="mortgageAcountTextBox" Text="{Binding Claim.MortgageAccount}" 
+                                                 HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="150"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Lead Information">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button  Grid.Column="0" x:Name="attachLead" Content="Attach Lead" IsEnabled="{Binding AttachLeadBtnIsEnabled}" Command="{Binding AttachLead}"/>
-                <Button Grid.Column="1" x:Name="modifyLead" Content="Modify Lead" IsEnabled="{Binding ModifyLeadBtnIsEnabled}" Command="{Binding ModifyLead}"/>
-                <Button Grid.Column="2" x:Name="newLead" Content="New Lead" IsEnabled="{Binding AddNewLeadBtnIsEnabled}" Command="{Binding AddNewLead}"/>
-            </Grid>
-        </Grid>
-        
+                <Label Grid.Row="1" Grid.Column="0" Content="Lead Date:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120" />
+                <DatePicker Grid.Row="1" Grid.Column="1" x:Name="datepicker" SelectedDate="{Binding Lead.LeadDate}"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="150"/>
 
-    </GroupBox>
+                <Label Grid.Row="2" Grid.Column="0" Content="Lead Type:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+                <ComboBox Grid.Row="2" Grid.Column="1" x:Name="leadTypeIDCbo" ItemsSource="{Binding LeadTypes}" SelectedValue="{Binding Lead.LeadTypeID, Mode=TwoWay}" 
+                                  SelectedValuePath="LeadTypeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="150" MaxWidth="100">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding LeadType}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <!--#region KNOCKER CONTROLS-->
+                <Label Grid.Row="3" Grid.Column="0" Content="Knocker:" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label.Style>
+                        <Style>
+                            <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger
+                            Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="1">
+                                    <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <ComboBox Grid.Row="3" Grid.Column="1" x:Name="knockerCbo" ItemsSource="{Binding Employees}" SelectedValue="{Binding KnockerResponse.KnockerID, Mode=TwoWay}" 
+                                  SelectedValuePath="EmployeeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100"
+                  >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding FullName}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                    <ComboBox.Style>
+                        <Style>
+                            <Setter Property="ComboBox.Visibility" Value="Collapsed"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger
+                            Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="1">
+                                    <Setter Property="ComboBox.Visibility" Value="Visible"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
+
+                <Label Grid.Row="4" Grid.Column="0" Content="Knocker Response:" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Label.Style>
+                        <Style>
+                            <Setter Property="Label.Visibility" Value="Collapsed"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger
+                            Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="1">
+                                    <Setter Property="Label.Visibility" Value="Visible"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <ComboBox Grid.Row="4" Grid.Column="1" x:Name="knockerResponseCbo" ItemsSource="{Binding KnockResponseTypes}" SelectedValue="{Binding KnockerResponse.KnockerResponseTypeID, Mode=TwoWay}" 
+                                  SelectedValuePath="KnockResponseTypeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100"
+                  >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding KnockResponseType}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                    <ComboBox.Style>
+                        <Style>
+                            <Setter Property="ComboBox.Visibility" Value="Collapsed"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger
+                            Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="1">
+                                    <Setter Property="ComboBox.Visibility" Value="Visible"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
+                <!--#endregion-->
+
+
+                <Frame Grid.Row="3" Grid.ColumnSpan="2" Source="ReferrerFormView.xaml">
+                    <Frame.Style>
+                        <Style>
+                            <Setter Property="Frame.Visibility" Value="Collapsed"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="2">
+                                    <Setter Property="Frame.Visibility" Value="Visible"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Frame.Style>
+                </Frame>
+
+                <Label Grid.Row="10" Grid.Column="0" Content="Temperature:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120" />
+                <StackPanel Grid.Row="10" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <RadioButton GroupName="Temperature" Content="Cool" Margin="0, 0, 5, 0" Foreground="Blue" Command="{Binding LeadTemperatureSelected}" CommandParameter="C"/>
+                    <RadioButton GroupName="Temperature" Content="Warm" Margin="0, 0, 5, 0" IsChecked="True" Foreground="Orange" Command="{Binding LeadTemperatureSelected}" CommandParameter="W"/>
+                    <RadioButton GroupName="Temperature" Content="Hot" Foreground="Red" Command="{Binding LeadTemperatureSelected}" CommandParameter="H"/>
+                </StackPanel>
+
+                <syncfusion:CheckListBox Grid.Row="11" Grid.ColumnSpan="2" x:Name="isSuccessfulLead" HorizontalAlignment="Stretch" VerticalAlignment="Center" CheckBoxAlignment="Right" BorderThickness="0">
+                    <syncfusion:CheckListBox.ItemContainerStyle>
+                        <Style TargetType="syncfusion:CheckListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding IsChecked, Mode=TwoWay}"/>
+                        </Style>
+                    </syncfusion:CheckListBox.ItemContainerStyle>
+                    <syncfusion:CheckListBoxItem Content="Was a contract signed?" IsSelected="{Binding Lead.Success}"/>
+                </syncfusion:CheckListBox>
+
+
+            </Grid>
+        </GroupBox>
+    </StackPanel>
 </Page>
