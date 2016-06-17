@@ -14,7 +14,7 @@ namespace MRNNexus.WPFClient.ViewModels
     class AccountSelectViewModel : BaseViewModel
     {
 
-        public event EventHandler OnRequestClose;
+        //public event EventHandler OnRequestClose;
 
         #region Fields
         private bool _claimsTabIsSelected = true;
@@ -578,17 +578,18 @@ namespace MRNNexus.WPFClient.ViewModels
             }
             else if(o == null)
             {
-                AddLead.Execute(o);
+                //AddLead.Execute(o);
             }
 
-            OnRequestClose(this, new EventArgs());
+            CurrentPage = new ClaimHUDView();
+            //OnRequestClose(this, new EventArgs());
         }
 
         private void cancelAccountSelect(object o)
         {
             IsExistingCustomer = false;
             IsExistingAddress = false;
-            OnRequestClose(this, new EventArgs());
+            //OnRequestClose(this, new EventArgs());
         }
 
     }

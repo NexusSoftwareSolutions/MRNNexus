@@ -68,20 +68,22 @@ namespace MRNNexus.WPFClient.ViewModels
         #region Commands
 
         #region Menu Commands
-        #region Lead
-        public static ICommand AddLead
-        {
-            get { return new RelayCommand(new Action<object>(addLead)); }
-        }
-        public static ICommand EditLead
-        {
-            get { return new RelayCommand(new Action<object>(editLead)); }
-        }
-        //public static ICommand ViewLeads
+        public static ICommand NavigateClaims { get { return new RelayCommand(new Action<object>(navigateClaims)); } }
+
+        //#region Lead
+        //public static ICommand AddLead
         //{
-        //    get { return new RelayCommand(new Action<object>(viewLeads)); }
+        //    get { return new RelayCommand(new Action<object>(addLead)); }
         //}
-        #endregion
+        //public static ICommand EditLead
+        //{
+        //    get { return new RelayCommand(new Action<object>(editLead)); }
+        //}
+        ////public static ICommand ViewLeads
+        ////{
+        ////    get { return new RelayCommand(new Action<object>(viewLeads)); }
+        ////}
+        //#endregion
 
         #region Schedule
         public static ICommand ViewSchedule
@@ -90,62 +92,62 @@ namespace MRNNexus.WPFClient.ViewModels
         }
         #endregion
 
-        #region Inspection
-        public static ICommand AddInspection
-        {
-            get { return new RelayCommand(new Action<object>(addInspection)); }
-        }
-        public static ICommand EditInspection
-        {
-            get { return new RelayCommand(new Action<object>(editInspection)); }
-        }
-        //public static ICommand ViewInspections
+        //#region Inspection
+        //public static ICommand AddInspection
         //{
-        //    get { return new RelayCommand(new Action<object>(viewInspections)); }
+        //    get { return new RelayCommand(new Action<object>(addInspection)); }
         //}
-        #endregion
+        //public static ICommand EditInspection
+        //{
+        //    get { return new RelayCommand(new Action<object>(editInspection)); }
+        //}
+        ////public static ICommand ViewInspections
+        ////{
+        ////    get { return new RelayCommand(new Action<object>(viewInspections)); }
+        ////}
+        //#endregion
 
-        #region Adjustment & Adjuster
-        public static ICommand AddAdjuster
-        {
-            get { return new RelayCommand(new Action<object>(addAdjuster)); }
-        }
-        public static ICommand EditAdjuster
-        {
-            get { return new RelayCommand(new Action<object>(editAdjuster)); }
-        }
-        //public static ICommand ViewAdjusters
+        //#region Adjustment & Adjuster
+        //public static ICommand AddAdjuster
         //{
-        //    get { return new RelayCommand(new Action<object>(viewAdjusters)); }
+        //    get { return new RelayCommand(new Action<object>(addAdjuster)); }
         //}
-        public static ICommand AddAdjustment
-        {
-            get { return new RelayCommand(new Action<object>(addAdjustment)); }
-        }
-        public static ICommand EditAdjustment
-        {
-            get { return new RelayCommand(new Action<object>(editAdjustment)); }
-        }
-        //public static ICommand ViewAdjustments
+        //public static ICommand EditAdjuster
         //{
-        //    get { return new RelayCommand(new Action<object>(viewAdjustments)); }
+        //    get { return new RelayCommand(new Action<object>(editAdjuster)); }
         //}
-        #endregion
+        ////public static ICommand ViewAdjusters
+        ////{
+        ////    get { return new RelayCommand(new Action<object>(viewAdjusters)); }
+        ////}
+        //public static ICommand AddAdjustment
+        //{
+        //    get { return new RelayCommand(new Action<object>(addAdjustment)); }
+        //}
+        //public static ICommand EditAdjustment
+        //{
+        //    get { return new RelayCommand(new Action<object>(editAdjustment)); }
+        //}
+        ////public static ICommand ViewAdjustments
+        ////{
+        ////    get { return new RelayCommand(new Action<object>(viewAdjustments)); }
+        ////}
+        //#endregion
 
-        #region Invoice
-        public static ICommand AddInvoice
-        {
-            get { return new RelayCommand(new Action<object>(addInvoice)); }
-        }
-        //public static ICommand EditInvoice
+        //#region Invoice
+        //public static ICommand AddInvoice
         //{
-        //    get { return new RelayCommand(new Action<object>(editInvoice)); }
+        //    get { return new RelayCommand(new Action<object>(addInvoice)); }
         //}
-        //public static ICommand ViewInvoices
-        //{
-        //    get { return new RelayCommand(new Action<object>(viewInvoices)); }
-        //}
-        #endregion
+        ////public static ICommand EditInvoice
+        ////{
+        ////    get { return new RelayCommand(new Action<object>(editInvoice)); }
+        ////}
+        ////public static ICommand ViewInvoices
+        ////{
+        ////    get { return new RelayCommand(new Action<object>(viewInvoices)); }
+        ////}
+        //#endregion
 
         #endregion
 
@@ -159,125 +161,131 @@ namespace MRNNexus.WPFClient.ViewModels
         #region Command Methods
 
         #region Menu Command Methods
-        #region Lead
-        private static void addLead(object o)
+        private static void navigateClaims(object o)
         {
-            Header = "Add Lead";
-            LeadView leadView = new LeadView();
-            leadView.SizeToContent = SizeToContent.WidthAndHeight;
-            leadView.WindowStyle = WindowStyle.ThreeDBorderWindow;
-            leadView.ResizeMode = ResizeMode.NoResize;
-            leadView.ShowDialog();
+            Header = "Select A Claim";
+            CurrentPage = new AccountSelectView();
         }
-        private static void editLead(object o)
-        {
-            //AccountSelectView accountSelectWindow = new AccountSelectView(2);
-            //accountSelectWindow.ShowDialog();
-            Header = "Edit Lead";
-            LeadView leadView = new LeadView();
-            leadView.SizeToContent = SizeToContent.WidthAndHeight;
-            leadView.WindowStyle = WindowStyle.ThreeDBorderWindow;
-            leadView.ResizeMode = ResizeMode.NoResize;
-            leadView.ShowDialog();
-        }
-        #endregion
 
-        #region Inspection
-        private static void addInspection(object o)
-        {
-            Header = "Add Inspection";
-            Claim = null;
-            Customer = null;
-            Lead = null;
-            Inspection = null;
-            PropertyAddress = null;
-            BillingAddress = null;
-            IsExistingAddress = false;
-            IsExistingCustomer = false;
-            CurrentPage = new InspectionView(); 
-        }
+        //#region Lead
+        //private static void addLead(object o)
+        //{
+        //    Header = "Add Lead";
+        //    LeadView leadView = new LeadView();
+        //    leadView.SizeToContent = SizeToContent.WidthAndHeight;
+        //    leadView.WindowStyle = WindowStyle.ThreeDBorderWindow;
+        //    leadView.ResizeMode = ResizeMode.NoResize;
+        //    leadView.ShowDialog();
+        //}
+        //private static void editLead(object o)
+        //{
+        //    //AccountSelectView accountSelectWindow = new AccountSelectView(2);
+        //    //accountSelectWindow.ShowDialog();
+        //    Header = "Edit Lead";
+        //    LeadView leadView = new LeadView();
+        //    leadView.SizeToContent = SizeToContent.WidthAndHeight;
+        //    leadView.WindowStyle = WindowStyle.ThreeDBorderWindow;
+        //    leadView.ResizeMode = ResizeMode.NoResize;
+        //    leadView.ShowDialog();
+        //}
+        //#endregion
+
+        //#region Inspection
+        //private static void addInspection(object o)
+        //{
+        //    Header = "Add Inspection";
+        //    Claim = null;
+        //    Customer = null;
+        //    Lead = null;
+        //    Inspection = null;
+        //    PropertyAddress = null;
+        //    BillingAddress = null;
+        //    IsExistingAddress = false;
+        //    IsExistingCustomer = false;
+        //    CurrentPage = new InspectionView(); 
+        //}
         
-        private static void editInspection(object o)
-        {
-            //AccountSelectView accountSelectWindow = new AccountSelectView();
-            Header = "Edit Inspection";
-            //accountSelectWindow.ShowDialog();
-            CurrentPage = new InspectionView();
-        }
+        //private static void editInspection(object o)
+        //{
+        //    //AccountSelectView accountSelectWindow = new AccountSelectView();
+        //    Header = "Edit Inspection";
+        //    //accountSelectWindow.ShowDialog();
+        //    CurrentPage = new InspectionView();
+        //}
 
-        #endregion
+        //#endregion
 
-        #region Adjustment & Adjuster
-        private static void addAdjuster(object o)
-        {
-            Header = "Add Adjuster";
-            AdjusterFormView view = new AdjusterFormView();
-            view.SizeToContent = SizeToContent.WidthAndHeight;
-            view.WindowStyle = WindowStyle.ThreeDBorderWindow;
-            view.ResizeMode = ResizeMode.NoResize;
-            view.ShowDialog();
+        //#region Adjustment & Adjuster
+        //private static void addAdjuster(object o)
+        //{
+        //    Header = "Add Adjuster";
+        //    AdjusterFormView view = new AdjusterFormView();
+        //    view.SizeToContent = SizeToContent.WidthAndHeight;
+        //    view.WindowStyle = WindowStyle.ThreeDBorderWindow;
+        //    view.ResizeMode = ResizeMode.NoResize;
+        //    view.ShowDialog();
 
-        }
-        private static void editAdjuster(object o)
-        {
-            if(Adjuster == null)
-            {
-                //AccountSelectView accountSelectWindow = new AccountSelectView(6);
-                //accountSelectWindow.ShowDialog();
-            }
-            Header = "Edit Adjuster";
-            AdjusterFormView view = new AdjusterFormView();
-            view.SizeToContent = SizeToContent.WidthAndHeight;
-            view.WindowStyle = WindowStyle.ThreeDBorderWindow;
-            view.ResizeMode = ResizeMode.NoResize;
-            view.ShowDialog();
+        //}
+        //private static void editAdjuster(object o)
+        //{
+        //    if(Adjuster == null)
+        //    {
+        //        //AccountSelectView accountSelectWindow = new AccountSelectView(6);
+        //        //accountSelectWindow.ShowDialog();
+        //    }
+        //    Header = "Edit Adjuster";
+        //    AdjusterFormView view = new AdjusterFormView();
+        //    view.SizeToContent = SizeToContent.WidthAndHeight;
+        //    view.WindowStyle = WindowStyle.ThreeDBorderWindow;
+        //    view.ResizeMode = ResizeMode.NoResize;
+        //    view.ShowDialog();
 
-        }
-        private static void addAdjustment(object o)
-        {
-            Header = "Add Adjustment";
+        //}
+        //private static void addAdjustment(object o)
+        //{
+        //    Header = "Add Adjustment";
 
-            Adjuster = null;
-            if (Claim != null && !Claim.MRNClaimNumber.Contains("-"))
-            {
-                Claim = null;
-            }
+        //    Adjuster = null;
+        //    if (Claim != null && !Claim.MRNClaimNumber.Contains("-"))
+        //    {
+        //        Claim = null;
+        //    }
 
-            AdjustmentFormView view = new AdjustmentFormView();
-            view.SizeToContent = SizeToContent.WidthAndHeight;
-            view.WindowStyle = WindowStyle.ThreeDBorderWindow;
-            view.ResizeMode = ResizeMode.NoResize;
-            view.ShowDialog();
-        }
-        private static void editAdjustment(object o)
-        {
-            Header = "Edit Adjustment";
+        //    AdjustmentFormView view = new AdjustmentFormView();
+        //    view.SizeToContent = SizeToContent.WidthAndHeight;
+        //    view.WindowStyle = WindowStyle.ThreeDBorderWindow;
+        //    view.ResizeMode = ResizeMode.NoResize;
+        //    view.ShowDialog();
+        //}
+        //private static void editAdjustment(object o)
+        //{
+        //    Header = "Edit Adjustment";
 
-            //AccountSelectView accountSelectWindow = new AccountSelectView(7);
-            //accountSelectWindow.ShowDialog();
+        //    //AccountSelectView accountSelectWindow = new AccountSelectView(7);
+        //    //accountSelectWindow.ShowDialog();
 
-            if (Claim != null && !Claim.MRNClaimNumber.Contains("-"))
-            {
-                Claim = null;
-            }
+        //    if (Claim != null && !Claim.MRNClaimNumber.Contains("-"))
+        //    {
+        //        Claim = null;
+        //    }
 
-            AdjustmentFormView view = new AdjustmentFormView();
-            view.SizeToContent = SizeToContent.WidthAndHeight;
-            view.WindowStyle = WindowStyle.ThreeDBorderWindow;
-            view.ResizeMode = ResizeMode.NoResize;
-            view.ShowDialog();
-        }
+        //    AdjustmentFormView view = new AdjustmentFormView();
+        //    view.SizeToContent = SizeToContent.WidthAndHeight;
+        //    view.WindowStyle = WindowStyle.ThreeDBorderWindow;
+        //    view.ResizeMode = ResizeMode.NoResize;
+        //    view.ShowDialog();
+        //}
 
-        #endregion
+        //#endregion
 
-        #region Invoice
-        private static void addInvoice(object o)
-        {
-            Header = "Add Invoice";
-            IWindowService ws = new WindowService();
-            ws.showWindow(new AdjustmentFormView());
-        }
-        #endregion
+        //#region Invoice
+        //private static void addInvoice(object o)
+        //{
+        //    Header = "Add Invoice";
+        //    IWindowService ws = new WindowService();
+        //    ws.showWindow(new AdjustmentFormView());
+        //}
+        //#endregion
 
 
         #region Schedule

@@ -23,41 +23,8 @@
         <syncfusion:MenuAdv Grid.Row="0" x:Name="menuBar" IsEnabled="{Binding MenuBarIsEnabled}">
             <syncfusion:MenuItemAdv Header="File"/>
             <syncfusion:MenuItemAdv Header="Calendar" Command="{x:Static mvs:BaseViewModel.ViewSchedule}"/>
-            <syncfusion:MenuItemAdv Header="Leads">
-                <syncfusion:MenuItemAdv Header="Add Lead" Command="{x:Static mvs:BaseViewModel.AddLead}"/>
-                <syncfusion:MenuItemAdv Header="Edit Lead" Command="{x:Static mvs:BaseViewModel.EditLead}"/>
-                <syncfusion:MenuItemAdv Header="View Leads" IsEnabled="False"/>
-            </syncfusion:MenuItemAdv>
-            <syncfusion:MenuItemAdv Header="Inspections">
-                <syncfusion:MenuItemAdv Header="Add Inspection" Command="{x:Static mvs:BaseViewModel.AddInspection}"/>
-                <syncfusion:MenuItemAdv Header="Edit Inspection" Command="{x:Static mvs:BaseViewModel.EditInspection}"/>
-            </syncfusion:MenuItemAdv>
-            <syncfusion:MenuItemAdv Header="Claims">
-                <syncfusion:MenuItemAdv Header="View Claims"/>
-                <syncfusion:MenuItemAdv Header="Adjustments">
-                    <syncfusion:MenuItemAdv Header="Add Adjustment" Command="{x:Static mvs:BaseViewModel.AddAdjustment}"/>
-                    <syncfusion:MenuItemAdv Header="Edit Adjsutments" Command="{x:Static mvs:BaseViewModel.EditAdjustment}"/>
-                    <syncfusion:MenuItemAdv Header="View Adjsutments"/>
-                    <syncfusion:MenuItemSeparator />
-                    <syncfusion:MenuItemAdv Header="Add Adjuster" />
-                    <syncfusion:MenuItemAdv Header="Edit Adjuster" Command="{x:Static mvs:BaseViewModel.EditAdjuster}"/>
-                    <syncfusion:MenuItemAdv Header="View Adjusters"/>
-                </syncfusion:MenuItemAdv>
-                <syncfusion:MenuItemAdv Header="Scopes">
-                    <syncfusion:MenuItemAdv Header="Add Scope"/>
-                    <syncfusion:MenuItemAdv Header="View Scopes"/>
-                </syncfusion:MenuItemAdv>
-                <syncfusion:MenuItemAdv Header="Orders">
-                    <syncfusion:MenuItemAdv Header="Add Order"/>
-                    <syncfusion:MenuItemAdv Header="View Orders"/>
-
-                    <syncfusion:MenuItemAdv Header="Add Additional Supplies"/>
-                </syncfusion:MenuItemAdv>
-                <syncfusion:MenuItemAdv Header="Payments">
-                    <syncfusion:MenuItemAdv Header="Add Payment"/>
-                    <syncfusion:MenuItemAdv Header="View Payments"/>
-                </syncfusion:MenuItemAdv>
-            </syncfusion:MenuItemAdv>
+            <syncfusion:MenuItemAdv Header="Leads"/>
+            <syncfusion:MenuItemAdv Header="Claims" Command="{x:Static mvs:BaseViewModel.NavigateClaims}"/>
             <syncfusion:MenuItemAdv Header="Stats"/>
         </syncfusion:MenuAdv>
 
