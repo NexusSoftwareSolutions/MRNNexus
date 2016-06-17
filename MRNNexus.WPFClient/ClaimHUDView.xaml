@@ -8,7 +8,7 @@
       Title="ClaimHUDView"
       DataContext="{StaticResource claimHUDViewModel}">
 
-    <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch" ShowGridLines="True">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowGridLines="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -118,7 +118,7 @@
             <Label Grid.Row="4" Grid.Column="1" Content="{Binding Customer.Email}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="5" Grid.Column="0" Margin="5,0,0,0" Content="Proeprty Address:"/>
-            <Label Grid.Row="5" Grid.Column="1" Content="{Binding Customer.Address}" HorizontalAlignment="Right"/>
+            <Label Grid.Row="5" Grid.Column="1" Content="{Binding PropertyAddress.FullAddress}" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid Grid.Row="4" Grid.Column="0"  x:Name="LeadInfo">

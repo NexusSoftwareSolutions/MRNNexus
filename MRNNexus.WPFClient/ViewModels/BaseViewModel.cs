@@ -68,6 +68,7 @@ namespace MRNNexus.WPFClient.ViewModels
         #region Commands
 
         #region Menu Commands
+        public static ICommand Exit { get { return new RelayCommand(new Action<object>(exit)); } }
         public static ICommand NavigateClaims { get { return new RelayCommand(new Action<object>(navigateClaims)); } }
 
         //#region Lead
@@ -161,6 +162,11 @@ namespace MRNNexus.WPFClient.ViewModels
         #region Command Methods
 
         #region Menu Command Methods
+        private static void exit(object o)
+        {
+            Application.Current.Shutdown();
+        }
+
         private static void navigateClaims(object o)
         {
             Header = "Select A Claim";

@@ -46,6 +46,11 @@ namespace MRNNexus.WPFClient.Models
                 RaisePropertyChanged("Zip");
             }
         }
+
+        public string FullAddress
+        {
+            get { return StreetAddress + ", " + Zip; }
+        }
         #endregion  
 
         #region Constructors
