@@ -140,7 +140,13 @@ namespace MRNNexus.WPFClient.Models
             [Display(AutoGenerateField = true, Order = 1)]
             public string Address { get; set; }
 
-            #endregion
+        [Display(AutoGenerateField = false)]
+        public string FullName
+        {
+            get { return FirstName + " " + LastName; }
+        }
+
+        #endregion
 
         #endregion
 

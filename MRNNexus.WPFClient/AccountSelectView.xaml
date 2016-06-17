@@ -17,8 +17,23 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
-        <syncfusion:TabControlExt Grid.Row="0" x:Name="tabControlExt" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+        <syncfusion:SfDataGrid Grid.Row="0" ItemsSource="{Binding Claims}" SelectionUnit="Row" SelectedItem="{Binding SelectedClaim, Mode=OneWayToSource}" ColumnSizer="Auto"
+                               HorizontalAlignment="Center" VerticalAlignment="Top">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding AccountSelected}" CommandParameter="{Binding SelectedClaim}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <syncfusion:SfDataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add New Inspection" Command="{Binding AccountSelected}" CommandParameter="{Binding SelectedClaim}"/>
+                    <MenuItem Header="Add New Inspection From Scratch" Command="{Binding AccountSelected}"/>
+                </ContextMenu>
+            </syncfusion:SfDataGrid.ContextMenu>
+        </syncfusion:SfDataGrid>
+
+        <!--<syncfusion:TabControlExt Grid.Row="0" x:Name="tabControlExt" HorizontalAlignment="Left" VerticalAlignment="Top">
 
             <syncfusion:TabItemExt IsEnabled="{Binding ClaimsTabIsEnabled}" Visibility="{Binding ClaimsTabIsEnabled, Converter={StaticResource BoolToVisibility}}" Header="By MRN Claim #" IsNewTab="False" MinWidth="150" MinHeight="20" IsSelected="{Binding ClaimsTabIsSelected}">
                 <syncfusion:SfDataGrid ItemsSource="{Binding Claims}" SelectionUnit="Row" SelectedItem="{Binding SelectedClaim, Mode=OneWayToSource}" ColumnSizer="Auto">
@@ -38,9 +53,9 @@
 
             <syncfusion:TabItemExt Header="By Lead" IsEnabled="{Binding LeadsTabIsEnabled}" Visibility="{Binding LeadsTabIsEnabled, Converter={StaticResource BoolToVisibility}}" IsNewTab="False" MinWidth="150" MinHeight="20" IsSelected="{Binding LeadsTabIsSelected}">
                 <syncfusion:SfDataGrid ItemsSource="{Binding Leads}" SelectedItem="{Binding SelectedLead, Mode=OneWayToSource}" >
-                    <!--<syncfusion:SfDataGrid.InputBindings>
+                    --><!--<syncfusion:SfDataGrid.InputBindings>
                         <MouseBinding Gesture="LeftDoubleClick" Command="{Binding AddNewInspection}" CommandParameter="{Binding SelectedLead}"/>
-                    </syncfusion:SfDataGrid.InputBindings>-->
+                    </syncfusion:SfDataGrid.InputBindings>--><!--
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding AccountSelected}" CommandParameter="{Binding SelectedLead}"/>
@@ -65,8 +80,8 @@
                     
                     <syncfusion:SfDataGrid.ContextMenu>
                         <ContextMenu>
-                            <!--<MenuItem Header="Add New Inspection" Command="{Binding AddNewInspection}" CommandParameter="{Binding SelectedLead}"/>
-                            <MenuItem Header="Add New Inspection From Scratch" Command="{Binding AddNewInspection}"/>-->
+                            --><!--<MenuItem Header="Add New Inspection" Command="{Binding AddNewInspection}" CommandParameter="{Binding SelectedLead}"/>
+                            <MenuItem Header="Add New Inspection From Scratch" Command="{Binding AddNewInspection}"/>--><!--
                         </ContextMenu>
                     </syncfusion:SfDataGrid.ContextMenu>
                 </syncfusion:SfDataGrid>
@@ -82,8 +97,8 @@
 
                     <syncfusion:SfDataGrid.ContextMenu>
                         <ContextMenu>
-                            <!--<MenuItem Header="Add New Inspection" Command="{Binding AddNewInspection}" CommandParameter="{Binding SelectedLead}"/>
-                            <MenuItem Header="Add New Inspection From Scratch" Command="{Binding AddNewInspection}"/>-->
+                            --><!--<MenuItem Header="Add New Inspection" Command="{Binding AddNewInspection}" CommandParameter="{Binding SelectedLead}"/>
+                            <MenuItem Header="Add New Inspection From Scratch" Command="{Binding AddNewInspection}"/>--><!--
                         </ContextMenu>
                     </syncfusion:SfDataGrid.ContextMenu>
                 </syncfusion:SfDataGrid>
@@ -99,8 +114,8 @@
 
                     <syncfusion:SfDataGrid.ContextMenu>
                         <ContextMenu>
-                            <!--<MenuItem Header="Add New Inspection" Command="{Binding AddNewInspection}" CommandParameter="{Binding SelectedLead}"/>
-                            <MenuItem Header="Add New Inspection From Scratch" Command="{Binding AddNewInspection}"/>-->
+                            --><!--<MenuItem Header="Add New Inspection" Command="{Binding AddNewInspection}" CommandParameter="{Binding SelectedLead}"/>
+                            <MenuItem Header="Add New Inspection From Scratch" Command="{Binding AddNewInspection}"/>--><!--
                         </ContextMenu>
                     </syncfusion:SfDataGrid.ContextMenu>
                 </syncfusion:SfDataGrid>
@@ -116,13 +131,13 @@
 
                     <syncfusion:SfDataGrid.ContextMenu>
                         <ContextMenu>
-                            <!--<MenuItem Header="Add New Inspection" Command="{Binding AddNewInspection}" CommandParameter="{Binding SelectedLead}"/>
-                            <MenuItem Header="Add New Inspection From Scratch" Command="{Binding AddNewInspection}"/>-->
+                            --><!--<MenuItem Header="Add New Inspection" Command="{Binding AddNewInspection}" CommandParameter="{Binding SelectedLead}"/>
+                            <MenuItem Header="Add New Inspection From Scratch" Command="{Binding AddNewInspection}"/>--><!--
                         </ContextMenu>
                     </syncfusion:SfDataGrid.ContextMenu>
                 </syncfusion:SfDataGrid>
             </syncfusion:TabItemExt>
-        </syncfusion:TabControlExt>
+        </syncfusion:TabControlExt>-->
         <Button Grid.Row="1" Content="Cancel" Command="{Binding CancelAccountSelect}"/>
 
     </Grid>

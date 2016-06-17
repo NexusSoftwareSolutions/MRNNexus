@@ -9,6 +9,7 @@
         <viewModel:MainWindowViewModel x:Key="mainWindowViewModel" />
         <viewModel:LoginViewModel x:Key="loginViewModel" />
         <viewModel:ScheduleViewModel x:Key="scheduleViewModel" />
+        <viewModel:ClaimHUDViewModel x:Key="claimHUDViewModel"/>
         <viewModel:InspectionViewModel x:Key="inspectionViewModel" />
         <viewModel:LeadViewModel x:Key="leadViewModel" />
         <viewModel:AdjusterSelectViewModel x:Key="adjusterSelectViewModel"/>

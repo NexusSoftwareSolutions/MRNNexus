@@ -5,20 +5,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MRNNexus.WPFClient"
       mc:Ignorable="d" 
-      Title="ClaimHUDView">
+      Title="ClaimHUDView"
+      DataContext="{StaticResource claimHUDViewModel}">
 
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Stretch" ShowGridLines="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
             
         </Grid.RowDefinitions>
 
@@ -31,12 +32,12 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Content="MRN #: "/>
-            <Label Grid.Row="0" Grid.Column="1" Content="MRN-3-2-1"/>
+            <Label Grid.Row="0" Grid.Column="1" Content="{Binding Claim.MRNClaimNumber}"/>
 
             <Label Grid.Row="1" Grid.Column="0" Content="Last Active: "/>
             <Label Grid.Row="1" Grid.Column="1" Content="12-31-2009"/>
@@ -70,19 +71,19 @@
             <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Claim Information" FontWeight="Bold"/>
             
             <Label Grid.Row="1" Grid.Column="0" Margin="5,0,0,0" Content="Loss Date:"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="08-12-1985" HorizontalAlignment="Right"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding Claim.LossDate}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="2" Grid.Column="0" Margin="5,0,0,0" Content="Insurance Co.:"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="State Farm" HorizontalAlignment="Right"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding Claim.InsuranceCompanyID}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="3" Grid.Column="0" Margin="5,0,0,0" Content="Insurance Claim#:"/>
-            <Label Grid.Row="3" Grid.Column="1" Content="0000000000" HorizontalAlignment="Right"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="{Binding Claim.InsuranceClaimNumber}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="4" Grid.Column="0" Margin="5,0,0,0" Content="Mortgage Co.:"/>
-            <Label Grid.Row="4" Grid.Column="1" Content="Some Mortgage Co." HorizontalAlignment="Right"/>
+            <Label Grid.Row="4" Grid.Column="1" Content="{Binding Claim.MortgageCompany}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="5" Grid.Column="0" Margin="5,0,0,0" Content="Mortgage Acct.:"/>
-            <Label Grid.Row="5" Grid.Column="1" Content="0000000000" HorizontalAlignment="Right"/>
+            <Label Grid.Row="5" Grid.Column="1" Content="{Binding Claim.MortgageAccount}" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid Grid.Row="3" Grid.Column="0"  x:Name="CustomerInfo">
@@ -105,19 +106,19 @@
             <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Customer Information" FontWeight="Bold"/>
 
             <Label Grid.Row="1" Grid.Column="0" Margin="5,0,0,0" Content="Name:"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="Andrew Jackson" HorizontalAlignment="Right"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding Customer.FullName}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="2" Grid.Column="0" Margin="5,0,0,0" Content="Primary Phone #:"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="678-367-5555" HorizontalAlignment="Right"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding Customer.PrimaryNumber}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="3" Grid.Column="0" Margin="5,0,0,0" Content="Seconday Phone #:"/>
-            <Label Grid.Row="3" Grid.Column="1" Content="678-367-4444" HorizontalAlignment="Right"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="{Binding Customer.SecondaryNumber}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="4" Grid.Column="0" Margin="5,0,0,0" Content="Email:"/>
-            <Label Grid.Row="4" Grid.Column="1" Content="notanemail@notanemail.com" HorizontalAlignment="Right"/>
+            <Label Grid.Row="4" Grid.Column="1" Content="{Binding Customer.Email}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="5" Grid.Column="0" Margin="5,0,0,0" Content="Proeprty Address:"/>
-            <Label Grid.Row="5" Grid.Column="1" Content="210 Old Loganville Rd. 30000" HorizontalAlignment="Right"/>
+            <Label Grid.Row="5" Grid.Column="1" Content="{Binding Customer.Address}" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid Grid.Row="4" Grid.Column="0"  x:Name="LeadInfo">
@@ -136,13 +137,13 @@
             <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Lead Information" FontWeight="Bold"/>
 
             <Label Grid.Row="1" Grid.Column="0" Margin="5,0,0,0" Content="Lead Date:"/>
-            <Label Grid.Row="1" Grid.Column="1" Content="6-21-2016" HorizontalAlignment="Right"/>
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding Lead.LeadDate}" HorizontalAlignment="Right"/>
             
             <Label Grid.Row="2" Grid.Column="0" Margin="5,0,0,0" Content="Lead Type:"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="Referrer" HorizontalAlignment="Right"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding Lead.LeadTypeID}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="3" Grid.Column="0" Margin="5,0,0,0" Content="Credit To:"/>
-            <Label Grid.Row="3" Grid.Column="1" Content="John Smith" HorizontalAlignment="Right"/>
+            <Label Grid.Row="3" Grid.Column="1" Content="{Binding Lead.CreditTo}" HorizontalAlignment="Right"/>
         </Grid>
 
         <Grid Grid.Row="2" Grid.Column="1"  x:Name="ClaimContacts">

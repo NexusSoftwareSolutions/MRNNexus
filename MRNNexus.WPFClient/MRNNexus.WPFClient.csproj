@@ -165,6 +165,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="Converters\IntToInt64Converter.cs" />
     <Compile Include="ViewModels\ClaimFormViewModel.cs" />
+    <Compile Include="ViewModels\ClaimHUDViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\InspectionViewModel.cs" />
