@@ -9,7 +9,7 @@
       DataContext="{StaticResource baseViewModel}"
       Title="CustomerForm">
 
-    <Grid>
+    <StackPanel Orientation="Vertical">
         <GroupBox Header="Customer Information">
             <StackPanel>
             <syncfusion:CheckListBox x:Name="isExistingCustomer" HorizontalAlignment="Stretch" VerticalAlignment="Center" CheckBoxAlignment="Right" BorderThickness="0">
@@ -77,7 +77,69 @@
                 </syncfusion:CheckListBox>
 
             </Grid>
+
+                
             </StackPanel>
         </GroupBox>
-    </Grid>
+        <GroupBox Header="Property Address">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <syncfusion:CheckListBox Grid.Row="0" Grid.ColumnSpan="2" x:Name="isExistingAddress" HorizontalAlignment="Stretch" VerticalAlignment="Center" CheckBoxAlignment="Right" BorderThickness="0">
+                    <syncfusion:CheckListBox.ItemContainerStyle>
+                        <Style TargetType="syncfusion:CheckListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding IsChecked, Mode=TwoWay}"/>
+                        </Style>
+                    </syncfusion:CheckListBox.ItemContainerStyle>
+                    <syncfusion:CheckListBoxItem Content="Existing Address" IsSelected="{Binding IsExistingAddress}"/>
+                </syncfusion:CheckListBox>
+
+                <Label Grid.Row="1" Grid.Column="0" x:Name="propertyStreetAddressLbl" Content=" Street Address:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <syncfusion:SfMaskedEdit Grid.Row="1" Grid.Column="1" x:Name="propertyStreetAddressTextBox" Text="{Binding PropertyAddress.StreetAddress}" 
+                                                     HorizontalAlignment="Stretch" VerticalAlignment="Center" TextWrapping="Wrap" Width="150"/>
+                <Label Grid.Row="2" Grid.Column="0" x:Name="propertyZipLbl" Content=" Zip:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <syncfusion:SfMaskedEdit Grid.Row="2" Grid.Column="1" x:Name="propertyZipTextBox" Text="{Binding PropertyAddress.Zip}" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+												TextWrapping="Wrap" Width="150"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Billing Address">
+            <Grid x:Name="billingAddressGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <syncfusion:CheckListBox Grid.Row="0" Grid.ColumnSpan="2" x:Name="billingSameAsPropertyChkBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" CheckBoxAlignment="Right" BorderThickness="0">
+                    <syncfusion:CheckListBox.ItemContainerStyle>
+                        <Style TargetType="syncfusion:CheckListBoxItem">
+                            <Setter Property="IsSelected" Value="{Binding IsChecked, Mode=TwoWay}"/>
+                        </Style>
+                    </syncfusion:CheckListBox.ItemContainerStyle>
+                    <syncfusion:CheckListBoxItem Content="Same As Property Address" IsSelected="{Binding BillingSameAsProperty}"/>
+                </syncfusion:CheckListBox>
+                <Label Grid.Row="1" Grid.Column="0" x:Name="billingStreetAddressLbl" Content=" Billing Address:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <syncfusion:SfMaskedEdit Grid.Row="1" Grid.Column="1" x:Name="billingStreetAddressTextBox" Text="{Binding BillingAddress.StreetAddress}" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                                                TextWrapping="Wrap" IsEnabled="{Binding BillingAddressIsEnabled}" Width="150"/>
+                <Label Grid.Row="2" Grid.Column="0" x:Name="billingZipLbl" Content=" Zip:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <syncfusion:SfMaskedEdit Grid.Row="2" Grid.Column="1" x:Name="billingZipTextBox" Text="{Binding BillingAddress.Zip}" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                                            TextWrapping="Wrap" IsEnabled="{Binding BillingAddressIsEnabled}" Width="150"/>
+            </Grid>
+        </GroupBox>
+    </StackPanel>
 </Page>
