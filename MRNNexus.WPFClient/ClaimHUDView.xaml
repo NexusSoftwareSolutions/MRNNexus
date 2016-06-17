@@ -140,7 +140,7 @@
             <Label Grid.Row="1" Grid.Column="1" Content="{Binding Lead.LeadDate}" HorizontalAlignment="Right"/>
             
             <Label Grid.Row="2" Grid.Column="0" Margin="5,0,0,0" Content="Lead Type:"/>
-            <Label Grid.Row="2" Grid.Column="1" Content="{Binding Lead.LeadTypeID}" HorizontalAlignment="Right"/>
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding Lead.LeadType}" HorizontalAlignment="Right"/>
 
             <Label Grid.Row="3" Grid.Column="0" Margin="5,0,0,0" Content="Credit To:"/>
             <Label Grid.Row="3" Grid.Column="1" Content="{Binding Lead.CreditTo}" HorizontalAlignment="Right"/>
