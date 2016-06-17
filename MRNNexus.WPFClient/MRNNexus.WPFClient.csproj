@@ -116,9 +116,6 @@
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\Referrer.cs" />
     <Compile Include="Models\Scope.cs" />
-    <Compile Include="PropertyAddressFormView.xaml.cs">
-      <DependentUpon>PropertyAddressFormView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CustomerFormView.xaml.cs">
       <DependentUpon>CustomerFormView.xaml</DependentUpon>
     </Compile>
@@ -202,9 +199,6 @@
     </Page>
     <Page Include="InvoiceFormView.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="PropertyAddressFormView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomerFormView.xaml">

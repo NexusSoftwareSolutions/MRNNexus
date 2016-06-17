@@ -141,5 +141,10 @@
                                             TextWrapping="Wrap" IsEnabled="{Binding BillingAddressIsEnabled}" Width="150"/>
             </Grid>
         </GroupBox>
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+            <Button Content="Submit" HorizontalAlignment="Stretch"/>
+            <Button Content="Cancel" HorizontalAlignment="Stretch"/>
+        </StackPanel>
     </StackPanel>
 </Page>
