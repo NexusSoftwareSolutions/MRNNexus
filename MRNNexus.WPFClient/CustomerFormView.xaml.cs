@@ -18,9 +18,9 @@ namespace MRNNexus.WPFClient
     /// <summary>
     /// Interaction logic for CustomerForm.xaml
     /// </summary>
-    public partial class CustomerForm : Page
+    public partial class CustomerFormView : Page
     {
-        public CustomerForm()
+        public CustomerFormView()
         {
             InitializeComponent();
         }

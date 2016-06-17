@@ -152,6 +152,10 @@ namespace MRNNexus.WPFClient.ViewModels
 
         #endregion
 
+        #region ClaimCommands
+            public ICommand EditCustomer { get { return new RelayCommand(new Action<object>(editCustomer)); } }
+        #endregion
+
         public ICommand LeadTemperatureSelected
         {
             get { return new RelayCommand(new Action<object>(setLeadTemperature)); }
@@ -303,6 +307,13 @@ namespace MRNNexus.WPFClient.ViewModels
 
         #endregion
 
+        #region Claim Command Methods
+        private void editCustomer(object o)
+        {
+            CurrentClaimPage = new CustomerFormView();
+        }
+        #endregion
+
         private void setLeadTemperature(object o) // WHY IS THIS HERE???
         {
             if (o as string == "C")
@@ -318,7 +329,7 @@ namespace MRNNexus.WPFClient.ViewModels
 
         #endregion
 
-        #region MainWindow Fields and Prooperties
+        #region MainWindow Fields and Properties
         private static Page _currentPage;
         private static bool _menuBarIsEnabled = false;
         private bool _isBusyLoading = true;
@@ -350,7 +361,21 @@ namespace MRNNexus.WPFClient.ViewModels
                 RaisePropertyChanged("IsBusyLoading");
             }
         }
-        #endregion  
+        #endregion
+
+        #region ClaimPage Fields and Properties
+
+        private Page _currentClaimPage;
+
+        public Page CurrentClaimPage
+        {
+            get { return _currentClaimPage; }
+            set { _currentClaimPage = value;
+                RaisePropertyChanged("CurrentClaimPage");
+            }
+        }
+
+        #endregion
 
         private static bool _isExistingCustomer = false;
         public static bool IsExistingCustomer

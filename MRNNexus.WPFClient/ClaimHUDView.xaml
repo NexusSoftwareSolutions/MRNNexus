@@ -8,10 +8,18 @@
       Title="ClaimHUDView"
       DataContext="{StaticResource claimHUDViewModel}">
 
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowGridLines="True">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+    
+    <Grid Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -184,7 +192,7 @@
 
         <StackPanel Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Orientation="Vertical" Margin="5, 2.5, 5, 2.5">
             <Label Content="Options for MRN-3-2-1" FontWeight="Bold"/>
-            <Button Content="Modify Customer" Margin="0,2.5,0,2.5"/>
+            <Button Content="Modify Customer" Margin="0,2.5,0,2.5" Command="{Binding EditCustomer}"/>
             <Button Content="Modify Claim" Margin="0,2.5,0,2.5"/>
             <Button Content="Inspection" Margin="0,2.5,0,2.5"/>
             <Button Content="Adjustments" Margin="0,2.5,0,2.5"/>
@@ -196,11 +204,9 @@
             <Button Content="Surplus Supplies" Margin="0,2.5,0,2.5"/>
             <Button Content="Additional Supplies" Margin="0,2.5,0,2.5"/>
         </StackPanel>
-            
-
-
-
+    </Grid>
+        <Frame Grid.Column="1" Content="{Binding CurrentClaimPage}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,5"/>
     </Grid>
 
-    
+
 </Page>

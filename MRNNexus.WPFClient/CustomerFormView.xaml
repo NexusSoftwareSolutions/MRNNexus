@@ -1,4 +1,4 @@
-﻿<Page x:Class="MRNNexus.WPFClient.CustomerForm"
+﻿<Page x:Class="MRNNexus.WPFClient.CustomerFormView"
       xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
