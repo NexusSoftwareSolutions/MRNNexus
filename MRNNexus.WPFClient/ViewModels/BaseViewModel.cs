@@ -171,8 +171,8 @@ namespace MRNNexus.WPFClient.ViewModels
         }
         private static void editLead(object o)
         {
-            AccountSelectView accountSelectWindow = new AccountSelectView(2);
-            accountSelectWindow.ShowDialog();
+            //AccountSelectView accountSelectWindow = new AccountSelectView(2);
+            //accountSelectWindow.ShowDialog();
             Header = "Edit Lead";
             LeadView leadView = new LeadView();
             leadView.SizeToContent = SizeToContent.WidthAndHeight;
@@ -199,9 +199,9 @@ namespace MRNNexus.WPFClient.ViewModels
         
         private static void editInspection(object o)
         {
-            AccountSelectView accountSelectWindow = new AccountSelectView();
+            //AccountSelectView accountSelectWindow = new AccountSelectView();
             Header = "Edit Inspection";
-            accountSelectWindow.ShowDialog();
+            //accountSelectWindow.ShowDialog();
             CurrentPage = new InspectionView();
         }
 
@@ -222,8 +222,8 @@ namespace MRNNexus.WPFClient.ViewModels
         {
             if(Adjuster == null)
             {
-                AccountSelectView accountSelectWindow = new AccountSelectView(6);
-                accountSelectWindow.ShowDialog();
+                //AccountSelectView accountSelectWindow = new AccountSelectView(6);
+                //accountSelectWindow.ShowDialog();
             }
             Header = "Edit Adjuster";
             AdjusterFormView view = new AdjusterFormView();
@@ -253,8 +253,8 @@ namespace MRNNexus.WPFClient.ViewModels
         {
             Header = "Edit Adjustment";
 
-            AccountSelectView accountSelectWindow = new AccountSelectView(7);
-            accountSelectWindow.ShowDialog();
+            //AccountSelectView accountSelectWindow = new AccountSelectView(7);
+            //accountSelectWindow.ShowDialog();
 
             if (Claim != null && !Claim.MRNClaimNumber.Contains("-"))
             {
@@ -348,8 +348,8 @@ namespace MRNNexus.WPFClient.ViewModels
                 {
                     _isExistingCustomer = value;
                     RaiseStaticPropertyChanged("IsExistingCustomer");
-                    if (_isExistingCustomer && (Customer == null || Customer.CustomerID <= 0))
-                        new AccountSelectView(3).ShowDialog();
+                    if (_isExistingCustomer && (Customer == null || Customer.CustomerID <= 0)) { }
+                        //new AccountSelectView(3).ShowDialog();
                     else if(!_isExistingCustomer && Customer != null)
                     {
                         Customer = null;
@@ -368,8 +368,8 @@ namespace MRNNexus.WPFClient.ViewModels
                 {
                     _isExistingAddress = value;
                     RaiseStaticPropertyChanged("IsExistingAddress");
-                    if (_isExistingAddress && (PropertyAddress == null ||PropertyAddress.AddressID <= 0))
-                        new AccountSelectView(4).ShowDialog();
+                    if (_isExistingAddress && (PropertyAddress == null ||PropertyAddress.AddressID <= 0)) { }
+                        //new AccountSelectView(4).ShowDialog();
                     else if (!_isExistingAddress && PropertyAddress != null)
                     {
                         PropertyAddress = null;
@@ -388,8 +388,8 @@ namespace MRNNexus.WPFClient.ViewModels
                 {
                     _isExistingAddressB = value;
                     RaiseStaticPropertyChanged("IsExistingAddress");
-                    if (_isExistingAddressB)
-                        new AccountSelectView(5).ShowDialog();
+                    if (_isExistingAddressB) { }
+                        //new AccountSelectView(5).ShowDialog();
                 }
             }
         }

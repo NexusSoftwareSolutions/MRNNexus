@@ -48,11 +48,11 @@ namespace MRNNexus.WPFClient.ViewModels
 
         private void selectAdjuster(object o)
         {
-            AccountSelectView view = new AccountSelectView(6);
-            view.SizeToContent = SizeToContent.WidthAndHeight;
-            view.WindowStyle = WindowStyle.ThreeDBorderWindow;
-            view.ResizeMode = ResizeMode.NoResize;
-            view.ShowDialog();
+            //AccountSelectView view = new AccountSelectView(6);
+            //view.SizeToContent = SizeToContent.WidthAndHeight;
+            //view.WindowStyle = WindowStyle.ThreeDBorderWindow;
+            //view.ResizeMode = ResizeMode.NoResize;
+            //view.ShowDialog();
 
             if(Adjuster != null && Adjuster.AdjusterID > 0)
             {
@@ -62,11 +62,11 @@ namespace MRNNexus.WPFClient.ViewModels
 
         private void selectClaim(object o)
         {
-            AccountSelectView view = new AccountSelectView(1);
-            view.SizeToContent = SizeToContent.WidthAndHeight;
-            view.WindowStyle = WindowStyle.ThreeDBorderWindow;
-            view.ResizeMode = ResizeMode.NoResize;
-            view.ShowDialog();
+            //AccountSelectView view = new AccountSelectView(1);
+            //view.SizeToContent = SizeToContent.WidthAndHeight;
+            //view.WindowStyle = WindowStyle.ThreeDBorderWindow;
+            //view.ResizeMode = ResizeMode.NoResize;
+            //view.ShowDialog();
 
             if(Claim != null && Claim.ClaimID > 0)
             {

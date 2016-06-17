@@ -18,7 +18,7 @@ namespace MRNNexus.WPFClient
     /// <summary>
     /// Interaction logic for AccountSelect.xaml
     /// </summary>
-    public partial class AccountSelectView : Window
+    public partial class AccountSelectView : Page
     {
         private AccountSelectViewModel _vm;
 
@@ -43,7 +43,7 @@ namespace MRNNexus.WPFClient
         async private void setUp(int code)
         {
             _vm = await AccountSelectViewModel.CreateAsync(code);
-            _vm.OnRequestClose += (s, e) => this.Close();
+            //_vm.OnRequestClose += (s, e) => this.Close();
             InitializeComponent();
             this.DataContext = _vm;
         }

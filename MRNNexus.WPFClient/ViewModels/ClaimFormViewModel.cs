@@ -64,7 +64,7 @@ namespace MRNNexus.WPFClient.ViewModels
         {
             get { return new RelayCommand(new Action<object>(o => 
                 {
-                    new AccountSelectView(2).ShowDialog();
+                    //new AccountSelectView(2).ShowDialog();
                     if(Lead != null && Lead.LeadID > 0)
                     {
                         AttachLeadBtnIsEnabled = false;
