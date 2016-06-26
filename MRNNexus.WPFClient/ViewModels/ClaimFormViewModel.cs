@@ -54,7 +54,7 @@ namespace MRNNexus.WPFClient.ViewModels
             set
             {
                 _insuranceCompanies = value;
-                RaisePropertyChanged("InsuranceComapnies");
+                RaisePropertyChanged("InsuranceCompanies");
             }
         }
         #endregion
