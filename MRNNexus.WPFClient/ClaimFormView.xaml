@@ -191,5 +191,7 @@
 
             </Grid>
         </GroupBox>
+        <Button Content="Submit" Command="{Binding SubmitClaim}"/>
+        <Button Content="Cancel" Command="{Binding Cancel}"/>
     </StackPanel>
 </Page>
