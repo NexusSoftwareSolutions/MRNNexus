@@ -136,7 +136,7 @@ namespace MRNNexus.WPFClient.ViewModels
 
         async public void submitClaim(object o)
         {
-            if (Claim.ClaimID == 0) // If the claim doesn't exist (it should exist)
+            if (Claim.ClaimID == 0) // If the Claim doesn't exist (it should exist)
             {
                 // Create the Claim
                 if((ErrorMessage = await new ServiceLayer().AddClaim(Claim.toDTO())) != null)
