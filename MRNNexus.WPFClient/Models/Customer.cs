@@ -45,6 +45,7 @@ namespace MRNNexus.WPFClient.Models
                 else
                     _firstName = value;
                 RaisePropertyChanged("FirstName");
+                RaisePropertyChanged("FullName");
             }
         }
 
@@ -58,6 +59,7 @@ namespace MRNNexus.WPFClient.Models
                 else
                     _middleName = value;
                 RaisePropertyChanged("MiddleName");
+                RaisePropertyChanged("FullName");
             }
         }
 
@@ -71,6 +73,7 @@ namespace MRNNexus.WPFClient.Models
                 else
                     _lastName = value;
                 RaisePropertyChanged("LastName");
+                RaisePropertyChanged("FullName");
             }
         }
 
