@@ -143,7 +143,7 @@
         </GroupBox>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-            <Button Content="Submit" HorizontalAlignment="Stretch"/>
+            <Button Content="Submit" HorizontalAlignment="Stretch" Command="{Binding SubmitCustomer}"/>
             <Button Content="Cancel" HorizontalAlignment="Stretch" Command="{Binding Cancel}"/>
         </StackPanel>
     </StackPanel>

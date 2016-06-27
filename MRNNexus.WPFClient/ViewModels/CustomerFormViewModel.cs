@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MRNNexus.WPFClient.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace MRNNexus.WPFClient.ViewModels
         }
         #endregion
 
-        public void submitCustomer(object o)
+        async public void submitCustomer(object o)
         {
-
+            if(Customer.CustomerID == 0)
+            {
+                if ((ErrorMessage = await new ServiceLayer().AddCustomer(Customer.toDTO())) != null)
+                {
+                    return;
+                }
+            }
+            else if(Customer.CustomerID > 0)
+            {
+                if((ErrorMessage = await new ServiceLayer().UpdateCustomer(Customer.toDTO())) != null)
+                {
+                    return;
+                }
+            }
         }
 
         public void cancel(object o)
