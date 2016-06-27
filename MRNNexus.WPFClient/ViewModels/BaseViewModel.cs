@@ -371,13 +371,13 @@ namespace MRNNexus.WPFClient.ViewModels
 
         #region ClaimPage Fields and Properties
 
-        private Page _currentClaimPage;
+        private static Page _currentClaimPage;
 
-        public Page CurrentClaimPage
+        public static Page CurrentClaimPage
         {
             get { return _currentClaimPage; }
             set { _currentClaimPage = value;
-                RaisePropertyChanged("CurrentClaimPage");
+                RaiseStaticPropertyChanged("CurrentClaimPage");
             }
         }
 

@@ -14,6 +14,7 @@
         <viewModel:LeadViewModel x:Key="leadViewModel" />
         <viewModel:AdjusterSelectViewModel x:Key="adjusterSelectViewModel"/>
         <viewModel:AdjustmentFormViewModel x:Key="adjustmentFormViewModel"/>
+        <viewModel:CustomerFormViewModel x:Key="customerFormViewModel"/>
         <viewModel:AdjusterFormViewModel x:Key="adjusterFormViewModel"/>
         <viewModel:ClaimFormViewModel x:Key="claimFormViewModel"/>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
@@ -26,6 +27,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:AdjusterSelectViewModel}">
             <local:AdjusterSelectView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:CustomerFormViewModel}">
+            <local:CustomerFormView/>
         </DataTemplate>
 
     </Application.Resources>

@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -163,6 +164,7 @@
     <Compile Include="Converters\IntToInt64Converter.cs" />
     <Compile Include="ViewModels\ClaimFormViewModel.cs" />
     <Compile Include="ViewModels\ClaimHUDViewModel.cs" />
+    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\InspectionViewModel.cs" />

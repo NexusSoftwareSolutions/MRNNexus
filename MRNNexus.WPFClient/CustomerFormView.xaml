@@ -6,7 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MRNNexus.WPFClient"
       mc:Ignorable="d" 
-      DataContext="{StaticResource baseViewModel}"
+      DataContext="{StaticResource customerFormViewModel}"
       Title="CustomerForm">
 
     <StackPanel Orientation="Vertical">
@@ -144,7 +144,7 @@
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
             <Button Content="Submit" HorizontalAlignment="Stretch"/>
-            <Button Content="Cancel" HorizontalAlignment="Stretch"/>
+            <Button Content="Cancel" HorizontalAlignment="Stretch" Command="{Binding Cancel}"/>
         </StackPanel>
     </StackPanel>
 </Page>
