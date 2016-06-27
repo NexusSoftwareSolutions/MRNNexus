@@ -41,6 +41,7 @@ namespace MRNNexus.WPFClient.ViewModels
 
         public void cancel(object o)
         {
+            Customer = Customers.Where(c => c.CustomerID == Customer.CustomerID).Single();
             CurrentClaimPage = null;
         }
     }
