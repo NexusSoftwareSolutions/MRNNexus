@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
@@ -20,7 +20,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -31,33 +31,51 @@
             
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1" Grid.ColumnSpan="5" x:Name="HeadlinesGrid">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" Content="MRN #: "/>
-            <Label Grid.Row="0" Grid.Column="1" Content="{Binding Claim.MRNClaimNumber}"/>
+                <Label Grid.Row="0" Grid.Column="0" Content="MRN #: "/>
+                <Label Grid.Row="0" Grid.Column="1" Content="{Binding Claim.MRNClaimNumber}"/>
 
-            <Label Grid.Row="1" Grid.Column="0" Content="Last Active: "/>
-            <Label Grid.Row="1" Grid.Column="1" Content="12-31-2009"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Last Active: "/>
+                <Label Grid.Row="1" Grid.Column="1" Content="12-31-2009"/>
+            </Grid>
 
-            <Label Grid.Row="0" Grid.Column="2" Content="$$ IN: "/>
-            <Label Grid.Row="0" Grid.Column="3" Content="$24,250.00" Foreground="#FF017011"/>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <Label Grid.Row="1" Grid.Column="2" Content="$$ OUT: "/>
-            <Label Grid.Row="1" Grid.Column="3" Content="$18,500.00" Foreground="#FFF70505"/>
+                <Label Grid.Row="0" Grid.Column="0" Content="$$ IN: "/>
+                <Label Grid.Row="0" Grid.Column="1" Content="$24,250.00" Foreground="#FF017011"/>
 
-            <Label Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="2" Content="OPEN" Foreground="#FF017011" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        </Grid>
+                <Label Grid.Row="1" Grid.Column="0" Content="$$ OUT: "/>
+                <Label Grid.Row="1" Grid.Column="1" Content="$18,500.00" Foreground="#FFF70505"/>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="2" x:Name="HeadlinesGrid">
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Content="OPEN" Foreground="#FF017011" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+
 
         <Grid Grid.Row="2" Grid.Column="0"  x:Name="ClaimInfo">
             <Grid.ColumnDefinitions>
