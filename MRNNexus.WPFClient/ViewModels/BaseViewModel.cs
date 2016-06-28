@@ -176,6 +176,7 @@ namespace MRNNexus.WPFClient.ViewModels
         {
 
             Header = "Select A Claim";
+            CurrentClaimPage = null;
             CurrentPage = new AccountSelectView();
         }
 

@@ -10,6 +10,52 @@ namespace MRNNexus.WPFClient.ViewModels
 {
     class CustomerFormViewModel : BaseViewModel
     {
+        #region Fields
+        private bool _billingSameAsProperty = false;
+        private bool _billingAddressIsEnabled = true;
+        #endregion
+
+        #region Properties
+        public bool BillingSameAsProperty
+        {
+            get {
+                if (PropertyAddress.Equals(BillingAddress))
+                {
+                    _billingSameAsProperty = true;
+                    BillingAddressIsEnabled = false;
+                }
+                else
+                {
+                    _billingSameAsProperty = false;
+                    BillingAddressIsEnabled = true;
+                }
+                return _billingSameAsProperty; }
+            set
+            {
+                _billingSameAsProperty = value;
+                if (!value)
+                {
+                    BillingAddress = new Address();
+                    BillingAddressIsEnabled = true;
+                }
+                else
+                {
+                    BillingAddress = PropertyAddress;
+                }
+                RaisePropertyChanged("BillingSameAsProperty");
+            }
+        }
+        public bool BillingAddressIsEnabled
+        {
+            get { return _billingAddressIsEnabled; }
+            set
+            {
+                _billingAddressIsEnabled = value;
+                RaisePropertyChanged("BillingAddressIsEnabled");
+            }
+        }
+        #endregion
+
         #region Commands
         public ICommand SubmitCustomer
         {
@@ -20,6 +66,8 @@ namespace MRNNexus.WPFClient.ViewModels
             get { return new RelayCommand(new Action<object>(cancel)); }
         }
         #endregion
+
+        public CustomerFormViewModel() { }
 
         async public void submitCustomer(object o)
         {
