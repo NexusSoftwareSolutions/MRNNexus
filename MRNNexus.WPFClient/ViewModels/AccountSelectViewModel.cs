@@ -412,6 +412,7 @@ namespace MRNNexus.WPFClient.ViewModels
                     Claims.Last().CustomerName = cust.FirstName + " " + cust.LastName;
                     Address address = Addresses.Where(a => a.AddressID == Claims.Last().PropertyID).Single();
                     Claims.Last().Address = address.StreetAddress + ", " + address.Zip;
+                    Claims.Last().InsuranceCompanyName = InsuranceCompanies.Where(i => i.InsuranceCompanyID == Claims.Last().InsuranceCompanyID).Single().CompanyName;
                 }
             }
 

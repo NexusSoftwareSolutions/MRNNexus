@@ -73,7 +73,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
-        [Display(AutoGenerateField = true)]
+        [Display(AutoGenerateField = false)]
         public int InsuranceCompanyID
         {
             get { return _insuranceCompanyID; }
@@ -82,7 +82,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
-        [Display(AutoGenerateField = true, Order = 4)]
+        [Display(AutoGenerateField = true, Order = 5, Name = "Insurance Claim #")]
         public string InsuranceClaimNumber
         {
             get { return _insuranceClaimNumber; }
@@ -96,7 +96,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
-        [Display(AutoGenerateField = true, Order = 0)]
+        [Display(AutoGenerateField = true, Order = 0, Name = "MRN Claim #")]
         public string MRNClaimNumber
         {
             get { return _mrnClaimNumber; }
@@ -109,7 +109,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
-        [Display(AutoGenerateField = true, Order = 3)]
+        [Display(AutoGenerateField = true, Order = 4, Name = "Loss Date")]
         public DateTime LossDate
         {
             get {
@@ -122,7 +122,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
-        [Display(AutoGenerateField = true, Order = 6)]
+        [Display(AutoGenerateField = true, Order = 7, Name = "Mortgage Company")]
         public string MortgageCompany
         {
             get { return _mortgageCompany; }
@@ -135,7 +135,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
-        [Display(AutoGenerateField = true, Order = 5)]
+        [Display(AutoGenerateField = true, Order = 8, Name = "Mortgage Account")]
         public string MortgageAccount
         {
             get { return _mortgageAccount; }
@@ -148,7 +148,7 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
-        [Display(AutoGenerateField = true, Order = 2)]
+        [Display(AutoGenerateField = true, Order = 3, Name = "Is Open")]
         public bool IsOpen
         {
             get { return _isOpen; }
@@ -157,14 +157,15 @@ namespace MRNNexus.WPFClient.Models
             }
         }
 
-            #region Properties for Grid Display
+        #region Properties for Grid Display
 
-            [Display(AutoGenerateField = true, Order = 1)]
-            public string CustomerName { get; set; }
+        [Display(AutoGenerateField = true, Order = 1, Name = "Customer")]
+        public string CustomerName { get; set; }
 
-            [Display(AutoGenerateField = true, Order = 2)]
-            public string Address { get; set; }
+        [Display(AutoGenerateField = true, Order = 2)]
+        public string Address { get; set; }
 
+        [Display(AutoGenerateField = true, Order = 6, Name = "Insurance Company")]
         public string InsuranceCompanyName
         {
             get { return _insuranceCompanyName; }
