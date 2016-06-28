@@ -159,6 +159,10 @@ namespace MRNNexus.WPFClient.ViewModels
                 Claim claim = Claims.Where(c => c.ClaimID == Claim.ClaimID).Single();
                 int index = Claims.IndexOf(claim);
                 Claims[index] = new Claim(ServiceLayer.Claim);
+                Customer = Customers.Where(c => c.CustomerID == Claim.CustomerID).Single();
+                Claims[index].CustomerName = Customer.FirstName + " " + Customer.LastName;
+                Claims[index].Address = Addresses.Where(a => a.AddressID == Claims[index].PropertyID).Single().FullAddress;
+                
             }
         }
 
