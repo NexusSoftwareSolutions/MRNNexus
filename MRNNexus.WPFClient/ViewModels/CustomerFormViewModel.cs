@@ -71,7 +71,8 @@ namespace MRNNexus.WPFClient.ViewModels
 
         async public void submitCustomer(object o)
         {
-            if(Customer.CustomerID == 0) // If the Customer doesn't exist (it should exist)
+            #region Customer
+            if (Customer.CustomerID == 0) // If the Customer doesn't exist (it should exist)
             {
                 // Create the Customer
                 if ((ErrorMessage = await new ServiceLayer().AddCustomer(Customer.toDTO())) != null)
@@ -79,8 +80,10 @@ namespace MRNNexus.WPFClient.ViewModels
                     return;
                 }
 
+                Customer = new Customer(ServiceLayer.Customer);
+
                 // Add it to the Customers list
-                Customers.Add(new Customer(ServiceLayer.Customer));
+                Customers.Add(Customer);
             }
             else if(Customer.CustomerID > 0) // If the Claim does exist (it should)
             {
@@ -94,7 +97,67 @@ namespace MRNNexus.WPFClient.ViewModels
                 Customer customer = Customers.Where(c => c.CustomerID == Customer.CustomerID).Single();
                 int index = Customers.IndexOf(customer);
                 Customers[index] = new Customer(ServiceLayer.Customer);
+                Customer = Customers[index];
             }
+            #endregion
+
+            #region PropertyAddress
+
+            if(PropertyAddress.AddressID == 0) // If the PropertyAddress does not exist.
+            {
+                // Create the Address
+                if ((ErrorMessage = await new ServiceLayer().AddAddress(PropertyAddress.toDTO())) != null)
+                {
+                    return;
+                }
+
+                PropertyAddress = new Address(ServiceLayer.Address);
+                Addresses.Add(PropertyAddress);
+            }
+            else if (PropertyAddress.AddressID > 0) // If the PropertyAddress does exist (it should)
+            {
+                // Update the PropertyAddress
+                if ((ErrorMessage = await new ServiceLayer().UpdateAddress(PropertyAddress.toDTO())) != null)
+                {
+                    return;
+                }
+
+                // Overwrite the original Address in the Addresses list with the updated information
+                Address address = Addresses.Where(a => a.AddressID == PropertyAddress.AddressID).Single();
+                int index = Addresses.IndexOf(address);
+                Addresses[index] = new Address(ServiceLayer.Address);
+            }
+            #endregion
+
+            #region BillingAddress
+            if (!BillingSameAsProperty) // If BillingAddress is NOT the same as PropertyAddress
+            {
+                if (BillingAddress.AddressID == 0) // If the PropertyAddress does not exist.
+                {
+                    // Create the Address
+                    if ((ErrorMessage = await new ServiceLayer().AddAddress(BillingAddress.toDTO())) != null)
+                    {
+                        return;
+                    }
+
+                    BillingAddress = new Address(ServiceLayer.Address);
+                    Addresses.Add(BillingAddress);
+                }
+                else if (BillingAddress.AddressID > 0) // If the PropertyAddress does exist (it should)
+                {
+                    // Update the PropertyAddress
+                    if ((ErrorMessage = await new ServiceLayer().UpdateAddress(BillingAddress.toDTO())) != null)
+                    {
+                        return;
+                    }
+
+                    // Overwrite the original Address in the Addresses list with the updated information
+                    Address address = Addresses.Where(a => a.AddressID == BillingAddress.AddressID).Single();
+                    int index = Addresses.IndexOf(address);
+                    Addresses[index] = new Address(ServiceLayer.Address);
+                }
+            }
+            #endregion
         }
 
         // Cancel any changes to the Customer and remove the page from the frame
