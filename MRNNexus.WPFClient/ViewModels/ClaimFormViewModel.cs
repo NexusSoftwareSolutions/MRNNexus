@@ -17,7 +17,7 @@ namespace MRNNexus.WPFClient.ViewModels
         private bool _attachLeadBtnIsEnabled = true;
         private bool _addNewLeadBtnIsEnabled = true;
         private bool _modifyLeadBtnIsEnabled = false;
-        private ObservableCollection<DTO_InsuranceCompany> _insuranceCompanies;
+        //private ObservableCollection<DTO_InsuranceCompany> _insuranceCompanies;
         #endregion
 
         #region Properties

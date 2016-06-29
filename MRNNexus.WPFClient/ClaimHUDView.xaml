@@ -211,7 +211,8 @@
         <StackPanel Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" Orientation="Vertical" Margin="5, 2.5, 5, 2.5">
             <Label Content="Options for MRN-3-2-1" FontWeight="Bold"/>
             <Button Content="Modify Customer" Margin="0,2.5,0,2.5" Command="{Binding EditCustomer}"/>
-            <Button Content="Modify Claim/Lead" Margin="0,2.5,0,2.5" Command="{Binding EditClaim}"/>
+            <Button Content="Modify Lead" Margin="0,2.5,0,2.5"/>
+            <Button Content="Modify Claim" Margin="0,2.5,0,2.5" Command="{Binding EditClaim}"/>
             <Button Content="Inspection" Margin="0,2.5,0,2.5"/>
             <Button Content="Adjustments" Margin="0,2.5,0,2.5"/>
             <Button Content="Scopes" Margin="0,2.5,0,2.5"/>
