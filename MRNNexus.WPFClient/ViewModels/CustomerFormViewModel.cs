@@ -98,6 +98,13 @@ namespace MRNNexus.WPFClient.ViewModels
                 int index = Customers.IndexOf(customer);
                 Customers[index] = new Customer(ServiceLayer.Customer);
                 Customer = Customers[index];
+
+                var claims = Claims.Where(c => c.CustomerID == Customer.CustomerID).ToList();
+                foreach(var c in claims)
+                {
+                    int i = Claims.IndexOf(c);
+                    Claims[i].CustomerName = Customer.FullName;
+                }
             }
             #endregion
 
