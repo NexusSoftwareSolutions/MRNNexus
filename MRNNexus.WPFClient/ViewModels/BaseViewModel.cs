@@ -88,6 +88,7 @@ namespace MRNNexus.WPFClient.ViewModels
         public ICommand EditClaim { get { return new RelayCommand(new Action<object>(editClaim)); } }
         public ICommand EditInspection { get { return new RelayCommand(new Action<object>(editInspection)); } }
         public ICommand EditAdjustment { get { return new RelayCommand(new Action<object>(editAdjustment)); } }
+        public ICommand EditScope { get { return new RelayCommand(new Action<object>(editScope)); } }
         #endregion
 
         public ICommand LeadTemperatureSelected
@@ -259,6 +260,10 @@ namespace MRNNexus.WPFClient.ViewModels
         private void editAdjustment(object o)
         {
             CurrentClaimPage = new AdjustmentFormView();
+        }
+        private void editScope(object o)
+        {
+            CurrentClaimPage = new ScopeFormView();
         }
         #endregion
 

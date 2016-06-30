@@ -215,7 +215,7 @@
             <Button Content="Modify Claim" Margin="0,2.5,0,2.5" Command="{Binding EditClaim}"/>
             <Button Content="Inspection" Margin="0,2.5,0,2.5" Command="{Binding EditInspection}"/>
             <Button Content="Adjustments" Margin="0,2.5,0,2.5" Command="{Binding EditAdjustment}"/>
-            <Button Content="Scopes" Margin="0,2.5,0,2.5"/>
+            <Button Content="Scopes" Margin="0,2.5,0,2.5" Command="{Binding EditScope}"/>
             <Button Content="Orders" Margin="0,2.5,0,2.5"/>
             <Button Content="Payments" Margin="0,2.5,0,2.5"/>
             <Button Content="Invoices" Margin="0,2.5,0,2.5"/>

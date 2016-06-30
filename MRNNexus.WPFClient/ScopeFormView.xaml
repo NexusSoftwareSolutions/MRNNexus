@@ -4,8 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MRNNexus.WPFClient"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf"  
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
       Title="ScopeFormView">
 
     <Grid>
@@ -20,13 +20,19 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="1" Grid.Column="0" Content="Scope Date:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120" />
-        <DatePicker Grid.Row="1" Grid.Column="1" x:Name="datepicker" SelectedDate="{Binding Scope.ScopeDate}"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="150"/>
+        <!--<Label Grid.Row="1" Grid.Column="0" Content="Scope Date:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120" />
+        <DatePicker Grid.Row="1" Grid.Column="1" x:Name="datepicker" SelectedDate="{Binding Scope.ScopeDate}"  HorizontalAlignment="Left" VerticalAlignment="Center" Width="150"/>-->
         
-        <Label Grid.Row="2" Grid.Column="0" Content="Scope Type:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
-        <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ScopeTypes}" SelectedValue="{Binding Scope.ScopeTypeID, Mode=TwoWay}" 
+        <Label Grid.Row="1" Grid.Column="0" Content="Scope Type:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding ScopeTypes}" SelectedValue="{Binding Scope.ScopeTypeID, Mode=TwoWay}" 
                                   SelectedValuePath="ScopeTypeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="150" MaxWidth="100">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -34,5 +40,40 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Interior:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+        <syncfusion:CurrencyTextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" MinWidth="150"
+                                    CurrencyGroupSeparator="," CurrencyDecimalSeparator="." CurrencySymbol="$" UseNullOption="True" Value="{Binding Scope.Interior, Mode=TwoWay}"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Exterior:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+        <syncfusion:CurrencyTextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" MinWidth="150"
+                                    CurrencyGroupSeparator="," CurrencyDecimalSeparator="." CurrencySymbol="$" UseNullOption="True" Value="{Binding Scope.Exterior, Mode=TwoWay}"/>
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Gutter:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+        <syncfusion:CurrencyTextBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" MinWidth="150"
+                                    CurrencyGroupSeparator="," CurrencyDecimalSeparator="." CurrencySymbol="$" UseNullOption="True" Value="{Binding Scope.Gutter, Mode=TwoWay}"/>
+
+        <Label Grid.Row="5" Grid.Column="0" Content="Tax:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+        <syncfusion:CurrencyTextBox Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" MinWidth="150"
+                                    CurrencyGroupSeparator="," CurrencyDecimalSeparator="." CurrencySymbol="$" UseNullOption="True" Value="{Binding Scope.Tax, Mode=TwoWay}"/>
+
+        <Label Grid.Row="6" Grid.Column="0" Content="Deductible:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+        <syncfusion:CurrencyTextBox Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" MinWidth="150"
+                                    CurrencyGroupSeparator="," CurrencyDecimalSeparator="." CurrencySymbol="$" UseNullOption="True" Value="{Binding Scope.Deductible, Mode=TwoWay}"/>
+
+        <Label Grid.Row="7" Grid.Column="0" Content="Total:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+        <syncfusion:CurrencyTextBox Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" MinWidth="150"
+                                    CurrencyGroupSeparator="," CurrencyDecimalSeparator="." CurrencySymbol="$" UseNullOption="True" Value="{Binding Scope.Total, Mode=TwoWay}"/>
+
+        <Label Grid.Row="8" Grid.Column="0" Content="OandP:" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="120"/>
+        <syncfusion:CurrencyTextBox Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" MinWidth="150"
+                                    CurrencyGroupSeparator="," CurrencyDecimalSeparator="." CurrencySymbol="$" UseNullOption="True" Value="{Binding Scope.OandP, Mode=TwoWay}"/>
+
+        <syncfusion:CheckListBox Grid.Row="9" Grid.ColumnSpan="2" DataContext="{Binding Scope}" HorizontalAlignment="Stretch" VerticalAlignment="Top" CheckBoxAlignment="Right">
+            <syncfusion:CheckListBoxItem Content="Accepted" IsSelected="{Binding Accepted}"/>
+        </syncfusion:CheckListBox>
+
+        <Button Grid.Row="10" Grid.ColumnSpan="2" Content="Submit"/>
+        <Button Grid.Row="11" Grid.ColumnSpan="2" Content="Cancel"/>
     </Grid>
 </Page>

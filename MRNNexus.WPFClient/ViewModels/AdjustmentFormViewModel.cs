@@ -48,13 +48,9 @@ namespace MRNNexus.WPFClient.ViewModels
 
         private void selectAdjuster(object o)
         {
-            //AccountSelectView view = new AccountSelectView(6);
-            //view.SizeToContent = SizeToContent.WidthAndHeight;
-            //view.WindowStyle = WindowStyle.ThreeDBorderWindow;
-            //view.ResizeMode = ResizeMode.NoResize;
-            //view.ShowDialog();
+            new AdjusterSelectView().ShowDialog();
 
-            if(Adjuster != null && Adjuster.AdjusterID > 0)
+            if (Adjuster != null && Adjuster.AdjusterID > 0)
             {
                 Adjustment.AdjusterID = Adjuster.AdjusterID;
             }
