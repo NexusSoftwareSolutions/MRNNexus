@@ -10,27 +10,27 @@
       DataContext="{StaticResource baseViewModel}">
 
     <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" MinHeight="30"/>
+            <RowDefinition Height="*" MinHeight="30"/>
+            <RowDefinition Height="*" MinHeight="30"/>
+            <RowDefinition Height="*" MinHeight="30"/>
+            <RowDefinition Height="*" MinHeight="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.ColumnSpan="2" Content="{Binding Header}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="{Binding HeaderFontSize}"/>
         
-        <Label Grid.Row="1" Grid.Column="0" Content="MRN #:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <Label Grid.Row="1" Grid.Column="1" Content="{Binding Claim.MRNNumber}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-
-        <Label Grid.Row="2" Grid.Column="0" Content="Invoice Type:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding InvoiceTypes}" SelectedValue="{Binding Invoice.InvoiceTypeID, Mode=TwoWay}" 
-                                  SelectedValuePath="InvoiceTypeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100">
+        <Label Grid.Row="1" Grid.Column="0" Content="Invoice Type:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding InvoiceTypes}" SelectedValue="{Binding Invoice.InvoiceTypeID, Mode=TwoWay}" 
+                                  SelectedValuePath="InvoiceTypeID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="150">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding InvoiceType}"/>
@@ -38,9 +38,9 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <Label Grid.Row="3" Grid.Column="0" Content="Vendor:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Vendors}" SelectedValue="{Binding Invoice.VendorID, Mode=TwoWay}" 
-                                  SelectedValuePath="VendorID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="100" MaxWidth="100">
+        <Label Grid.Row="2" Grid.Column="0" Content="Vendor:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Vendors}" SelectedValue="{Binding Invoice.VendorID, Mode=TwoWay}" 
+                                  SelectedValuePath="VendorID" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="150">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding CompanyName}"/>
@@ -48,16 +48,19 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <Label Grid.Row="4" Grid.Column="0" Content="Invoice Amount:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <syncfusion:CurrencyTextBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" Width="100"
+        <Label Grid.Row="3" Grid.Column="0" Content="Invoice Amount:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <syncfusion:CurrencyTextBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextWrapping="Wrap" MinWidth="150"
             CurrencyGroupSeparator="," CurrencyDecimalSeparator="." CurrencySymbol="$" UseNullOption="True" Value="{Binding Invoice.InvoiceAmount, Mode=TwoWay}"/>
 
-        <Label Grid.Row="5" Grid.Column="0" Content="Invoice Date:" HorizontalAlignment="Left" VerticalAlignment="Center" />
-        <DatePicker Grid.Row="5" Grid.Column="1" x:Name="datepicker" SelectedDate="{Binding Invoice.InvoiceDate}"  HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Grid.Row="4" Grid.Column="0" Content="Invoice Date:" HorizontalAlignment="Left" VerticalAlignment="Center" />
+        <DatePicker Grid.Row="4" Grid.Column="1" x:Name="datepicker" SelectedDate="{Binding Invoice.InvoiceDate}"  HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="150"/>
 
-        <syncfusion:CheckListBox Grid.Row="6" Grid.ColumnSpan="2" DataContext="{Binding Invoice}" HorizontalAlignment="Stretch" VerticalAlignment="Top" CheckBoxAlignment="Right">
+        <syncfusion:CheckListBox Grid.Row="5" Grid.ColumnSpan="2" DataContext="{Binding Invoice}" HorizontalAlignment="Stretch" VerticalAlignment="Top" CheckBoxAlignment="Right">
             <syncfusion:CheckListBoxItem Content="Paid?" IsSelected="{Binding Paid}"/>
         </syncfusion:CheckListBox>
+
+        <Button Grid.Row="6" Grid.ColumnSpan="2" x:Name="submitBtn" Content="Submit" Command="{Binding SaveInspection}"/>
+        <Button Grid.Row="7" Grid.ColumnSpan="2" x:Name="cancelBtn" Content="Cancel" Command="{Binding CancelInspection}"/>
 
     </Grid>
 </Page>
