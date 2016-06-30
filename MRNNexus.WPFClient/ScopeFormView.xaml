@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:MRNNexus.WPFClient"
       xmlns:syncfusion="http://schemas.syncfusion.com/wpf"  
       mc:Ignorable="d" 
-      Title="ScopeFormView">
+      Title="ScopeFormView"
+      DataContext="{StaticResource baseViewModel}">
 
     <Grid>
         <Grid.ColumnDefinitions>
