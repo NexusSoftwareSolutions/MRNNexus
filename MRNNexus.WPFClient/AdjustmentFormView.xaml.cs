@@ -19,14 +19,11 @@ namespace MRNNexus.WPFClient
     /// <summary>
     /// Interaction logic for AdjustmentFormView.xaml
     /// </summary>
-    public partial class AdjustmentFormView : Window
+    public partial class AdjustmentFormView : Page
     {
-        private AdjustmentFormViewModel _vm;
         public AdjustmentFormView()
         {
             InitializeComponent();
-            _vm = (this.DataContext as AdjustmentFormViewModel);
-            _vm.OnRequestClose += (s, e) => this.Close();
         }
     }
 }

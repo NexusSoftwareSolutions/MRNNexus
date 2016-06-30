@@ -102,7 +102,7 @@ namespace MRNNexus.WPFClient.ViewModels
         {
             Adjuster = null;
             Adjustment = null;
-            OnRequestClose(this, new EventArgs());
+            CurrentClaimPage = null;
         }
 
 

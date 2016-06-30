@@ -87,6 +87,7 @@ namespace MRNNexus.WPFClient.ViewModels
         public ICommand EditCustomer { get { return new RelayCommand(new Action<object>(editCustomer)); } }
         public ICommand EditClaim { get { return new RelayCommand(new Action<object>(editClaim)); } }
         public ICommand EditInspection { get { return new RelayCommand(new Action<object>(editInspection)); } }
+        public ICommand EditAdjustment { get { return new RelayCommand(new Action<object>(editAdjustment)); } }
         #endregion
 
         public ICommand LeadTemperatureSelected
@@ -107,7 +108,7 @@ namespace MRNNexus.WPFClient.ViewModels
         private static void navigateClaims(object o)
         {
 
-            Header = "Select A Claim";
+            //Header = "Select A Claim";
             CurrentClaimPage = null;
             CurrentPage = new AccountSelectView();
         }
@@ -254,6 +255,10 @@ namespace MRNNexus.WPFClient.ViewModels
         private void editInspection(object o)
         {
             CurrentClaimPage = new InspectionView();
+        }
+        private void editAdjustment(object o)
+        {
+            CurrentClaimPage = new AdjustmentFormView();
         }
         #endregion
 
