@@ -71,20 +71,6 @@ namespace MRNNexus.WPFClient.ViewModels
         public static ICommand Exit { get { return new RelayCommand(new Action<object>(exit)); } }
         public static ICommand NavigateClaims { get { return new RelayCommand(new Action<object>(navigateClaims)); } }
 
-        //#region Lead
-        //public static ICommand AddLead
-        //{
-        //    get { return new RelayCommand(new Action<object>(addLead)); }
-        //}
-        //public static ICommand EditLead
-        //{
-        //    get { return new RelayCommand(new Action<object>(editLead)); }
-        //}
-        ////public static ICommand ViewLeads
-        ////{
-        ////    get { return new RelayCommand(new Action<object>(viewLeads)); }
-        ////}
-        //#endregion
 
         #region Schedule
         public static ICommand ViewSchedule
@@ -93,68 +79,14 @@ namespace MRNNexus.WPFClient.ViewModels
         }
         #endregion
 
-        //#region Inspection
-        //public static ICommand AddInspection
-        //{
-        //    get { return new RelayCommand(new Action<object>(addInspection)); }
-        //}
-        //public static ICommand EditInspection
-        //{
-        //    get { return new RelayCommand(new Action<object>(editInspection)); }
-        //}
-        ////public static ICommand ViewInspections
-        ////{
-        ////    get { return new RelayCommand(new Action<object>(viewInspections)); }
-        ////}
-        //#endregion
-
-        //#region Adjustment & Adjuster
-        //public static ICommand AddAdjuster
-        //{
-        //    get { return new RelayCommand(new Action<object>(addAdjuster)); }
-        //}
-        //public static ICommand EditAdjuster
-        //{
-        //    get { return new RelayCommand(new Action<object>(editAdjuster)); }
-        //}
-        ////public static ICommand ViewAdjusters
-        ////{
-        ////    get { return new RelayCommand(new Action<object>(viewAdjusters)); }
-        ////}
-        //public static ICommand AddAdjustment
-        //{
-        //    get { return new RelayCommand(new Action<object>(addAdjustment)); }
-        //}
-        //public static ICommand EditAdjustment
-        //{
-        //    get { return new RelayCommand(new Action<object>(editAdjustment)); }
-        //}
-        ////public static ICommand ViewAdjustments
-        ////{
-        ////    get { return new RelayCommand(new Action<object>(viewAdjustments)); }
-        ////}
-        //#endregion
-
-        //#region Invoice
-        //public static ICommand AddInvoice
-        //{
-        //    get { return new RelayCommand(new Action<object>(addInvoice)); }
-        //}
-        ////public static ICommand EditInvoice
-        ////{
-        ////    get { return new RelayCommand(new Action<object>(editInvoice)); }
-        ////}
-        ////public static ICommand ViewInvoices
-        ////{
-        ////    get { return new RelayCommand(new Action<object>(viewInvoices)); }
-        ////}
-        //#endregion
+      
 
         #endregion
 
         #region ClaimCommands
         public ICommand EditCustomer { get { return new RelayCommand(new Action<object>(editCustomer)); } }
         public ICommand EditClaim { get { return new RelayCommand(new Action<object>(editClaim)); } }
+        public ICommand EditInspection { get { return new RelayCommand(new Action<object>(editInspection)); } }
         #endregion
 
         public ICommand LeadTemperatureSelected
@@ -318,6 +250,10 @@ namespace MRNNexus.WPFClient.ViewModels
         private void editClaim(object o)
         {
             CurrentClaimPage = new ClaimFormView();
+        }
+        private void editInspection(object o)
+        {
+            CurrentClaimPage = new InspectionView();
         }
         #endregion
 

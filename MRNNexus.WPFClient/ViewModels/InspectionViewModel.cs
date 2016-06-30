@@ -100,44 +100,39 @@ namespace MRNNexus.WPFClient.ViewModels
 
         async private Task<InspectionViewModel> InitializeAsync()
         {
-
-            ClaimFormView = new ClaimFormView();
-
             // Retrieve Required Data
-            
-            
 
             if(Claim != null && Claim.ClaimID != 0) // If a claim was selected.
             {
-                // Retrieve the Customer, Property Address, Billing Address, previous Inspection, and Lead information.
-                Customer = Customers.Where(c => c.CustomerID == Claim.CustomerID).Single();
-                IsExistingCustomer = true;
+                //// Retrieve the Customer, Property Address, Billing Address, previous Inspection, and Lead information.
+                //Customer = Customers.Where(c => c.CustomerID == Claim.CustomerID).Single();
+                //IsExistingCustomer = true;
 
-                PropertyAddress = Addresses.Where(a => a.AddressID == Claim.PropertyID).Single();
-                IsExistingAddress = true;
+                //PropertyAddress = Addresses.Where(a => a.AddressID == Claim.PropertyID).Single();
+                //IsExistingAddress = true;
         
-                // Check if the BillingID is the same as PropertyID
-                if (Claim.BillingID == Claim.PropertyID)
-                {
-                    BillingSameAsProperty = true;
-                    BillingAddress = PropertyAddress;
-                }
-                else // If it's not retrieve the BillingAddress from the server
-                {
-                    BillingSameAsProperty = false;
-                    BillingAddress = Addresses.Where(a => a.AddressID == Claim.BillingID).Single();
-                }
+                //// Check if the BillingID is the same as PropertyID
+                //if (Claim.BillingID == Claim.PropertyID)
+                //{
+                //    BillingSameAsProperty = true;
+                //    BillingAddress = PropertyAddress;
+                //}
+                //else // If it's not retrieve the BillingAddress from the server
+                //{
+                //    BillingSameAsProperty = false;
+                //    BillingAddress = Addresses.Where(a => a.AddressID == Claim.BillingID).Single();
+                //}
 
                 // Retrieve the Inspection attached to the Claim
                 if ((ErrorMessage = await new ServiceLayer().GetInspectionsByClaimID(Claim.toDTO())) != null)
                     return this;
 
-                // Retrieve the Lead attached to the Claim
-                if ((ErrorMessage = await new ServiceLayer().GetLeadByLeadID(new DTO_Lead { LeadID = Claim.LeadID })) != null)
-                    return this;
+                //// Retrieve the Lead attached to the Claim
+                //if ((ErrorMessage = await new ServiceLayer().GetLeadByLeadID(new DTO_Lead { LeadID = Claim.LeadID })) != null)
+                //    return this;
 
-                Lead = new Lead(ServiceLayer.Lead);
-                LeadIsAttached = true;
+                //Lead = new Lead(ServiceLayer.Lead);
+                //LeadIsAttached = true;
 
                 Inspection = new Inspection(ServiceLayer.InspectionsList.Last());
             }
@@ -193,10 +188,10 @@ namespace MRNNexus.WPFClient.ViewModels
                 Inspection = new Inspection();
             }
 
-            if (BillingAddress != null && PropertyAddress.AddressID == BillingAddress.AddressID)
-            {
-                _billingSameAsProperty = true;
-            }
+            //if (BillingAddress != null && PropertyAddress.AddressID == BillingAddress.AddressID)
+            //{
+            //    _billingSameAsProperty = true;
+            //}
 
             // Set up Commands
             _saveInspection = new RelayCommand(new Action<object>(saveInspection));
@@ -210,72 +205,72 @@ namespace MRNNexus.WPFClient.ViewModels
         async private void saveInspection(object e)
         {
 
-            if(Lead == null || Lead.LeadID <= 0)
-            {
-                ErrorMessage = "Every MRN Claim must have a lead. Please either attach a lead or create a new one.";
-                return;
-            }
+            //if (Lead == null || Lead.LeadID <= 0)
+            //{
+            //    ErrorMessage = "Every MRN Claim must have a lead. Please either attach a lead or create a new one.";
+            //    return;
+            //}
 
-            // If CustomerID doesn't exist create customer.
-            if(Customer.CustomerID == 0)
-            {
-                if ((ErrorMessage = await new ServiceLayer().AddCustomer(Customer.toDTO())) != null)
-                    return;
+            //// If CustomerID doesn't exist create customer.
+            //if (Customer.CustomerID == 0)
+            //{
+            //    if ((ErrorMessage = await new ServiceLayer().AddCustomer(Customer.toDTO())) != null)
+            //        return;
 
-                Customer.CustomerID = ServiceLayer.Customer.CustomerID;
-                PropertyAddress.CustomerID = Customer.CustomerID;
-                BillingAddress.CustomerID = Customer.CustomerID;
-                Claim.CustomerID = Customer.CustomerID;
-            }
-            else // If Customer does exist.
-            {
-                PropertyAddress.CustomerID = Customer.CustomerID;
-                BillingAddress.CustomerID = Customer.CustomerID;
-                Claim.CustomerID = Customer.CustomerID;
+            //    Customer.CustomerID = ServiceLayer.Customer.CustomerID;
+            //    PropertyAddress.CustomerID = Customer.CustomerID;
+            //    BillingAddress.CustomerID = Customer.CustomerID;
+            //    Claim.CustomerID = Customer.CustomerID;
+            //}
+            //else // If Customer does exist.
+            //{
+            //    PropertyAddress.CustomerID = Customer.CustomerID;
+            //    BillingAddress.CustomerID = Customer.CustomerID;
+            //    Claim.CustomerID = Customer.CustomerID;
 
-                if ((ErrorMessage = await new ServiceLayer().UpdateCustomer(Customer.toDTO())) != null)
-                    return;
-            }
+            //    if ((ErrorMessage = await new ServiceLayer().UpdateCustomer(Customer.toDTO())) != null)
+            //        return;
+            //}
 
-            // If PropertyAddress doesn't exist create address.
-            if (PropertyAddress.AddressID == 0)
-            {
-                if ((ErrorMessage = await new ServiceLayer().AddAddress(PropertyAddress.toDTO())) != null)
-                    return;
+            //// If PropertyAddress doesn't exist create address.
+            //if (PropertyAddress.AddressID == 0)
+            //{
+            //    if ((ErrorMessage = await new ServiceLayer().AddAddress(PropertyAddress.toDTO())) != null)
+            //        return;
 
-                PropertyAddress.AddressID = ServiceLayer.Address.AddressID;
-                Claim.PropertyID = PropertyAddress.AddressID;
-            }
-            else // If ProeprtyAddress does exist.
-            {
-                Claim.PropertyID = PropertyAddress.AddressID;
+            //    PropertyAddress.AddressID = ServiceLayer.Address.AddressID;
+            //    Claim.PropertyID = PropertyAddress.AddressID;
+            //}
+            //else // If ProeprtyAddress does exist.
+            //{
+            //    Claim.PropertyID = PropertyAddress.AddressID;
 
-                if ((ErrorMessage = await new ServiceLayer().UpdateAddress(PropertyAddress.toDTO())) != null)
-                    return;
-            }
+            //    if ((ErrorMessage = await new ServiceLayer().UpdateAddress(PropertyAddress.toDTO())) != null)
+            //        return;
+            //}
 
-            // If BillingAddress ID different from PropertyAddress and doesn't esits create address.
-            if (!_billingSameAsProperty && BillingAddress.AddressID == 0)
-            {
-                if ((ErrorMessage = await new ServiceLayer().AddAddress(BillingAddress.toDTO())) != null)
-                    return;
-                BillingAddress.AddressID = ServiceLayer.Address.AddressID;
-                Claim.BillingID = BillingAddress.AddressID;
+            //// If BillingAddress ID different from PropertyAddress and doesn't esits create address.
+            //if (!_billingSameAsProperty && BillingAddress.AddressID == 0)
+            //{
+            //    if ((ErrorMessage = await new ServiceLayer().AddAddress(BillingAddress.toDTO())) != null)
+            //        return;
+            //    BillingAddress.AddressID = ServiceLayer.Address.AddressID;
+            //    Claim.BillingID = BillingAddress.AddressID;
 
-            }
-            else if (_billingSameAsProperty)
-            {
-                Claim.BillingID = PropertyAddress.AddressID;
-            }
-            else // If BillingAddress does exist.
-            {
-                ////////////////////////////////////////
-                /// LOOK INTO THIS CONDITION FURTHER ///
-                ////////////////////////////////////////
-                Claim.BillingID = BillingAddress.AddressID;
-                if ((ErrorMessage = await new ServiceLayer().UpdateAddress(BillingAddress.toDTO())) != null)
-                    return;
-            }
+            //}
+            //else if (_billingSameAsProperty)
+            //{
+            //    Claim.BillingID = PropertyAddress.AddressID;
+            //}
+            //else // If BillingAddress does exist.
+            //{
+            //    ////////////////////////////////////////
+            //    /// LOOK INTO THIS CONDITION FURTHER ///
+            //    ////////////////////////////////////////
+            //    Claim.BillingID = BillingAddress.AddressID;
+            //    if ((ErrorMessage = await new ServiceLayer().UpdateAddress(BillingAddress.toDTO())) != null)
+            //        return;
+            //}
 
             // If Claim doesn't exist create new claim.
             if (Claim.ClaimID == 0)
@@ -303,11 +298,9 @@ namespace MRNNexus.WPFClient.ViewModels
             {
                 if ((ErrorMessage = await new ServiceLayer().UpdateInspection(Inspection.toDTO())) != null)
                     return;
-                
-
             }
 
-            CurrentPage = new ScheduleView();
+            CurrentClaimPage = null;
 
             
 
@@ -315,10 +308,8 @@ namespace MRNNexus.WPFClient.ViewModels
 
         private void cancelInspection(object e)
         {
-            if(CurrentPage.DataContext.GetType() != typeof(ScheduleViewModel))
-            {
-                CurrentPage = new ScheduleView();
-            }
+            Inspection = null;
+            CurrentClaimPage = null;
         }
     }
 }
