@@ -37,7 +37,7 @@
         </ComboBox>
 
         <Button Grid.Row="3" Grid.Column="0" Content="Select File:" Command="{Binding SelectFile}" HorizontalAlignment="Left" VerticalAlignment="Center" MinWidth="110"/>
-        <syncfusion:SfTextBoxExt Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" IsEnabled="False" VerticalAlignment="Center" MinWidth="150"/>
+        <syncfusion:SfTextBoxExt Grid.Row="3" Grid.Column="1" Text="{Binding File}" HorizontalAlignment="Left" TextWrapping="Wrap" IsEnabled="False" VerticalAlignment="Center" MinWidth="150"/>
 
 
         <Button Grid.Row="4" Grid.ColumnSpan="2" Content="Save / Upload" Command="{Binding SaveFile}"/>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MRNNexus.WPFClient.Models
 {
-    internal class ClaimDocument
+    internal class ClaimDocument : BaseModel
     {
         #region Fields
         private int _documentID;
@@ -17,7 +17,7 @@ namespace MRNNexus.WPFClient.Models
         private string _fileName;
         private string _fileBytes;
         private string _fileExt;
-        private DateTime _documentDate;
+        private DateTime _documentDate = DateTime.Now;
         private string _signatureImagePath;
         private int? _numSignatures;
         private string _initialImagePath;
@@ -35,6 +35,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _documentID = value;
+                RaisePropertyChanged("DocumentID");
             }
         }
 
@@ -48,6 +49,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _docTypeID = value;
+                RaisePropertyChanged("DocTypeID");
             }
         }
 
@@ -61,6 +63,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _claimID = value;
+                RaisePropertyChanged("ClaimID");
             }
         }
 
@@ -74,6 +77,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _filePath = value;
+                RaisePropertyChanged("FilePath");
             }
         }
 
@@ -87,6 +91,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _fileName = value;
+                RaisePropertyChanged("FileName");
             }
         }
 
@@ -100,6 +105,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _fileBytes = value;
+                RaisePropertyChanged("FileBytes");
             }
         }
 
@@ -113,6 +119,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _fileExt = value;
+                RaisePropertyChanged("FileExt");
             }
         }
 
@@ -126,6 +133,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _documentDate = value;
+                RaisePropertyChanged("DocumentDate");
             }
         }
 
@@ -139,6 +147,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _signatureImagePath = value;
+                RaisePropertyChanged("SignatureImagePath");
             }
         }
 
@@ -152,6 +161,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _numSignatures = value;
+                RaisePropertyChanged("NumSignatures");
             }
         }
 
@@ -165,6 +175,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _initialImagePath = value;
+                RaisePropertyChanged("InitialImagePath");
             }
         }
 
@@ -178,6 +189,7 @@ namespace MRNNexus.WPFClient.Models
             set
             {
                 _numInitials = value;
+                RaisePropertyChanged("NumInitials");
             }
         }
         #endregion
