@@ -23,6 +23,8 @@ namespace MRNNexus.WPFClient.Models
         private int? _creditToID;
         private string _temperature = "W";
         private int? _numberOfDays;
+
+        private string _creditTo;
         #endregion
 
         #region Properties
@@ -139,17 +141,25 @@ namespace MRNNexus.WPFClient.Models
 
         #region Properties for Grid Display
         [Display(AutoGenerateField = true, Order = 3)]
-            public string LeadType { get; set; }
+        public string LeadType { get; set; }
 
-            [Display(AutoGenerateField = true, Order = 9)]
-            public string CreditTo { get; set; }
+        [Display(AutoGenerateField = true, Order = 9)]
+        public string CreditTo
+        {
+            get { return _creditTo; }
+            set
+            {
+                _creditTo = value;
+                RaisePropertyChanged("CreditTo");
+            }
+        }
 
-            [Display(AutoGenerateField = true, Order = 5)]
-            public string CustomerName { get; set; }
+        [Display(AutoGenerateField = true, Order = 5)]
+        public string CustomerName { get; set; }
 
-            [Display(AutoGenerateField = true, Order = 6)]
-            public string Address { get; set; }
-            #endregion
+        [Display(AutoGenerateField = true, Order = 6)]
+        public string Address { get; set; }
+        #endregion
         #endregion
 
         #region Constructors

@@ -136,6 +136,69 @@ namespace MRNNexus.WPFClient.ViewModels
 
         async public void submitClaim(object o)
         {
+            #region Process Lead
+
+            // Create needed KnockerResponse or Referrer if needed.
+            if (Lead.LeadTypeID == 1) // Knocker
+            {
+                // If KnockerResponse does not exist
+
+                if (KnockerResponse.KnockerResponseID == 0)
+                {
+                    if ((ErrorMessage = await new ServiceLayer().AddKnockerResponse(KnockerResponse.toDTO())) != null)
+                        return;
+                }
+                else
+                {
+                    if ((ErrorMessage = await new ServiceLayer().UpdateKnockerResponse(KnockerResponse.toDTO())) != null)
+                        return;
+                }
+
+                KnockerResponse = new KnockerResponse(ServiceLayer.KnockerResponse);
+                Lead.KnockerResponseID = KnockerResponse.KnockerResponseID;
+                Lead.CreditToID = KnockerResponse.KnockerID;
+                //Lead.CreditTo = Employee.FirstName + " " + Employee.LastName;
+            }
+            else if (Lead.LeadTypeID == 2) // Referrer
+            {
+
+                if (Referrer.ReferrerID == 0)
+                {
+                    if ((ErrorMessage = await new ServiceLayer().AddReferrer(Referrer.toDTO())) != null)
+                        return;
+                }
+                else
+                {
+                    if ((ErrorMessage = await new ServiceLayer().UpdateReferrer(Referrer.toDTO())) != null)
+                        return;
+                }
+
+                Referrer = new Referrer(ServiceLayer.Referrer);
+                Lead.CreditToID = Referrer.ReferrerID;
+                Lead.CreditTo = Referrer.FirstName + " " + Referrer.LastName;
+            }
+
+            Lead.SalespersonID = LoggedInEmployee.EmployeeID;
+            Lead.CustomerID = Customer.CustomerID;
+            Lead.AddressID = PropertyAddress.AddressID;
+            Lead.Status = "A";
+
+            if (Lead.LeadID == 0)
+            {
+                if ((ErrorMessage = await new ServiceLayer().AddLead(Lead.toDTO())) != null)
+                    return;
+
+                Lead.LeadID = ServiceLayer.Lead.LeadID;
+            }
+            else
+            {
+                if ((ErrorMessage = await new ServiceLayer().UpdateLead(Lead.toDTO())) != null)
+                    return;
+            }
+            
+            #endregion
+
+            #region Claim
             if (Claim.ClaimID == 0) // If the Claim doesn't exist (it should exist)
             {
                 // Create the Claim
@@ -164,6 +227,7 @@ namespace MRNNexus.WPFClient.ViewModels
                 Claims[index].Address = Addresses.Where(a => a.AddressID == Claims[index].PropertyID).Single().FullAddress;
                 
             }
+            #endregion
         }
 
         // Cancel any changes to the Claim and remove the page from the frame

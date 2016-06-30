@@ -86,6 +86,16 @@
                             <TextBlock Text="{Binding LeadType}"/>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+                    <ComboBox.Style>
+                        <Style>
+                            <Setter Property="ComboBox.IsEnabled" Value="False"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Lead.LeadeID}" Value="0">
+                                    <Setter Property="ComboBox.IsEnabled" Value="True"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
                 </ComboBox>
 
                 <!--#region KNOCKER CONTROLS-->
@@ -113,10 +123,13 @@
                     <ComboBox.Style>
                         <Style>
                             <Setter Property="ComboBox.Visibility" Value="Collapsed"></Setter>
+                            <Setter Property="ComboBox.IsEnabled" Value="False"></Setter>
                             <Style.Triggers>
-                                <DataTrigger
-                            Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="1">
+                                <DataTrigger Binding="{Binding ElementName=leadTypeIDCbo, Path=SelectedItem.LeadTypeID}" Value="1">
                                     <Setter Property="ComboBox.Visibility" Value="Visible"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Lead.LeadeID}" Value="0">
+                                    <Setter Property="ComboBox.IsEnabled" Value="True"></Setter>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

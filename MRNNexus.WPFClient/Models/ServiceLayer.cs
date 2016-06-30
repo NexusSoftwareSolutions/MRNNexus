@@ -609,10 +609,22 @@ namespace MRNNexus.WPFClient.Models
             return Inspection.Message;
         }
 
+        async public Task<string> UpdateKnockerResponse(DTO_KnockerResponse token)
+        {
+            KnockerResponse = JsonConvert.DeserializeObject<DTO_KnockerResponse>(await MakeRequest(token, "UpdateKnockerResponse"));
+            return KnockerResponse.Message;
+        }
+
         async public Task<string> UpdateLead(DTO_Lead token)
         {
             Lead = JsonConvert.DeserializeObject<DTO_Lead>(await MakeRequest(token, "UpdateLead"));
             return Lead.Message;
+        }
+
+        async public Task<string> UpdateReferrer(DTO_Referrer token)
+        {
+            Referrer = JsonConvert.DeserializeObject<DTO_Referrer>(await MakeRequest(token, "UpdateReferrer"));
+            return Referrer.Message;
         }
         #endregion
 

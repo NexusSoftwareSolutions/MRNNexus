@@ -100,12 +100,12 @@ namespace MRNNexus.WPFClient.ViewModels
                 Customer = Customers[index];
 
                 // Reassign the CustomerName property in any Claims it is attached to in case it changed.
-                var claims = Claims.Where(c => c.CustomerID == Customer.CustomerID).ToList();
-                foreach (var c in claims)
-                {
-                    int i = Claims.IndexOf(c);
-                    Claims[i].CustomerName = Customer.FullName;
-                }
+                //var claims = Claims.Where(c => c.CustomerID == Customer.CustomerID).ToList();
+                //foreach (var c in claims)
+                //{
+                //    int i = Claims.IndexOf(c);
+                //    Claims[i].CustomerName = Customer.FullName;
+                //}
             }
             #endregion
 
