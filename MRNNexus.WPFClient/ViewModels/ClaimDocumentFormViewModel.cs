@@ -49,8 +49,6 @@ namespace MRNNexus.WPFClient.ViewModels
             {
 
             }
-
-
         }
 
         async public void saveFile(object o)
