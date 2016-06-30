@@ -101,6 +101,9 @@
     <Compile Include="BillingAddressFormView.xaml.cs">
       <DependentUpon>BillingAddressFormView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClaimDocumentFormView.xaml.cs">
+      <DependentUpon>ClaimDocumentFormView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ClaimFormView.xaml.cs">
       <DependentUpon>ClaimFormView.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,7 @@
     </Compile>
     <Compile Include="Models\Adjuster.cs" />
     <Compile Include="Models\Adjustment.cs" />
+    <Compile Include="Models\ClaimDocument.cs" />
     <Compile Include="Models\ClaimStatus.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\Referrer.cs" />
@@ -162,6 +166,7 @@
     <Compile Include="ViewModels\AdjustmentFormViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="Converters\IntToInt64Converter.cs" />
+    <Compile Include="ViewModels\ClaimDocumentFormViewModel.cs" />
     <Compile Include="ViewModels\ClaimFormViewModel.cs" />
     <Compile Include="ViewModels\ClaimHUDViewModel.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
@@ -188,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="BillingAddressFormView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClaimDocumentFormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
