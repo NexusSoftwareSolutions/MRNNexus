@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         
     
-    <Grid Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch" ShowGridLines="True">
+    <Grid Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
