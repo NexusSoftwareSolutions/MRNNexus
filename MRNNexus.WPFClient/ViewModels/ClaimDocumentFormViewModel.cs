@@ -30,7 +30,7 @@ namespace MRNNexus.WPFClient.ViewModels
 
         public ClaimDocumentFormViewModel()
         {
-            ClaimDocument = new ClaimDocument();
+            ClaimDocument = new ClaimDocument { ClaimID = Claim.ClaimID };
         }
 
         public void selectFile(object o)
@@ -41,12 +41,9 @@ namespace MRNNexus.WPFClient.ViewModels
             if ((bool)result)
             {
                 File = openFileDialog.FileName;
-                var onlyFileName = System.IO.Path.GetFileNameWithoutExtension(_file);
-                ClaimDocument.FileName = onlyFileName.Replace(" ", "_");
+                ClaimDocument.FileName = System.IO.Path.GetFileNameWithoutExtension(_file).Replace(" ", "_");
                 ClaimDocument.FileBytes = Convert.ToBase64String(System.IO.File.ReadAllBytes(_file));
                 ClaimDocument.FileExt = System.IO.Path.GetExtension(_file);
-
-                
             }
             else
             {
@@ -56,9 +53,20 @@ namespace MRNNexus.WPFClient.ViewModels
 
         }
 
-        public void saveFile(object o)
+        async public void saveFile(object o)
         {
+            if(ClaimDocument.DocumentID == 0) // If the ClaimDocument does not already exist.
+            {
+                if ((ErrorMessage = await new ServiceLayer().AddClaimDocument(ClaimDocument.toDTO())) != null)
+                    return;
 
+                ClaimDocument = new ClaimDocument(ServiceLayer.ClaimDocument);
+            }
+            else // If the ClaimDocument already exists.
+            {
+                if ((ErrorMessage = await new ServiceLayer().UpdateClaimDocument(ClaimDocument.toDTO())) != null)
+                    return;
+            }
         }
 
         public void cancel(object o)

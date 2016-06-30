@@ -373,6 +373,12 @@ namespace MRNNexus.WPFClient.Models
             return Claim.Message;
         }
 
+        async public Task<string> AddClaimDocument(DTO_ClaimDocument token)
+        {
+            ClaimDocument = JsonConvert.DeserializeObject<DTO_ClaimDocument>(await MakeRequest(token, "AddClaimDocument"));
+            return ClaimDocument.Message;
+        }
+
         async public Task<string> AddCustomer(DTO_Customer token)
         {
             Customer = JsonConvert.DeserializeObject<DTO_Customer>(await MakeRequest(token, "AddCustomer"));
@@ -595,6 +601,12 @@ namespace MRNNexus.WPFClient.Models
         {
             Claim = JsonConvert.DeserializeObject<DTO_Claim>(await MakeRequest(token, "UpdateClaim"));
             return Claim.Message;
+        }
+
+        async public Task<string> UpdateClaimDocument(DTO_ClaimDocument token)
+        {
+            ClaimDocument = JsonConvert.DeserializeObject<DTO_ClaimDocument>(await MakeRequest(token, "UpdateClaimDocument"));
+            return ClaimDocument.Message;
         }
 
         async public Task<string> UpdateCustomer(DTO_Customer token)
