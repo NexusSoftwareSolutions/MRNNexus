@@ -219,7 +219,7 @@
             <Button Content="Orders" Margin="0,2.5,0,2.5"/>
             <Button Content="Payments" Margin="0,2.5,0,2.5"/>
             <Button Content="Invoices" Margin="0,2.5,0,2.5" Command="{Binding EditInvoice}"/>
-            <Button Content="Douments" Margin="0,2.5,0,2.5"/>
+            <Button Content="Documents" Margin="0,2.5,0,2.5" Command="{Binding EditDocument}"/>
             <Button Content="Surplus Supplies" Margin="0,2.5,0,2.5"/>
             <Button Content="Additional Supplies" Margin="0,2.5,0,2.5"/>
         </StackPanel>

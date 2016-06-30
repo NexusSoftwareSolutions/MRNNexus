@@ -91,6 +91,7 @@ namespace MRNNexus.WPFClient.ViewModels
         public ICommand EditScope { get { return new RelayCommand(new Action<object>(editScope)); } }
 
         public ICommand EditInvoice { get { return new RelayCommand(new Action<object>(editInvoice)); } }
+        public ICommand EditDocument { get { return new RelayCommand(new Action<object>(editDocument)); } }
         #endregion
 
         public ICommand LeadTemperatureSelected
@@ -271,6 +272,10 @@ namespace MRNNexus.WPFClient.ViewModels
         {
             CurrentClaimPage = new InvoiceFormView();
         }
+        private void editDocument(object o)
+        {
+            CurrentClaimPage = new ClaimDocumentFormView();
+        }
         #endregion
 
         private void setLeadTemperature(object o) // WHY IS THIS HERE???
@@ -401,6 +406,7 @@ namespace MRNNexus.WPFClient.ViewModels
         private static Adjustment _adjustment;
         private static Address _billingAddress;
         private static Claim _claim;
+        private static ClaimDocument _claimDocument;
         private static ClaimStatus _claimStatus;
         private static Customer _customer;
         private static Employee _employee;
@@ -519,7 +525,14 @@ namespace MRNNexus.WPFClient.ViewModels
             }
         }
         //public static ClaimContacts ClaimContacts { get; set; }
-        //public static ClaimDocument ClaimDocument { get; set; }
+        public static ClaimDocument ClaimDocument {
+            get { return _claimDocument; }
+            set
+            {
+                _claimDocument = value;
+                RaiseStaticPropertyChanged("ClaimDocument");
+            }
+        }
         public static ClaimStatus ClaimStatus {
             get { return _claimStatus; }
             set

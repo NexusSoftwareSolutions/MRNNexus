@@ -17,6 +17,7 @@
         <viewModel:CustomerFormViewModel x:Key="customerFormViewModel"/>
         <viewModel:AdjusterFormViewModel x:Key="adjusterFormViewModel"/>
         <viewModel:ClaimFormViewModel x:Key="claimFormViewModel"/>
+        <viewModel:ClaimDocumentFormViewModel x:Key="claimDocumentFormViewModel"/>
         <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
 
         <DataTemplate DataType="{x:Type viewModel:LeadViewModel}">
